@@ -1,0 +1,25 @@
+baseURL = "https://docs.loraserver.io/"
+languageCode = "en-us"
+relativeURLs = true
+title = "LoRa Server documentation"
+
+[[menu.main]]
+    pre = "<i class='fa fa-hand-o-right'></i>"
+    name = "Overview"
+    identifier = "overview"
+    url = "/overview/"
+    weight = 1
+
+[[menu.main]]
+    pre = "<i class='fa fa-wifi'></i>"
+    name = "LoRaWAN"
+    identifier = "lorawan"
+    url = "/lorawan/"
+    weight = 2
+
+[[menu.main]]
+    pre = "<i class='fa fa-github'></i>"
+    name = "Community & support"
+    identifier = "community"
+    url = "/community/"
+    weight = 3
