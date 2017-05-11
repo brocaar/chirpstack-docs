@@ -1,0 +1,24 @@
+language: go
+sudo: required
+dist: trusty
+
+before_deploy:
+  - wget https://github.com/spf13/hugo/releases/download/v0.20.7/hugo_0.20.7_Linux-64bit.deb
+  - sudo dpkg -i hugo_0.20.7_Linux-64bit.deb
+  - rm *.deb
+  - make clean documentation
+
+deploy:
+  provider: s3
+  skip_cleanup: true
+  access_key_id: AKIAJRLX7TQLGT6NN7WQ
+  secret_access_key:
+    secure: PR4YKHMJqXhkqhM9uChp6MZUPuDbgt5/Zaalmq94UaVhQvdxmgEucT69Y09x0Ymks796UDtqea5jRghULMS21XZ1qpLz4M9UOr2ozxMg2opuYCDtEb+brsQQYEG7gQUA0+oR25xRuxP4zUAk2ojdvQElMDrzrfoTeljdOOdIfkzMku+DuSV0WCfRfG3DgwDUbY+lybFL8R+elaSmI8qAd/4vB3IBjMLokeIr31vvBYUzavT6LnI+7i/ZSpqhyVYcQlc0RlHm4LjgeW1eKXzN4J36Ril/2KXejWgWWX/rDhZGMWwrSU1aUeiWqjYjcFcdKMBXU7r1DgDhlD38+J7jT+1cPogqPPN7DJ/rhJOaUSQt1NmxjDMHOSjuLd8sliYaiUEclehnh1bTYdmQCjfKRMhH2vdw2QU7tN7B8EoJTu8U0R2WtRJ5xmlwGZk2beGM0DGYjeRc5ajT91QaSlScdd3+JFzABxzh2FS11VOI+NqulL9iXu9XqAilbSKExEVA8XqynhZ1cJ24n28muQqhzy75E/OUcLcae6g6s9L02YhVdHFGrMmJHRLN33TrBp/+7STcn2m3pHiB8w2pWlGLT9WwNl1PZMOlMb6lpkptgnV6iKOWXKbAQbEO2vDqJaJ0cfWDe7oQLC2N3KZrPKWyv7miUy9kT4vfVwOrudr7C2w=
+  bucket: builds.loraserver.io
+  local-dir: dist/docs
+  upload-dir: docs
+  acl: private
+  region: eu-west-1
+  on:
+    repo: brocaar/docs.loraserver.io
+    branch: documentation

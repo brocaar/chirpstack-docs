@@ -11,15 +11,29 @@ title = "LoRa Server documentation"
     weight = 1
 
 [[menu.main]]
+    pre = "<i class='fa fa-download'></i>"
+    name = "Install"
+    identifier = "install"
+    url = "/install/"
+    weight = 2
+
+[[menu.main]]
+    pre = "<i class='fa fa-user'></i>"
+    name = "Use"
+    identifier = "use"
+    url = "/use/"
+    weight = 3
+
+[[menu.main]]
     pre = "<i class='fa fa-wifi'></i>"
     name = "LoRaWAN"
     identifier = "lorawan"
     url = "/lorawan/"
-    weight = 2
+    weight = 4
 
 [[menu.main]]
     pre = "<i class='fa fa-github'></i>"
     name = "Community & support"
     identifier = "community"
     url = "/community/"
-    weight = 3
+    weight = 5
