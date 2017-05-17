@@ -8,65 +8,44 @@ menu:
 
 ## The LoRa Server project
 
-The LoRa Server project is an open-source LoRaWAN solution offering all
-components needed to setup your own (private) LoRaWAN networks.
-It consists of three components:
+### What is LoRa?
 
-* [LoRa Gateway Bridge](/lora-gateway-bridge/) for connectivity with the
-  gateway(s)
-* [LoRa Server](/loraserver/) for maintaining the state of the nodes on the
-  network
-* [LoRa App Server](/lora-app-server/) for managing the "inventory" of nodes
-  and providing a web-interface to the user and APIs to the end-application
+LoRaWAN is a long range, low power wireless protocol that is intended for use
+in building IoT networks.  IoT devices ("nodes") send small data packets to
+any number of "gateways" that may be in the several-kilometer range of a node
+via the LoRaWAN wireless protocol. The gateways then use more traditional
+communications such as wired Internet connections to forward the messages
+to a network-server which validates the packets and forwards the application
+payload to an application-server.
 
-See [Architecture]({{< relref "architecture.md" >}}) for more information
-about each component.
+The nature of the LoRa network potentially allows IoT devices to run for years
+on small batteries, occasionally sending out small packets of data, waiting for
+a short time for response messages, and then closing the connection until more
+data needs to be sent. Devices can also be set up so that they are always
+listening for messages from their applications, though this obviously requires
+more power and may be more appropriate for devices that are, say, plugged in
+to a wall socket.
 
-### Features
+Of course there is much more to LoRaWAN than is described here. The LoRaWAN
+protocol is defined and managed by the [LoRa Alliance](https://www.lora-alliance.org/).
+There is a great deal of information available there.
 
-#### ISM bands
+### About the Lora Server Project
 
-LoRa Server implements all ISM bands specified by the LoRa Alliance LoRaWAN
-[Regional Parameters 1.0](https://www.lora-alliance.org/For-Developers/LoRaWANDevelopers)
-document.
+The Lora Server project is an open-source set of applications that fill the
+gap between the gateways receiving messages from the nodes to just before the
+applications receiving the data. It provides mechanisms for managing the
+gateways on the LoRa network, the applications supported, and the devices
+associated with the applications.
 
-#### Devices classes
+The project is designed so that it may be used in a very flexible manner.
+For example the [LoRa App Server](/lora-app-server/) component implements
+the application-server component and offers a Web UI for users to access and
+modify their gateways, applications and nodes. The system can also be accessed
+via programmatic interfaces implemented in [gRPC](http://www.grpc.io/) and
+JSON REST APIs. Further, the APIs are designed such that the subsystems may
+be replaced by other software implementing the same interfaces.
 
-LoRa Server implements both LoRaWAN Class-A and Class-C, making it ideal for
-low-power devices sending data in (regular) intervals and devices which are
-always turned on / listening for data. Both unconfirmed and confirmed data is
-supported. Class-B support will be added in the future.
-
-#### Adaptive data-rate (ADR)
-
-LoRa Server implements adaptive data-rate for all ISM bands. For devices that
-support ADR, this will make sure that they are operating at the best data-rate
-possible with the least transmission power. This not only saves battery power,
-but uses the network in the most ideal way.
-
-#### Channel re-configuration
-
-For networks where only a sub-set of channels is used of the channels defined
-by the LoRaWAN Regional Parameters (e.g. for the US ism band), LoRa Server
-supports channel re-configuration. It will automatically disable channels
-on the node that are not being used.
-
-#### Web-interface
-
-LoRa App Server offers a web-interface to manage your nodes per application,
-per organization. By being able to assigning users to organizations and / or
-applications, The LoRa Server project is ideal for multi-team or
-multi-organization setups.
-
-#### API
-
-Both LoRa Server (the network-server) and LoRa App Server
-(the application-server) provide APIs to make them integratable in your own
-infrastructure. By using the LoRa Server API, you could even implement your own
-node inventory management system and fully replace LoRa App Server if needed.
-
-#### Gateway management
-
-LoRa Server offers gateway management so that you are able to manage your
-gateways and their GPS location and exposes statistics to track their 
-performance.
+For a more technical understanding of the parts of the Lora Server software
+system and how they work together, please refer to the
+[architecture]({{< relref "architecture.md" >}}) page.

@@ -18,8 +18,36 @@ to a set of applications.
 
 ### Mosquitto
 
-[Mosquitto](https://mosquitto.org) supports authentication / authorization
-through the [mosquitto-auth-plug](https://github.com/jpmens/mosquitto-auth-plug)
-plugin. **Note:** the (hashed) user password format stored by
-[LoRa App Server](/lora-app-server) is compatible with the PostgreSQL backend
-of this plugin.
+[Mosquitto](https://mosquitto.org) offers multiple ways to handle
+authentication and authoriszation:
+
+#### Password file
+
+Using the `mosquitto_passwd` command, it is possible to create a password file
+for authentication. Note that this does not handle authorization (which user
+has permission to access which topic).
+
+Example to create a password file and add add an username:
+
+```bash
+sudo mosquitto_passwd -c /etc/mosquitto/passwd <user_name>
+```
+
+Then edit the `/etc/mosquitto/mosquitto.conf` config file so that it contains
+the following entries:
+
+```
+password_file /etc/mosquitto/passwd
+allow_anonymous false
+```
+
+#### Mosquitto Auth Plugin
+
+The [mosquitto-auth-plug](https://github.com/jpmens/mosquitto-auth-plug)
+project provides various backends to setup authentication
+including authorization (defining which user has access to which MQTT topic).
+You could use the (hashed) user passwords from
+[LoRa App Server](/lora-app-server/) as the format of the hash is compatible
+with this plugin. Please refer to the
+[mosquitto-auth-plug](https://github.com/jpmens/mosquitto-auth-plug)
+project for more information and instructions.

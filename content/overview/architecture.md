@@ -12,6 +12,13 @@ A LoRa Server architecture constists out of multiple components:
 
 ![architecture](/img/architecture.png)
 
+### LoRa nodes
+
+The IoT devices or "nodes" (not pictured on the above image) are the devices
+sending data to the LoRa network (through the LoRa gateways). These devices
+could be for example sensors measturing air quality, temperature, humitidy,
+location...
+
 ### LoRa gateway
 
 The gateways are receiving data from the nodes and typtically runs an
@@ -76,21 +83,3 @@ The application subscribes to the MQTT topic for receiving the data of the
 node(s) within the application. It is also able to send data back over MQTT.
 If needed, it could also interact with LoRa App Server using the gRPC or
 JSON REST api.
-
-### Libraries
-
-The LoRa Server project offers the following libraries:
-
-#### lorawan
-
-The [lorawan](https://godoc.org/github.com/brocaar/lorawan) library is an
-encoder / decoder for LoRaWAN frames written in Go.
-It is internally used by LoRa Server to read received data and to send data
-to your node. It can be a great tool when you would like to construct your
-own LoRaWAN frames or want to read LoRaWAN frames for debugging.
-
-#### lorawan/band
-
-The [lorawan/band](https://godoc.org/github.com/brocaar/lorawan/band) library
-contains all LoRaWAN band-specific configuration like channel configuration,
-available data-rates, payload constraints, ... for each ISM band.

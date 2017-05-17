@@ -18,17 +18,17 @@ title = "LoRa Server documentation"
     weight = 2
 
 [[menu.main]]
+    pre = "<i class='fa fa-graduation-cap'></i>"
+    name = "Guides"
+    identifier = "guides"
+    url = "/guides/"
+    weight = 3
+
+[[menu.main]]
     pre = "<i class='fa fa-user'></i>"
     name = "Use"
     identifier = "use"
     url = "/use/"
-    weight = 3
-
-[[menu.main]]
-    pre = "<i class='fa fa-wifi'></i>"
-    name = "LoRaWAN"
-    identifier = "lorawan"
-    url = "/lorawan/"
     weight = 4
 
 [[menu.main]]

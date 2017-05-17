@@ -9,21 +9,7 @@ menu:
 ## Requirements
 
 Before getting started with the LoRa Server project, there are a couple of 
-requirements that needs to be satisfied, both in hardware as software.
-
-### LoRa gateway
-
-In order to communicate with LoRa nodes, you need to have a LoRa gateway up and
-running with the [packet-forwarder](https://github.com/Lora-net/packet_forwarder)
-installed. Note that most gateways will have this packet-forwarder
-pre-installed. You might however want to update the configuration to match your
-needs.
-
-### LoRaWAN node
-
-In order to send data over your LoRaWAN network, you need of course a LoRaWAN
-enabled node. For testing / debugging it makes it easy to choose a node which
-can be connected to your computer. 
+requirements that needs to be satisfied:
 
 ### MQTT broker
 
@@ -72,8 +58,8 @@ To install the latest PostgreSQL:
 ```bash
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 
-# replace {DIST_VERSION} by the distribution version (jessie, trusty or xenial)
-sudo echo "deb http://apt.postgresql.org/pub/repos/apt/ {DIST_VERSION}-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+export DISTRIB_CODENAME=`lsb_release -sc`
+sudo echo "deb http://apt.postgresql.org/pub/repos/apt/ ${DISTRIB_CODENAME}-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
 sudo apt-get update
 
 sudo apt-get install postgresql-9.6
