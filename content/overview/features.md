@@ -10,30 +10,49 @@ menu:
 
 ### ISM bands
 
-LoRa Server implements all ISM bands specified by the LoRa Alliance LoRaWAN
+LoRa Server implements all regional bands that are defined by the
+ISM bands specified by the LoRa Alliance LoRaWAN
 [Regional Parameters 1.0](https://www.lora-alliance.org/For-Developers/LoRaWANDevelopers)
-document.
+document. Note that each region has different frequencies and settings on
+which the LoRaWAN protocol operates, to comply to local regulations.
 
 ### Devices classes
 
 LoRa Server implements both LoRaWAN Class-A and Class-C, making it ideal for
-low-power devices sending data in (regular) intervals and devices which are
-always turned on / listening for data. Both unconfirmed and confirmed data is
-supported. Class-B support will be added in the future.
+different purposes. Note that for all supported device-classes both
+unconfirmed as confirmed data is supported (in the latter case an
+acknowledgment will be sent by the receiving party).
+
+#### Class A
+
+The node / device is always in sleep mode. Only when it has data to send
+it wakes up to transmit, after which it opens two receive-windows in order
+to receive a downlink transmission. After it received a downlink or after the
+second receive window expired, it goes back to sleep.
+
+#### Class B
+
+Not implemented yet.
+
+#### Class C
+
+The node / devices is always listening, making it possible for the application
+to send data to the node any time. When running in Class-C mode, a node will
+use significantly more energy.
 
 ### Adaptive data-rate (ADR)
 
-LoRa Server implements adaptive data-rate for all ISM bands. For devices that
+LoRa Server implements adaptive data-rate. For devices that
 support ADR, this will make sure that they are operating at the best data-rate
 possible with the least transmission power. This not only saves battery power,
-but uses the network in the most ideal way.
+but uses the network in the most ideal way as airtime of the node decreases.
 
 ### Channel re-configuration
 
 For networks where only a sub-set of channels is used of the channels defined
-by the LoRaWAN Regional Parameters (e.g. for the US ism band), LoRa Server
+by the LoRaWAN Regional Parameters (e.g. for the US region), LoRa Server
 supports channel re-configuration. It will automatically disable channels
-on the node that are not being used.
+on the node that are not being used by the network.
 
 ### Web-interface
 
