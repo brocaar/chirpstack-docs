@@ -18,9 +18,11 @@ For this you could use [systemd](https://en.wikipedia.org/wiki/Systemd)
 unit-files or [init](https://en.wikipedia.org/wiki/Init) script, based
 on the platform you're using.
 
-Alternatives to systemd or init scripts are:
+Pre-compiled binaries and packages can be found at:
 
-* [Supervisor](http://supervisord.org)
+* [LoRa Gateway Bridge downloads](/lora-gateway-bridge/overview/downloads/)
+* [LoRa Server downloads](/loraserver/overview/downloads/)
+* [LoRa App Server downloads](/lora-app-server/overview/downloads/)
 
 ### Debian / Ubuntu
 
