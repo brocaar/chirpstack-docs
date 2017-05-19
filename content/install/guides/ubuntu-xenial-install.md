@@ -1,9 +1,9 @@
 ---
 title: Full install on Ubuntu
 menu:
-    main:
-        parent: guides
-        weight: 1
+  main:
+    parent: installing
+    weight: 1
 ---
 
 ## Full installation on Ubuntu 16.04 LTS

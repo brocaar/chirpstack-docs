@@ -2,6 +2,7 @@
 title: Installing
 menu:
     main:
+        identifier: installing
         parent: install
         weight: 2
 ---
@@ -9,6 +10,13 @@ menu:
 ## Installing the LoRa Server project
 
 There are multiple ways how the LoRa Server project could be setup:
+
+### Guides
+
+The following guides are a great introduction to get you started with the
+LoRa Server project:
+
+* [Full installation on Ubuntu 16.04 LTS]({{< ref "install/guides/ubuntu-xenial-install.md" >}})
 
 ### Manual
 
