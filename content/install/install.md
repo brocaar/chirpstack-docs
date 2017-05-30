@@ -1,22 +1,14 @@
 ---
-title: Installing
+title: General Installation
 menu:
     main:
-        identifier: installing
         parent: install
-        weight: 2
+        weight: 3
 ---
 
 ## Installing the LoRa Server project
 
 There are multiple ways how the LoRa Server project could be setup:
-
-### Guides
-
-The following guides are a great introduction to get you started with the
-LoRa Server project:
-
-* [Full installation on Ubuntu 16.04 LTS]({{< ref "install/guides/ubuntu-xenial-install.md" >}})
 
 ### Manual
 
@@ -63,21 +55,3 @@ setting up and configuration:
 * [LoRa Gateway Bridge](/lora-gateway-bridge/)
 * [LoRa Server](/loraserver/)
 * [LoRa App Server](/lora-app-server/)
-
-### Vagrant (using VirtualBox)
-
-In case you would like to setup a local test environment to experiment with
-the LoRa Server project, an easy option is by using the LoRa Server setup
-scripts, which can be used both for a local Vagrant based setup as for remote
-deployments: [https://github.com/brocaar/loraserver-setup](https://github.com/brocaar/loraserver-setup).
-
-See also: [https://www.vagrantup.com](https://www.vagrantup.com)
-
-### Ansible based deployments
-
-The LoRa Server setup playbook for Ansible will setup the LoRa Server project
-for you, including its dependencies. The same playbook is used to provision
-the Vagrant box (see above). See for instructions:
-[https://github.com/brocaar/loraserver-setup](https://github.com/brocaar/loraserver-setup).
-
-See also: [http://docs.ansible.com](http://docs.ansible.com)

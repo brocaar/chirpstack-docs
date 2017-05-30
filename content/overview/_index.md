@@ -49,10 +49,3 @@ be replaced by other software implementing the same interfaces.
 For a more technical understanding of the parts of the Lora Server software
 system and how they work together, please refer to the
 [architecture]({{< relref "architecture.md" >}}) page.
-
-### Quicklinks
-
-* [Full installation on Ubuntu 16.04 LTS guide](/guides/ubuntu-xenial-install/)
-* [Using the LoRa App Server web-interface](/lora-app-server/use/)
-* [Application data access](/lora-app-server/use/data/)
-* [Contribute]({{< ref "community/contribute.md" >}})

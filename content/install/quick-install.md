@@ -1,18 +1,17 @@
 ---
-title: Full install on Ubuntu
+title: Quick Install
 menu:
   main:
-    parent: installing
+    parent: install
     weight: 1
 ---
 
-## Full installation on Ubuntu 16.04 LTS
+## Quick Install
 
 This tutorial describes the steps needed to setup the LoRa Server project
-on an Ubuntu 16.04 LTS instance. Note that this version of Ubuntu is not
+on a single Ubuntu 16.04 LTS instance. Note that this version of Ubuntu is not
 required by LoRa Server, but is used in this tutorial as it is the latest
-Ubuntu LTS version. Please refer to the
-[installation]({{< ref "install/install.md" >}}) page for more generic
+Ubuntu LTS version. Please refer to the other install pages for more generic
 installation instructions.
 
 ### Assumptions
@@ -24,7 +23,7 @@ installation, we will assume the following deployment architecture:
 
 * All LoRa Server components and their dependencies will be installed on a
    single server instance
-* The [LoRa Gateway Bridge](/lora-gateway-bridge/) compoment will be installed
+* The [LoRa Gateway Bridge](/lora-gateway-bridge/) component will be installed
    on the server, but can also be installed on the gateway itself.
 * SSL/TLS certificates will be needed for mosquitto and lora-app-server for
    these instructions, and potentially for other interfaces should the
@@ -79,6 +78,10 @@ sudo mosquitto_passwd /etc/mosquitto/pwd loraappserver
 sudo chmod 600 /etc/mosquitto/pwd
 ```
 
+Note that further configuration is possible, such as limiting the topics
+to which the various users can have access.  These settings are beyond the
+scope of this document.
+
 #### Mosquitto configuration
 
 Add a new local configuration file (this should survive mosquitto upgrades)
@@ -119,7 +122,7 @@ sudo -u postgres psql
 Inside this prompt, execute the following queries to set up the server. It
 would be wise to change the usernames and passwords. Just remember to use
 these other values when setting up the configuration for loraserver and
-lora-app-server. Since these applications both use the same table to track
+lora-app-server. Since these two applications both use the same table to track
 database upgrades, they must have separate databases.
 
 ```sql
@@ -163,7 +166,7 @@ sudo apt update
 **Note:** when you intent to run the [LoRa Gateway Bridge](/lora-gateway-bridge/)
 only on the gateways itself, you can skip this step. Running LoRa Gateway Brige
 on your server, without setting up any firewall rules (which is not covered
-in this guide) allows anybody to send data to your LoRa Server setup.
+in this guide) allows anybody to send data to your LoRa Server network.
 
 Install the package using apt:
 
@@ -316,7 +319,7 @@ LoRa Gateway Bridge instructions for
 In order to receive data from a device / node, that device must be associated
 with an application. This can be done via the REST interface via some external
 application, or via the UI that comes with [LoRa App Server](/lora-app-servr/).
- 
+
 To access the LoRa App Server web-interface, enter the IP address of your server
 and the port as defined in `HTTP_BIND` in your browser specifying the https
 protocol in your browser's address bar, example:

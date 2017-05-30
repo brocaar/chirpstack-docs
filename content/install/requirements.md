@@ -3,20 +3,22 @@ title: Requirements
 menu:
     main:
         parent: install
-        weight: 1
+        weight: 2
 ---
 
 ## Requirements
 
-Before getting started with the LoRa Server project, there are a couple of 
+Before getting started with the LoRa Server project, there are a couple of
 requirements that needs to be satisfied:
 
 ### MQTT broker
 
 LoRa Server makes use of MQTT for publishing and receiving application
 payloads. [Mosquitto](http://mosquitto.org/) is a popular open-source MQTT
-server, but any MQTT broker implementing MQTT 3.1.1 should work. 
+server, but any MQTT broker implementing MQTT 3.1.1 should work.
 In case you install Mosquitto, make sure you install a **recent** version.
+
+MQTT is used by LoRa Gateway Bridge, LoRa Server, and Lora App Server.
 
 #### Install
 
@@ -46,10 +48,12 @@ for information about how to setup Mosquitto for your platform.
 
 The LoRa Server components are using [PostgreSQL](https://www.postgresql.org)
 for persistent data-storage. Note that PostgreSQL 9.5+ is required and that
-each component requires its own database to avoid schema conflicts 
+each component requires its own database to avoid schema conflicts
 (there is no need to run multiple database instances).
 
-#### Install 
+PostgreSQL is used by LoRa Server and LoRa App Server.
+
+#### Install
 
 ##### Debian / Ubuntu
 
@@ -76,7 +80,9 @@ The LoRa Server components are storing all non-persistent data into a
 [Redis](http://redis.io/) datastore. Note that at least Redis 2.6.0
 is required.
 
-#### Install 
+Redis is used by LoRa Server.
+
+#### Install
 
 ##### Debian / Ubuntu
 
