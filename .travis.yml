@@ -21,4 +21,4 @@ deploy:
   region: eu-west-1
   on:
     repo: brocaar/docs.loraserver.io
-    branch: documentation
+    branch: master
