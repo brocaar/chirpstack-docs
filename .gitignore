@@ -1,0 +1,6 @@
+# hidden files
+.*
+
+# generated html
+public/
+dist/
