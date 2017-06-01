@@ -9,10 +9,10 @@ menu:
 ## Quick Install
 
 This tutorial describes the steps needed to setup the LoRa Server project
-on a single Ubuntu 16.04 LTS instance. Note that this version of Ubuntu is not
-required by LoRa Server, but is used in this tutorial as it is the latest
-Ubuntu LTS version. Please refer to the other install pages for more generic
-installation instructions.
+**including all requirements** on a single Ubuntu 16.04 LTS instance. Note that 
+this version of Ubuntu is not required by LoRa Server, but is used in this
+tutorial as it is the latest Ubuntu LTS version. Please refer to the other
+install pages for more generic installation instructions.
 
 ### Assumptions
 

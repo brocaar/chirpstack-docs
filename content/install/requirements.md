@@ -9,7 +9,9 @@ menu:
 ## Requirements
 
 Before getting started with the LoRa Server project, there are a couple of
-requirements that needs to be satisfied:
+requirements that needs to be satisfied.  **Note:** these steps are not needed
+when following the [Quick install]({{< relref "quick-install.md" >}}) as the
+quick install guide includes the steps needed to install all requirements.
 
 ### MQTT broker
 
