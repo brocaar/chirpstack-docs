@@ -105,6 +105,8 @@ following requirements (can be installed using `sudo apt-get install ...`):
 * mosquitto-dev
 * libmosquitto-dev
 * postgresql-server-dev-9.6
+* build-essential
+* libssl-dev
 
 Next clone the [mosquitto-auth-plug](https://github.com/jpmens/mosquitto-auth-plug)
 repository:
