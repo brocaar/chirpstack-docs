@@ -70,6 +70,7 @@ sudo apt-get update
 
 sudo apt-get install postgresql-9.6
 ```
+Please note that currently there are no binaries available for the Raspberry Pi at http://apt.postgresql.org/pub/repos/apt/dists/jessie-pgdg/. We recommend to install a Backport of postgresql-9.6 following the instructions at https://backports.debian.org/Instructions/ .
 
 ##### Other platforms
 
