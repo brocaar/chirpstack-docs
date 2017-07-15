@@ -9,7 +9,7 @@ menu:
 ## Quick Install
 
 This tutorial describes the steps needed to setup the LoRa Server project
-**including all requirements** on a single Ubuntu 16.04 LTS instance. Note that 
+**including all requirements** on a single Ubuntu 16.04 LTS instance. Note that
 this version of Ubuntu is not required by LoRa Server, but is used in this
 tutorial as it is the latest Ubuntu LTS version. Please refer to the other
 install pages for more generic installation instructions.
@@ -126,13 +126,13 @@ lora-app-server. Since these two applications both use the same table to track
 database upgrades, they must have separate databases.
 
 ```sql
--- set up the users and the passwords (note that it is important to use single quotes)
-create role loraserver with login password 'dbpassword';
-create role loraappserver with login password 'dbpassword';
+-- set up the users and the passwords (note that it is important to use single quotes and a semicolon at the end!)
+create role loraserver_as with login password 'dbpassword';
+create role loraserver_ns with login password 'dbpassword';
 
 -- create the database for the servers
-create database loraserver with owner loraserver;
-create database loraappserver with owner loraappserver;
+create database loraserver_as with owner loraserver_as;
+create database loraserver_ns with owner loraserver_ns;
 
 -- exit psql
 \q
