@@ -3,7 +3,7 @@ title: Ansible and Vagrant Install
 menu:
     main:
         parent: install
-        weight: 4
+        weight: 5
 ---
 
 ### Vagrant (using VirtualBox)
