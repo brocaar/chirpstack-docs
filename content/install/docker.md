@@ -38,7 +38,7 @@ services:
       - GW_MQTT_SERVER=tcp://mosquitto:1883
       - GW_SERVER_JWT_SECRET=verysecret
       - POSTGRES_DSN=postgres://loraserver_ns:loraserver_ns@postgresql_ns/loraserver_ns?sslmode=disable
-      - AS_SERVER=loraserver:8001
+      - AS_SERVER=appserver:8001
 
   appserver:
     image: loraserver/lora-app-server
