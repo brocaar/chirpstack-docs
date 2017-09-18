@@ -201,7 +201,7 @@ by changing the configuration file `/etc/default/loraserver`:
   `localhost:8000` as [LoRa App Server](/lora-app-server/) will run on the
    same machine.
 * `POSTGRES_DSN` - The URL to the postgres server. Add `username:password@`
-  to the URL. e.g., `postgres://loraserver:dbpassword@localhost/loraserver?sslmode=disable`.
+  to the URL. e.g., `postgres://loraserver_ns:dbpassword@localhost/loraserver?sslmode=disable`.
   Be careful with this setting. It is easy to get wrong, and can produce a number
   of different error messages.
 * `DB_AUTOMIGRATE` - Leave this set to true, as it only takes a moment to run
@@ -252,7 +252,7 @@ Set up your configuration (only the most important settings are addressed here)
 by changing the configuration file `/etc/default/lora-app-server`:
 
 * `POSTGRES_DSN` - The URL to the postgres server. Add `username:password@`
-  to the URL. e.g., `postgres://loraappserver:dbpassword@localhost/loraappserver?sslmode=disable`.
+  to the URL. e.g., `postgres://loraserver_as:dbpassword@localhost/loraappserver?sslmode=disable`.
   Be careful with this setting. It is easy to get wrong, and can produce a number
   of different error messages.
 * `DB_AUTOMIGRATE` - Leave this set to true, as it only takes a moment to run
