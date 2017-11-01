@@ -31,25 +31,43 @@ this, log in into the [LoRa App Server](/lora-app-server/)
 web-interface and add the gateway to your organization. In case your gateway
 does not have a GPS, you can set the location manually.
 
-### Create an application and add a node
+### Adding your first device
 
-A node is always part of an application, therefore you first need to create
-an application in [LoRa App Server](/lora-app-server/).
-An application contains one or multiple nodes that have the same purpose, for
-example a weather-station. Each node could then be a weather-station at a
-different location.
+The following steps must be performed in the
+[LoRa App Server](/lora-app-server/) web-interface.
 
-After creating the application, you need to create the node in LoRa App Server.
-When creating the node, you can choose between OTAA (over the air activation)
-and ABP (activation by personalization). In the latter case you first create
-the node and after creation, click the ABP actionvation button to activate
-it in the network.
+#### Associating the network-server
 
-In case you have chosen your own `DevEUI`, `AppEUI` and `AppKey`, don't forget
-to update these settings on your node.
+LoRa App Server must know to which network-server(s) to connect. Therefore
+the first action is to add a network-server (LoRa Server instance)
+to your LoRa App Server installation. See
+[network-servers](/lora-app-server/use/network-servers/) for more information.
 
-Read more about the management of your nodes in the
-[LoRa App Server](/lora-app-server/) documentation.
+#### Create a service-profile
+
+To define what features can be used by users assigned to an organization
+you must create one or multiple service-profiles for each organization.
+See [service-profiles](/lora-app-server/use/service-profiles/) for more
+information.
+
+#### Create a device-profile
+
+To define the capabilities of the device you are going to add, you must
+create one or multiple device-profiles for each organization. See
+[device-profiles](/lora-app-server/use/device-profiles/) for more information.
+
+#### Create an application
+
+A device is always part of an application, therefore you need to create
+an application. An application contains one or multiple devices that serve the
+same purpose, for example a weather-station. See
+[applications](/lora-app-server/use/applications/) for more information.
+
+#### Create a device
+
+After creating the application, you need to create the device and assign a
+device-profile to it. After creating the device, don't forget to add the
+application-key to it (OTAA) or activate the device (ABP).
 
 ### Receive data
 

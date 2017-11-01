@@ -217,6 +217,9 @@ by changing the configuration file `/etc/default/loraserver`:
   [LoRa Server](/loraserver/).
 * `GW_STATS_AGGREGATION_INTERVAL` - defines collection time periods for
   statistics gathering on gateways.
+* `GW_SERVER_JWT_SECRET` - a secret value used to generate the gateway tokens.
+  This can contain any value, for example the output of the following
+  command `openssl rand -base64 32`.
 
 Start the LoRa Server service:
 

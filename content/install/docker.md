@@ -10,7 +10,7 @@ menu:
 
 The LoRa Server project provides [Docker](https://www.docker.com) containers
 for all project components. An overview of available containers can be found
-at: https://hub.docker.com/u/loraserver/.
+at: [https://hub.docker.com/u/loraserver/](https://hub.docker.com/u/loraserver/).
 
 ### Versioning
 
@@ -49,7 +49,7 @@ services:
       - REDIS_URL=redis://redis:6379
       - POSTGRES_DSN=postgres://loraserver_as:loraserver_as@postgresql_as/loraserver_as?sslmode=disable
       - MQTT_SERVER=tcp://mosquitto:1883
-      - NS_SERVER=loraserver:8000
+      - JS_SERVER=loraserver:8003
       - JWT_SECRET=verysecret
       - HTTP_TLS_CERT=/etc/lora-app-server/certs/http.pem
       - HTTP_TLS_KEY=/etc/lora-app-server/certs/http-key.pem
