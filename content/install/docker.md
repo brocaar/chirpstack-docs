@@ -38,7 +38,7 @@ services:
       - GW_MQTT_SERVER=tcp://mosquitto:1883
       - GW_SERVER_JWT_SECRET=verysecret
       - POSTGRES_DSN=postgres://loraserver_ns:loraserver_ns@postgresql_ns/loraserver_ns?sslmode=disable
-      - AS_SERVER=appserver:8001
+      - JS_SERVER=http://appserver:8003
 
   appserver:
     image: loraserver/lora-app-server
@@ -49,10 +49,10 @@ services:
       - REDIS_URL=redis://redis:6379
       - POSTGRES_DSN=postgres://loraserver_as:loraserver_as@postgresql_as/loraserver_as?sslmode=disable
       - MQTT_SERVER=tcp://mosquitto:1883
-      - JS_SERVER=loraserver:8003
       - JWT_SECRET=verysecret
       - HTTP_TLS_CERT=/etc/lora-app-server/certs/http.pem
       - HTTP_TLS_KEY=/etc/lora-app-server/certs/http-key.pem
+      - AS_PUBLIC_SERVER=appserver:8001
 
   gatewaybridge:
     ports:
