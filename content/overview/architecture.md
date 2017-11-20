@@ -8,7 +8,7 @@ menu:
 
 ## System architecture
 
-A LoRa Server architecture constists out of multiple components:
+A LoRa Server architecture constists of multiple components:
 
 ![architecture](/img/architecture.png)
 
