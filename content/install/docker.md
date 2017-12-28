@@ -86,6 +86,6 @@ services:
 
   mosquitto:
     ports:
-      - 1883
+      - 1883:1883
     image: eclipse-mosquitto
 ```
