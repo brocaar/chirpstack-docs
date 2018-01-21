@@ -89,3 +89,10 @@ services:
       - 1883:1883
     image: eclipse-mosquitto
 ```
+
+#### Add network-server
+
+When adding the network-server in the LoRa App Server web-interface
+(see [network-servers](https://docs.loraserver.io/lora-app-server/use/network-servers/))
+and when using the above `docker-compose.yml` example, you must enter
+`loraserver:8000` as the network-server hostname:IP.
