@@ -175,12 +175,12 @@ sudo apt install lora-gateway-bridge
 ```
 
 Set up your configuration (only the most important settings are addressed here)
-by changing the configuration file /etc/default/lora-gateway-bridge:
+by changing the configuration file `/etc/lora-gateway-bridge/lora-gateway-bridge.toml`:
 
-* `BIND` - The interface and port on which the LoRa Gateway Bridge listens for
-  packets from your gateways. This should be `0.0.0.0:1700` to allow access
-  on all network interfaces.
-* `MQTT_USERNAME` and `MQTT_PASSWORD` - since the MQTT server is publicly
+* `packet_forwarder.udp_bind` - The interface and port on which the LoRa Gateway
+  Bridge listens for packets from your gateways. This should be `0.0.0.0:1700`
+  to allow access on all network interfaces.
+* `backend.mqtt.username` and `backend.mqtt.password` - since the MQTT server is publicly
   accessible (so [LoRa Gateway Bridge](/lora-gateway-bridge/) instances can
   send data), it is best to have a username and password for the server here.
   These credentials were the ones set up in the *Mosquitto authentication* step.
@@ -194,32 +194,30 @@ sudo apt install loraserver
 ```
 
 Set up your configuration (only the most important settings are addressed here)
-by changing the configuration file `/etc/default/loraserver`:
+by changing the configuration file `/etc/loraserver/loraserver.toml`:
 
-* `BAND` - The ISM band to use. E.g. for US installations, use `US_902_928`.
-* `BIND` - The port that serves up the api server. This should be
-  `localhost:8000` as [LoRa App Server](/lora-app-server/) will run on the
-   same machine.
-* `POSTGRES_DSN` - The URL to the postgres server. Add `username:password@`
+* `network_server.band.name` - The ISM band to use. E.g. for US installations, use `US_902_928`.
+* `postgresql.dsn` - The URL to the postgres server. Add `username:password@`
   to the URL. e.g., `postgres://loraserver_ns:dbpassword@localhost/loraserver?sslmode=disable`.
   Be careful with this setting. It is easy to get wrong, and can produce a number
   of different error messages.
-* `DB_AUTOMIGRATE` - Leave this set to true, as it only takes a moment to run
+* `postgresql.automigrate` - Leave this set to true, as it only takes a moment to run
   at server startup, and ensures that database changes will always be applied
   with each upgrade.
-* `GW_MQTT_USERNAME` and `GW_MQTT_PASSWORD` - since the MQTT server is publicly
+* `network_server.gateway.backend.mqtt.username` and
+  `network_server.gateway.backend.mqtt.password` - since the MQTT server is publicly
   accessible (so [LoRa Gateway Bridge](/lora-gateway-bridge/) instances can
   send data), it is best to have a username and password for the server here.
   These credentials were the ones set up in the *Mosquitto authentication* step.
-* `GW_CREATE_ON_STATS` - creates a gateway record for the gateway when stats
-  are seen. Otherwise gateway data must be populated manually using the
-  [LoRa App Server](/lora-app-server/) UI or via the gRPC interface to
-  [LoRa Server](/loraserver/).
-* `GW_STATS_AGGREGATION_INTERVAL` - defines collection time periods for
+* `network_server.gateway.stats.create_gateway_on_stats` - creates a gateway
+  record for the gateway when stats are seen. Otherwise gateway data must be
+  populated manually using the [LoRa App Server](/lora-app-server/) UI or via
+  the gRPC interface to [LoRa Server](/loraserver/).
+* `network_server.gateway.stats.aggregation_intervals` - defines collection time periods for
   statistics gathering on gateways.
-* `GW_SERVER_JWT_SECRET` - a secret value used to generate the gateway tokens.
-  This can contain any value, for example the output of the following
-  command `openssl rand -base64 32`.
+* `network_server.gateway.api.jwt_secret` - a secret value used to generate
+  the gateway tokens. This can contain any value, for example the output of the
+  following command `openssl rand -base64 32`.
 
 Start the LoRa Server service:
 
@@ -252,34 +250,35 @@ sudo apt install lora-app-server
 ```
 
 Set up your configuration (only the most important settings are addressed here)
-by changing the configuration file `/etc/default/lora-app-server`:
+by changing the configuration file `/etc/lora-app-server/lora-app-server.toml`:
 
-* `POSTGRES_DSN` - The URL to the postgres server. Add `username:password@`
+* `postgresql.dsn` - The URL to the postgres server. Add `username:password@`
   to the URL. e.g., `postgres://loraserver_as:dbpassword@localhost/loraappserver?sslmode=disable`.
   Be careful with this setting. It is easy to get wrong, and can produce a number
   of different error messages.
-* `DB_AUTOMIGRATE` - Leave this set to true, as it only takes a moment to run
+* `postgresql.automigrate` - Leave this set to true, as it only takes a moment to run
   at server startup, and ensures that database changes will always be applied
   with each upgrade.
-* `MQTT_USERNAME` and `MQTT_PASSWORD` - since the MQTT server is publicly
+* `application_server.integration.mqtt.username` and
+  `application_server.integration.mqtt.password` - since the MQTT server is publicly
   accessible (so [LoRa Gateway Bridge](/lora-gateway-bridge/) instances can
   send data), it is best to have a username and password for the server here.
   These credentials were the ones set up in the *Mosquitto authentication* step.
-* `BIND` - The port that serves up the api server. This should be
+* `application_server.api.bind` - The port that serves up the api server. This should be
   `localhost:8001` as [LoRa Server](/loraserver/) is on the same system.
-* `HTTP_BIND` - The port that serves up the public api server used by the web UI.
-  This is usually `0.0.0.0:8080` to enable access from all network interfaces,
-  but can be limited to a specific interface if desired.
-* `HTTP_TLS_CERT` and `HTTP_TLS_KEY` - These settings point to the certificate
+* `application_server.external_api.bind` - The port that serves up the public api
+  server used by the web UI. This is usually `0.0.0.0:8080` to enable access from all
+  network interfaces, but can be limited to a specific interface if desired.
+* `application_server.external_api.tls_cert` and `application_server.external_api.tls_key` - These settings point to the certificate
   and key files and support SSL on the web ui REST interface and the public
   gRPC interface. Since users log into the system via these interfaces from
   remote systems, these settings are very important. Note that default files
   are shipped with the software package, but they should be replaced for security.
-* `JWT_SECRET` - a secret value used to generate the JWT returned as part of
+* `application_server.external_api.jwt_serect` - a secret value used to generate the JWT returned as part of
   the login process, and is used again to verify the validity of the token.
   This can be a classic password, or it could be a generated value such as one
   generated by the command `openssl rand -base64 32`.
-* `PW_HASH_ITERATIONS` - The number of iterations to use to generate a password
+* `general.password_hash_iterations` - The number of iterations to use to generate a password
   hash. The goal is to have enough iterations that generation takes a second
   (and so verification takes a second) making brute force login attacks painful
   to the attacker. The default is a good place to start, but finding a good
@@ -324,21 +323,41 @@ with an application. This can be done via the REST interface via some external
 application, or via the UI that comes with [LoRa App Server](/lora-app-servr/).
 
 To access the LoRa App Server web-interface, enter the IP address of your server
-and the port as defined in `HTTP_BIND` in your browser specifying the https
-protocol in your browser's address bar, example:
+and the port as defined in `application_server.external_api.bind` in your browser
+specifying the https protocol in your browser's address bar, example:
 `https://localhost:8080`.
 
 This will forward to a login screen. A default administrator account is
 available at installation time with the username of `admin` and a password of
-`admin` (it would be wise to reset the password upon first login). Once logged
-in, the application dashboard appears. Click the *CREATE APPLICATION* button,
+`admin` (it would be wise to reset the password upon first login).
+
+In order to connect you LoRa App Server instance with the LoRa Server instance,
+click *Network servers* and then *Add network-server*. As LoRa Server is installed
+on the same host as LoRa App Server, use `localhost:8000` as network-server name.
+
+After adding the network-server, click on *LoRa Server* to go back to the
+home screen. Then open the *Service profiles* tab and click *Create service-profile*
+to create a service-profile for the LoRa Server organization. This will also
+associate the organization with the network-server instance.
+
+After creating the service-profile, go to the *Device profiles* tab and click
+*Create device-profile*. Here you can define the device properties and
+capabilities (e.g. OTAA vs ABP).
+
+After connecting LoRa App Server with the LoRa Server network-server,
+creating a service- and device-profile it is time to create your first
+application and add a device!
+
+Go to the *Applications* tab and click the *CREATE APPLICATION* button,
 and add an application for your device(s). This only requires an application
 name and description. Once the application is created, you can click on the
 title to get a list of the devices associated with the application (none at
-system installation). Click on the *CREATE NODE* button to create the node
-(device). The basic fields that are required are the *Node Name*,
-*Description*, *Device EUI*, *Application EUI*, and the *Application Key*.
-Other fields may or may not be of interest to your particular setup.
+system installation). Click on the *CREATE DEVICE* button to create the node
+(device). The basic fields that are required are the *Device name*,
+*Description*, *Device EUI* and the *Device-profile*. After creating the
+device, you will be redirected to a page to enter the *AppKey* in case
+of an OTAA device or to activate the device in case of an ABP device.
+
 Once the device and it application are created, the LoRa Server and LoRa App
 Server will be able to handle messaging from the device.
 

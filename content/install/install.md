@@ -46,8 +46,8 @@ sudo apt-get install lora-gateway-bridge loraserver lora-app-server
 ```
 
 Note that after installing, you still need to configure each component.
-Configuration files are located in
-`/etc/default/(lora-gateway-bridge|loraserver|lora-app-server)`.
+Configuration files are located at `/etc/NAME/NAME.toml` where `NAME` must 
+be substituted by the component name.
 
 Please refer to the documentation of each component for more details about
 setting up and configuration:
