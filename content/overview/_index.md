@@ -6,9 +6,9 @@ menu:
         weight: 1
 ---
 
-## The LoRa Server project
+# The LoRa Server project
 
-### What is LoRa?
+## What is LoRa?
 
 LoRaWAN is a long range, low power wireless protocol that is intended for use
 in building IoT networks.  IoT devices ("nodes") send small data packets to
@@ -30,7 +30,7 @@ Of course there is much more to LoRaWAN than is described here. The LoRaWAN
 protocol is defined and managed by the [LoRa Alliance](https://www.lora-alliance.org/).
 There is a great deal of information available there.
 
-### About the Lora Server Project
+## About the Lora Server Project
 
 The Lora Server project is an open-source set of applications that fill the
 gap between the gateways receiving messages from the nodes to just before the

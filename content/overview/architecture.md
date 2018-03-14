@@ -6,27 +6,27 @@ menu:
         weight: 2
 ---
 
-## System architecture
+# System architecture
 
 A LoRa Server architecture constists of multiple components:
 
 ![architecture](/img/architecture.png)
 
-### LoRa nodes
+## LoRa nodes
 
 The IoT devices or "nodes" (not pictured on the above image) are the devices
 sending data to the LoRa network (through the LoRa gateways). These devices
 could be for example sensors measturing air quality, temperature, humitidy,
 location...
 
-### LoRa gateway
+## LoRa gateway
 
 The gateways are receiving data from the nodes and typtically runs an
 implementation of the [packet-forwarder](https://github.com/Lora-net/packet_forwarder)
 software. This software is responsible for the interface with the LoRa hardware
 on the gateway.
 
-### LoRa Gateway Bridge
+## LoRa Gateway Bridge
 
 The [LoRa Gateway Bridge](/lora-gateway-bridge/)
 component is responsible for the communication with
@@ -43,7 +43,7 @@ over MQTT. The advantages over directly working with the UDP protocol are:
   protocol, so that the rest of the infrastructure only needs to know about the
   JSON over MQTT format
 
-### LoRa Server
+## LoRa Server
 
 The [LoRa Server](/loraserver/) component is
 responsible for the network. It knows about active
@@ -63,7 +63,7 @@ so called mac-commands (e.g. to change the data-rate, channels, ...).
 LoRa Server implements a gRPC API so that you could easily build your own
 application-server.
 
-### LoRa App Server
+## LoRa App Server
 
 The [LoRa App Server](/lora-app-server/) component
 implements an application-server compatible
@@ -77,7 +77,7 @@ LoRa App Servers offers a web-interface that can be used for gateway, node
 and gateway management, but also offers API endpoints so that it can be
 integrated with your own products.
 
-### Application
+## Application
 
 The application subscribes to the MQTT topic for receiving the data of the
 node(s) within the application. It is also able to send data back over MQTT.

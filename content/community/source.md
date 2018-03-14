@@ -6,7 +6,7 @@ menu:
         weight: 3
 ---
 
-## Source
+# Source
 
 All source-code is hosted on GitHub:
 

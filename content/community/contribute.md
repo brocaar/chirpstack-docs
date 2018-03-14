@@ -6,7 +6,7 @@ menu:
         weight: 2
 ---
 
-## Contribute
+# Contribute
 
 There are a couple of ways to get involved:
 
@@ -15,7 +15,7 @@ There are a couple of ways to get involved:
 * Help fixing reported issues by making pull-requests
 * Fix issues or improve documentation by creating pull-requests
 
-### Components
+## Components
 
 Please refer to the following pages to learn more about contributing to
 each LoRa Server project component:

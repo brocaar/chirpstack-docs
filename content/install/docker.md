@@ -6,18 +6,18 @@ menu:
         weight: 4
 ---
 
-## Docker install
+# Docker install
 
 The LoRa Server project provides [Docker](https://www.docker.com) containers
 for all project components. An overview of available containers can be found
 at: [https://hub.docker.com/u/loraserver/](https://hub.docker.com/u/loraserver/).
 
-### Versioning
+## Versioning
 
 * `latest` refers to the latest version from the `master` branch
 * All other tags refer to tagged versions
 
-### Docker Compose
+## Docker Compose
 
 A [Docker Compose](https://docs.docker.com/compose/) example can be found
 below. Please use this `docker-compose.yml` file as a starting point, not
@@ -90,7 +90,7 @@ services:
     image: eclipse-mosquitto
 ```
 
-#### Add network-server
+### Add network-server
 
 When adding the network-server in the LoRa App Server web-interface
 (see [network-servers](https://docs.loraserver.io/lora-app-server/use/network-servers/))

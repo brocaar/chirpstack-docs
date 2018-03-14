@@ -1,16 +1,53 @@
+/*
+Global styling.
+*/
+
 body {
     margin-bottom: 50px;
 }
+
+.navbar {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.navbar-components {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.navbar-components a.active {
+    font-weight: bold;
+    color: #2196f3 !important;
+    border-bottom: 2px solid #2196f3;
+}
+
+/*
+Landing page.
+*/
+
+.jumbotron {
+    background: none;
+}
+
+.content {
+    font-size: 16px;
+}
+
+/*
+Documentation pages.
+*/
 
 .sidebar-menu {
     list-style: none;
     margin: 0;
     padding: 0;
-    margin-top: 23px;
+    margin-top: 25px;
+    font-size: 14px;
+    border-right: 2px solid rgba(0, 0, 0, 0.05);
 }
 
 .sidebar-menu li {
-    margin: 10px 0px 10px 0px;
+    margin: 15px 0px 15px 0px;
 }
 
 .sidebar-menu i {
@@ -39,7 +76,7 @@ body {
 }
 
 .sidebar-menu .sub li.active {
-    border-left: 2px solid #0c84e4;
+    border-left: 2px solid #2196f3;
     margin-left: -2px;
     font-weight: bold;
 }
@@ -48,20 +85,41 @@ body {
     color: #444444;
 }
 
+.documentation {
+    padding-top: 20px;
+}
+
+.documentation h1 {
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.documentation p {
+    margin-bottom: 15px;
+}
+
+.documentation h2, .documentation h3 {
+    margin-top: 25px;
+}
+
 img {
     max-width: 100%;
 }
 
 pre code {
-    background: none !important;
     word-wrap: normal;
     white-space: pre;
 }
 
 pre {
-    margin-bottom: 23px;
+    margin-bottom: 15px;
 }
 
-body {
-    font-size: 14px;
+table {
+    width: 100%;
+}
+
+table tbody tr td {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+
 }

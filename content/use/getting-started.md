@@ -6,12 +6,12 @@ menu:
         weight: 1
 ---
 
-## Getting started
+# Getting started
 
 After you succesfully setup the project, follow the steps below to get started
 with receiving and sending from / to your node:
 
-### Add a gateway
+## Add a gateway
 
 There are two steps involved when adding a gateway. First of all, you need
 to configure your gateway so that it sends data to the
@@ -31,45 +31,45 @@ this, log in into the [LoRa App Server](/lora-app-server/)
 web-interface and add the gateway to your organization. In case your gateway
 does not have a GPS, you can set the location manually.
 
-### Adding your first device
+## Adding your first device
 
 The following steps must be performed in the
 [LoRa App Server](/lora-app-server/) web-interface.
 
-#### Associating the network-server
+### Associating the network-server
 
 LoRa App Server must know to which network-server(s) to connect. Therefore
 the first action is to add a network-server (LoRa Server instance)
 to your LoRa App Server installation. See
 [network-servers](/lora-app-server/use/network-servers/) for more information.
 
-#### Create a service-profile
+### Create a service-profile
 
 To define what features can be used by users assigned to an organization
 you must create one or multiple service-profiles for each organization.
 See [service-profiles](/lora-app-server/use/service-profiles/) for more
 information.
 
-#### Create a device-profile
+### Create a device-profile
 
 To define the capabilities of the device you are going to add, you must
 create one or multiple device-profiles for each organization. See
 [device-profiles](/lora-app-server/use/device-profiles/) for more information.
 
-#### Create an application
+### Create an application
 
 A device is always part of an application, therefore you need to create
 an application. An application contains one or multiple devices that serve the
 same purpose, for example a weather-station. See
 [applications](/lora-app-server/use/applications/) for more information.
 
-#### Create a device
+### Create a device
 
 After creating the application, you need to create the device and assign a
 device-profile to it. After creating the device, don't forget to add the
 application-key to it (OTAA) or activate the device (ABP).
 
-### Receive data
+## Receive data
 
 To receive data (and events) from your node(s), you need to subscribe to the
 topic of your node and / or application. For this example we will be using

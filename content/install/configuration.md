@@ -6,7 +6,7 @@ menu:
         weight: 7
 ---
 
-## Configuring the LoRa Server project applications
+# Configuring the LoRa Server project applications
 
 The LoRa server project components are configured by configuration files,
 which are by default loaded from (in this order):
@@ -27,7 +27,7 @@ To print a (new) configuration file, use the `configfile` sub-command. Example:
 loraserver configfile > loraserver.toml
 ```
 
-### Configuration reference
+## Configuration reference
 
 * [LoRa App Server configuration](/lora-app-server/install/config/)
 * [LoRa Server configuration](/loraserver/install/config/)

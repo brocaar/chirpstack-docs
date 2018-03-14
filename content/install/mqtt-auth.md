@@ -6,7 +6,7 @@ menu:
         weight: 6
 ---
 
-## MQTT authentication & authorization
+# MQTT authentication & authorization
 
 The LoRa Server project does not handle MQTT authentication and authorization
 To make sure that not all data is exposed to all uses, it is advised to setup
@@ -16,7 +16,7 @@ For example, you could give every gateway its own login restricted to its
 own set of MQTT topics and you could give each user its own login, restricted
 to a set of applications.
 
-### Mosquitto
+## Mosquitto
 
 For [Mosquitto](https://mosquitto.org) there are multiple ways to setup
 authentication and authorization. This can be pre-configured in so called
@@ -25,13 +25,13 @@ dynamically from the [LoRa App Server](/lora-app-server/) user tables.
 In the latter case, LoRa App Server users are able to login with their
 own credentials and are limited to the applications to which they have access.
 
-#### Static password and ACL file
+### Static password and ACL file
 
 These steps describe how to setup Mosquitto with a static password and ACL
 file. In case you would like to setup Mosquitto so that users and permissions
 are retrieved from LoRa App Server, go to the next section (Mosquitto Auth Plugin).
 
-##### Passwords
+#### Passwords
 
 Using the `mosquitto_passwd` command, it is possible to create a password file
 for authentication.
@@ -43,7 +43,7 @@ the first time as it will create a new file):
 sudo mosquitto_passwd -c /etc/mosquitto/passwd <user_name>
 ```
 
-##### ACLs
+#### ACLs
 
 The access control list file will map usernames to a set of topics.
 Write this file to `/etc/mosquitto/acls`. An
@@ -76,7 +76,7 @@ The access parameter for each topic can be `read`, `write` or `readwrite`.
 Note that `+` is a wildcard character (e.g. all gateways, applications or
 nodes in the above example).
 
-##### Mosquitto configuration
+#### Mosquitto configuration
 
 Then edit the `/etc/mosquitto/mosquitto.conf` config file so that it contains
 the following entries:
@@ -87,7 +87,7 @@ acl_file /etc/mosquitto/acls
 allow_anonymous false
 ```
 
-#### Mosquitto Auth Plugin (users and permissions from LoRa App Server)
+### Mosquitto Auth Plugin (users and permissions from LoRa App Server)
 
 To setup Mosquitto so that it retrieves the users and permissions from the
 [LoRa App Server](/lora-app-server/) database, you need to setup the
@@ -96,7 +96,7 @@ plugin. This project provides authentication and authorization to Mosquitto
 using various backends. In our case we're interested in the PostgreSQL and
 files backend.
 
-##### Compile mosquitto-auth-plug
+#### Compile mosquitto-auth-plug
 
 Before the mosquitto-auth-plugin can be compiled, you need to install the
 following requirements (can be installed using `sudo apt-get install ...`):
@@ -153,7 +153,7 @@ cd /opt/mosquitto-auth-plug
 sudo make
 ```
 
-##### Configure mosquitto-auth-plug
+#### Configure mosquitto-auth-plug
 
 Create a directory and empty files for additional static passwords and ACLs:
 
@@ -193,7 +193,7 @@ You might want to change the following configuration, to match your
 * `auth_opt_user`: database username
 * `auth_opt_pass`: database password
 
-##### Static passwords
+#### Static passwords
 
 As [LoRa Gateway Bridge](/lora-gateway-bridge/), [LoRa Server](/loraserver/)
 and [LoRa App Server](/lora-app-server/) also make use of MQTT, you might want
@@ -226,7 +226,7 @@ loraserver_ns:PBKDF2$sha256$100000$jXjd9LKwjkLhec/m$qwhGxiPON/tKCXcfS6fpfAr1xQec
 loraserver_as:PBKDF2$sha256$100000$AC51663HqjWlPisA$uV4WQmy0c6nMsLwEffXUeVqIFRDb4Y+h
 ```
 
-##### Static ACLs
+#### Static ACLs
 
 For the static passwords created in the previous step, you probably want to
 limit these logins to a certain set of topics. For this you can add ACL rules

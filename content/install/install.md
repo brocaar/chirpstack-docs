@@ -6,11 +6,11 @@ menu:
         weight: 3
 ---
 
-## Installing the LoRa Server project
+# Installing the LoRa Server project
 
 There are multiple ways how the LoRa Server project could be setup:
 
-### Manual
+## Manual
 
 In this case you need to download the binaries for each component (matching
 your platform and architecture) and make sure they are started on boot.
@@ -24,7 +24,7 @@ Pre-compiled binaries and packages can be found at:
 * [LoRa Server downloads](/loraserver/overview/downloads/)
 * [LoRa App Server downloads](/lora-app-server/overview/downloads/)
 
-### Debian / Ubuntu
+## Debian / Ubuntu
 
 The LoRa Server project provides pre-compiled binaries packaged as Debian (.deb)
 packages. In order to activate this repository, execute the following

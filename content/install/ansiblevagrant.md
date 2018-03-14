@@ -1,12 +1,14 @@
 ---
-title: Ansible and Vagrant Install
+title: Ansible and Vagrant install
 menu:
     main:
         parent: install
         weight: 5
 ---
 
-### Vagrant (using VirtualBox)
+# Ansible and Vagrant install
+
+## Vagrant (using VirtualBox)
 
 In case you would like to setup a local test environment to experiment with
 the LoRa Server project, an easy option is by using the LoRa Server setup
@@ -15,7 +17,7 @@ deployments: [https://github.com/brocaar/loraserver-setup](https://github.com/br
 
 See also: [https://www.vagrantup.com](https://www.vagrantup.com)
 
-### Ansible based deployments
+## Ansible based deployments
 
 The LoRa Server setup playbook for Ansible will setup the LoRa Server project
 for you, including its dependencies. The same playbook is used to provision

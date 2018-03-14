@@ -6,9 +6,9 @@ menu:
         weight: 3
 ---
 
-## Features
+# Features
 
-### ISM bands
+## ISM bands
 
 LoRa Server implements all regional bands that are defined by the
 ISM bands specified by the LoRa Alliance LoRaWAN
@@ -16,59 +16,54 @@ ISM bands specified by the LoRa Alliance LoRaWAN
 document. Note that each region has different frequencies and settings on
 which the LoRaWAN protocol operates, to comply to local regulations.
 
-### Devices classes
+## Devices classes
 
-LoRa Server implements both LoRaWAN Class-A and Class-C, making it ideal for
+LoRa Server implements LoRaWAN Class-A, Class-B and Class-C, making it ideal for
 different purposes. Note that for all supported device-classes both
 unconfirmed as confirmed data is supported (in the latter case an
 acknowledgment will be sent by the receiving party).
 
-#### Class A
+### Class A
 
-The node / device is always in sleep mode. Only when it has data to send
-it wakes up to transmit, after which it opens two receive-windows in order
-to receive a downlink transmission. After it received a downlink or after the
-second receive window expired, it goes back to sleep.
+End-devices of Class A allow for bi-directional communications whereby each end-device‘s uplink transmission is followed by two short downlink receive windows. The transmission slot scheduled by the end-device is based on its own communication needs with a small variation based on a random time basis (ALOHA-type of protocol).
 
-#### Class B
+### Class B
 
-Not implemented yet.
+End-devices of Class B allow for more receive slots. In addition to the Class A random receive windows, Class B devices open extra receive windows at scheduled times. In order for the End-device to open it receive window at the scheduled time it receives a time synchronized Beacon from the gateway.
 
-#### Class C
+### Class C
 
-The node / devices is always listening, making it possible for the application
-to send data to the node any time. When running in Class-C mode, a node will
-use significantly more energy.
+End-devices of Class C have nearly continuously open receive windows, only closed when transmitting. Class C end-device will use more power to operate than Class A or Class B but they offer the lowest latency for server to end-device communication.
 
-### Adaptive data-rate (ADR)
+## Adaptive data-rate (ADR)
 
 LoRa Server implements adaptive data-rate. For devices that
 support ADR, this will make sure that they are operating at the best data-rate
 possible with the least transmission power. This not only saves battery power,
 but uses the network in the most ideal way as airtime of the node decreases.
 
-### Channel re-configuration
+## Channel re-configuration
 
 For networks where only a sub-set of channels is used of the channels defined
 by the LoRaWAN Regional Parameters (e.g. for the US region), LoRa Server
 supports channel re-configuration. It will automatically disable channels
 on the node that are not being used by the network.
 
-### Web-interface
+## Web-interface
 
 LoRa App Server offers a web-interface to manage your nodes per application,
 per organization. By being able to assigning users to organizations and / or
 applications, The LoRa Server project is ideal for multi-team or
 multi-organization setups.
 
-### API
+## API
 
 Both LoRa Server (the network-server) and LoRa App Server
 (the application-server) provide APIs to make them integratable in your own
 infrastructure. By using the LoRa Server API, you could even implement your own
 node inventory management system and fully replace LoRa App Server if needed.
 
-### Gateway management
+## Gateway management
 
 LoRa Server offers gateway management so that you are able to manage your
 gateways and their GPS location and exposes statistics to track their 

@@ -6,7 +6,7 @@ menu:
     weight: 1
 ---
 
-## Quick Install
+# Quick Install
 
 This tutorial describes the steps needed to setup the LoRa Server project
 **including all requirements** on a single Ubuntu 16.04 LTS instance. Note that
@@ -14,7 +14,7 @@ this version of Ubuntu is not required by LoRa Server, but is used in this
 tutorial as it is the latest Ubuntu LTS version. Please refer to the other
 install pages for more generic installation instructions.
 
-### Assumptions
+## Assumptions
 
 Many configurations of these packages is possible. Dependent software packages
 could be installed on any number of remote servers, and the packages themselves
@@ -39,7 +39,7 @@ installation changes are beyond the scope of this document. However, you
 should be able to find the information here that would make these changes
 relatively straight-forward.
 
-### Install requirements
+## Install requirements
 
 Software dependencies for the LoRa Server compoments:
 
@@ -57,7 +57,7 @@ Use the package manager apt to install these dependencies on the Ubuntu
 sudo apt install mosquitto mosquitto-clients redis-server redis-tools postgresql
 ```
 
-#### Mosquitto authentication
+### Mosquitto authentication
 
 Mosquitto, as the main conduit for messaging between the gateways and the
 LoRa servers and the applications receiving LoRa data, should be secured to
@@ -82,7 +82,7 @@ Note that further configuration is possible, such as limiting the topics
 to which the various users can have access.  These settings are beyond the
 scope of this document.
 
-#### Mosquitto configuration
+### Mosquitto configuration
 
 Add a new local configuration file (this should survive mosquitto upgrades)
 called `/etc/mosquitto/conf.d/local.conf` with the following configuration:
@@ -111,7 +111,7 @@ After saving this configuration, restart Mosquitto with the new settings:
 sudo systemctl restart mosquitto
 ```
 
-#### PostgreSQL databases and users
+### PostgreSQL databases and users
 
 To enter the command line utility for PostgreSQL:
 
@@ -138,7 +138,7 @@ create database loraserver_ns with owner loraserver_ns;
 \q
 ```
 
-### Setup LoRa Server software repository
+## Setup LoRa Server software repository
 
 LoRa Server provides a repository that is compatible with the Ubuntu apt
 package system.
@@ -161,7 +161,7 @@ Update the apt system:
 sudo apt update
 ```
 
-### Installing LoRa Gateway Bridge
+## Installing LoRa Gateway Bridge
 
 **Note:** when you intent to run the [LoRa Gateway Bridge](/lora-gateway-bridge/)
 only on the gateways itself, you can skip this step. Running LoRa Gateway Brige
@@ -185,7 +185,7 @@ by changing the configuration file `/etc/lora-gateway-bridge/lora-gateway-bridge
   send data), it is best to have a username and password for the server here.
   These credentials were the ones set up in the *Mosquitto authentication* step.
 
-### Installing LoRa Server
+## Installing LoRa Server
 
 Install the package using apt:
 
@@ -241,7 +241,7 @@ This indicates that [LoRa App Server](/lora-app-server/) is not yet running.
 [LoRa Server](/loraserver/) is trying to communicate with LoRa App Server via
 the gRPC api. Once LoRa App Server is running, this error should stop.
 
-### Installing LoRa App Server
+## Installing LoRa App Server
 
 Install the package using apt:
 
@@ -296,7 +296,7 @@ Logging for LoRa App Server is accessible via (add `-f` to *follow*):
 journalctl -u lora-app-server
 ```
 
-### Install LoRa Gateway Bridge on the gateway
+## Install LoRa Gateway Bridge on the gateway
 
 It is advised to run LoRa Gateway Bridge on each gateway itself, to enable a
 secure connection between your gateways and your server.
@@ -361,7 +361,7 @@ of an OTAA device or to activate the device in case of an ABP device.
 Once the device and it application are created, the LoRa Server and LoRa App
 Server will be able to handle messaging from the device.
 
-### Conclusion
+## Conclusion
 
 At this point you should be able to follow the logs and see no errors.
 Also, you can user the loraroot account on Mosquitto to watch the message flow:
