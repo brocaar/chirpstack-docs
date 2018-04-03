@@ -19,80 +19,22 @@ at: [https://hub.docker.com/u/loraserver/](https://hub.docker.com/u/loraserver/)
 
 ## Docker Compose
 
-A [Docker Compose](https://docs.docker.com/compose/) example can be found
-below. Please use this `docker-compose.yml` file as a starting point, not
-as a ready to use solution.
+A complete [docker-compose](https://docs.docker.com/compose/) example configuration
+is provided by [https://github.com/brocaar/loraserver-docker](https://github.com/brocaar/loraserver-docker).
 
-```yaml
-version: "2"
+Example to get started (with the default EU868 band configuration):
 
-services:
-  loraserver:
-    image: loraserver/loraserver
-    environment:
-      - DB_AUTOMIGRATE=true
-      - LOG_NODE_FRAMES=true
-      - NET_ID=010203
-      - BAND=EU_863_870
-      - REDIS_URL=redis://redis:6379
-      - GW_MQTT_SERVER=tcp://mosquitto:1883
-      - GW_SERVER_JWT_SECRET=verysecret
-      - POSTGRES_DSN=postgres://loraserver_ns:loraserver_ns@postgresql_ns/loraserver_ns?sslmode=disable
-      - JS_SERVER=http://appserver:8003
-
-  appserver:
-    image: loraserver/lora-app-server
-    ports:
-      - 8080:8080
-    environment:
-      - DB_AUTOMIGRATE=true
-      - REDIS_URL=redis://redis:6379
-      - POSTGRES_DSN=postgres://loraserver_as:loraserver_as@postgresql_as/loraserver_as?sslmode=disable
-      - MQTT_SERVER=tcp://mosquitto:1883
-      - JWT_SECRET=verysecret
-      - HTTP_TLS_CERT=/etc/lora-app-server/certs/http.pem
-      - HTTP_TLS_KEY=/etc/lora-app-server/certs/http-key.pem
-      - AS_PUBLIC_SERVER=appserver:8001
-
-  gatewaybridge:
-    ports:
-      - 1700:1700/udp
-    image: loraserver/lora-gateway-bridge
-    environment:
-      - MQTT_SERVER=tcp://mosquitto:1883
-
-  postgresql_ns:
-    image: postgres:9.6-alpine
-    ports:
-      - 5432
-    environment:
-      - POSTGRES_PASSWORD=loraserver_ns
-      - POSTGRES_USER=loraserver_ns
-      - POSTGRES_DB=loraserver_ns
-
-  postgresql_as:
-    image: postgres:9.6-alpine
-    ports:
-      - 5432
-    environment:
-      - POSTGRES_PASSWORD=loraserver_as
-      - POSTGRES_USER=loraserver_as
-      - POSTGRES_DB=loraserver_as
-
-  redis:
-    ports:
-      - 6379
-    image: redis:4-alpine
-
-  mosquitto:
-    ports:
-      - 1883:1883
-    image: eclipse-mosquitto
+```bash
+$ git clone https://github.com/brocaar/loraserver-docker.git
+$ cd loraserver-docker
+$ docker-compose up
 ```
+
+For more information refer to the `README.md` of
+[https://github.com/brocaar/loraserver-docker](https://github.com/brocaar/loraserver-docker).
 
 ### Add network-server
 
 When adding the network-server in the LoRa App Server web-interface
-(see [network-servers](https://docs.loraserver.io/lora-app-server/use/network-servers/))
-and when using the above `docker-compose.yml` example, you must enter
-`loraserver:8000` as the network-server hostname:IP.
+(see [network-servers](https://docs.loraserver.io/lora-app-server/use/network-servers/)),
+you must enter `loraserver:8000` as the network-server `hostname:IP`.
