@@ -8,7 +8,7 @@ menu:
 
 # Getting started
 
-After you succesfully setup the project, follow the steps below to get started
+After you successfully setup the project, follow the steps below to get started
 with receiving and sending from / to your node:
 
 ## Add a gateway
