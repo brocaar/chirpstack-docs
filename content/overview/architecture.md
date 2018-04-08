@@ -8,20 +8,20 @@ menu:
 
 # System architecture
 
-A LoRa Server architecture constists of multiple components:
+A LoRa Server architecture consists of multiple components:
 
 ![architecture](/img/architecture.png)
 
 ## LoRa nodes
 
-The IoT devices or "nodes" (not pictured on the above image) are the devices
+The IoT devices or "nodes" (not pictured in the image above) are the devices
 sending data to the LoRa network (through the LoRa gateways). These devices
-could be for example sensors measturing air quality, temperature, humitidy,
+could be for example sensors measuring air quality, temperature, humidity,
 location...
 
 ## LoRa gateway
 
-The gateways are receiving data from the nodes and typtically runs an
+The gateways are receiving data from the nodes and typically run an
 implementation of the [packet-forwarder](https://github.com/Lora-net/packet_forwarder)
 software. This software is responsible for the interface with the LoRa hardware
 on the gateway.
@@ -40,7 +40,7 @@ over MQTT. The advantages over directly working with the UDP protocol are:
 * It enables a secure connection between your gateways and the network
   (using MQTT over TLS)
 * In the future, different bridge versions could handle different gateway
-  protocol, so that the rest of the infrastructure only needs to know about the
+  protocols, so that the rest of the infrastructure only needs to know about the
   JSON over MQTT format
 
 ## LoRa Server
@@ -51,9 +51,9 @@ node sessions and when a new node joins the network, it will ask the
 application-server if the node is allowed to your the network and if so,
 which settings to use for this node.
 
-For the active node-sessions, it de-duplicate the received data (which is
-potentially received by multiple gateways), it authenticates this date (to
-make sure that these are no replay-attacks), it forwards this (encrypted)
+For the active node-sessions, it de-duplicates the received data (which is
+potentially received by multiple gateways), it authenticates this data (to
+make sure that these are not replay-attacks), it forwards this (encrypted)
 data to the application-server and it will ask the application-server if it
 should send anything back.
 
