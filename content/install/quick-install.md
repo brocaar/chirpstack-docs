@@ -221,9 +221,6 @@ by changing the configuration file `/etc/loraserver/loraserver.toml`:
   the gRPC interface to [LoRa Server](/loraserver/).
 * `network_server.gateway.stats.aggregation_intervals` - defines collection time periods for
   statistics gathering on gateways.
-* `network_server.gateway.api.jwt_secret` - a secret value used to generate
-  the gateway tokens. This can contain any value, for example the output of the
-  following command `openssl rand -base64 32`.
 
 Start the LoRa Server service:
 
