@@ -204,7 +204,7 @@ by changing the configuration file `/etc/loraserver/loraserver.toml`:
 
 * `network_server.band.name` - The ISM band to use. E.g. for US installations, use `US_902_928`.
 * `postgresql.dsn` - The URL to the postgres server. Add `username:password@`
-  to the URL. e.g., `postgres://loraserver_ns:dbpassword@localhost/loraserver?sslmode=disable`.
+  to the URL. e.g., `postgres://loraserver_ns:dbpassword@localhost/loraserver_ns?sslmode=disable`.
   Be careful with this setting. It is easy to get wrong, and can produce a number
   of different error messages.
 * `postgresql.automigrate` - Leave this set to true, as it only takes a moment to run
@@ -256,7 +256,7 @@ Set up your configuration (only the most important settings are addressed here)
 by changing the configuration file `/etc/lora-app-server/lora-app-server.toml`:
 
 * `postgresql.dsn` - The URL to the postgres server. Add `username:password@`
-  to the URL. e.g., `postgres://loraserver_as:dbpassword@localhost/loraappserver?sslmode=disable`.
+  to the URL. e.g., `postgres://loraserver_as:dbpassword@localhost/loraserver_as?sslmode=disable`.
   Be careful with this setting. It is easy to get wrong, and can produce a number
   of different error messages.
 * `postgresql.automigrate` - Leave this set to true, as it only takes a moment to run
