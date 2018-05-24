@@ -32,4 +32,3 @@ loraserver configfile > loraserver.toml
 * [LoRa App Server configuration](/lora-app-server/install/config/)
 * [LoRa Server configuration](/loraserver/install/config/)
 * [LoRa Gateway Bridge configuration](/lora-gateway-bridge/install/config/)
-* [LoRa Channel Manager configuration](/lora-channel-manager/install/config/)

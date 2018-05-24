@@ -15,7 +15,6 @@ this issue has already been reported. If not, please create an issue. Each
 component has its own issue tracker:
 
 * [https://github.com/brocaar/lora-gateway-bridge/issues](https://github.com/brocaar/lora-gateway-bridge/issues)
-* [https://github.com/brocaar/lora-gateway-config/issues](https://github.com/brocaar/lora-gateway-config/issues)
 * [https://github.com/brocaar/loraserver/issues](https://github.com/brocaar/loraserver/issues)
 * [https://github.com/brocaar/lora-app-server/issues](https://github.com/brocaar/lora-app-server/issues)
 
