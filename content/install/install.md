@@ -24,32 +24,40 @@ Pre-compiled binaries and packages can be found at:
 * [LoRa Server downloads](/loraserver/overview/downloads/)
 * [LoRa App Server downloads](/lora-app-server/overview/downloads/)
 
-## Debian / Ubuntu
+## Debian / Ubuntu repository
 
-The LoRa Server project provides pre-compiled binaries packaged as Debian (.deb)
-packages. In order to activate this repository, execute the following
-commands:
+As all packages are signed using a PGP key, you first need to import this key:
 
 ```bash
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1CE2AFD36DBCCA00
+```
 
-sudo echo "deb https://artifacts.loraserver.io/packages/0.x/deb testing main" | sudo tee /etc/apt/sources.list.d/loraserver.list
+### Distributions
+
+#### Testing
+
+The testing distribution contains the latest (test) releases.
+
+```bash
+sudo echo "deb https://artifacts.loraserver.io/packages/1.x/deb testing main" | sudo tee /etc/apt/sources.list.d/loraserver.list
 sudo apt-get update
 ```
 
-Then to install all components:
+#### Stable
+
+The stable distribution contains releases that are considered stable.
+
+```bash
+sudo echo "deb https://artifacts.loraserver.io/packages/1.x/deb stable main" | sudo tee /etc/apt/sources.list.d/loraserver.list
+sudo apt-get update
+```
+
+### Installation
+
+To install all components:
 
 ```bash
 sudo apt-get install lora-gateway-bridge loraserver lora-app-server
 ```
 
-Note that after installing, you still need to configure each component.
-Configuration files are located at `/etc/NAME/NAME.toml` where `NAME` must 
-be substituted by the component name.
-
-Please refer to the documentation of each component for more details about
-setting up and configuration:
-
-* [LoRa Gateway Bridge](/lora-gateway-bridge/)
-* [LoRa Server](/loraserver/)
-* [LoRa App Server](/lora-app-server/)
+Note that after installing, you still need to [configure]({{<relref "configuration.md">}}) each component.

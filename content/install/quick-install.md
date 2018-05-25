@@ -25,11 +25,8 @@ installation, we will assume the following deployment architecture:
    single server instance
 * The [LoRa Gateway Bridge](/lora-gateway-bridge/) component will be installed
    on the server, but can also be installed on the gateway itself.
-* SSL/TLS certificates will be needed for mosquitto and lora-app-server for
-   these instructions, and potentially for other interfaces should the
-   installation be varied from these instructions. While self-signed
-   certificates are possible, it is much easier in the long run to get signed
-   certificates. These details are left to the installer of this software.
+* A self-signed certificate will be used for LoRa App Server (generated on
+  installation).
 
 Of course, optimizations may need to be made depending on the performance of
 your systems. You may opt to move the PostgreSQL database to another server.
@@ -55,60 +52,6 @@ Use the package manager apt to install these dependencies on the Ubuntu
 
 ```bash
 sudo apt install mosquitto mosquitto-clients redis-server redis-tools postgresql
-```
-
-### Mosquitto authentication
-
-Mosquitto, as the main conduit for messaging between the gateways and the
-LoRa servers and the applications receiving LoRa data, should be secured to
-prevent third party access to the data. To set up Mosquitto security:
-
-```bash
-# Create a password file for your mosquitto users, starting with a “root” user.
-# The “-c” parameter creates the new password file. The command will prompt for
-# a new password for the user.
-sudo mosquitto_passwd -c /etc/mosquitto/pwd loraroot
-
-# Add users for the various MQTT protocol users
-sudo mosquitto_passwd /etc/mosquitto/pwd loragw
-sudo mosquitto_passwd /etc/mosquitto/pwd loraserver
-sudo mosquitto_passwd /etc/mosquitto/pwd loraappserver
-
-# Secure the password file
-sudo chmod 600 /etc/mosquitto/pwd
-```
-
-Note that further configuration is possible, such as limiting the topics
-to which the various users can have access.  These settings are beyond the
-scope of this document.
-
-### Mosquitto configuration
-
-Add a new local configuration file (this should survive mosquitto upgrades)
-called `/etc/mosquitto/conf.d/local.conf` with the following configuration:
-
-Tell mosquitto where the password file is by adding the lines:
-
-```
-allow_anonymous false
-password_file /etc/mosquitto/pwd
-```
-
-If you set up SSL/TLS certificates for your server (recommended for production
-environments) add lines like these pointing to the respective files.
-Using SSL/TLS is a good idea so that passwords cannot be read as they are sent
-to Mosquitto for login:
-
-```
-cafile /etc/mosquitto/certs/ca.crt
-certfile /etc/mosquitto/certs/hostname.crt
-keyfile /etc/mosquitto/certs/hostname.key
-```
-
-After saving this configuration, restart Mosquitto with the new settings:
-
-```bash
-sudo systemctl restart mosquitto
 ```
 
 ### PostgreSQL databases and users
@@ -158,7 +101,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1CE2AFD36DBCCA00
 Add the repository to the repository list by creating a new file:
 
 ```bash
-sudo echo "deb https://artifacts.loraserver.io/packages/0.x/deb testing main" | sudo tee /etc/apt/sources.list.d/loraserver.list
+sudo echo "deb https://artifacts.loraserver.io/packages/1.x/deb stable main" | sudo tee /etc/apt/sources.list.d/loraserver.list
 ```
 
 Update the apt system:
@@ -180,16 +123,10 @@ Install the package using apt:
 sudo apt install lora-gateway-bridge
 ```
 
-Set up your configuration (only the most important settings are addressed here)
-by changing the configuration file `/etc/lora-gateway-bridge/lora-gateway-bridge.toml`:
-
-* `packet_forwarder.udp_bind` - The interface and port on which the LoRa Gateway
-  Bridge listens for packets from your gateways. This should be `0.0.0.0:1700`
-  to allow access on all network interfaces.
-* `backend.mqtt.username` and `backend.mqtt.password` - since the MQTT server is publicly
-  accessible (so [LoRa Gateway Bridge](/lora-gateway-bridge/) instances can
-  send data), it is best to have a username and password for the server here.
-  These credentials were the ones set up in the *Mosquitto authentication* step.
+No additional configuration is required. LoRa Gateway Bridge will by default bind to
+`0.0.0.0:1700` for receiving UDP data from your gateway(s). When you are planning to setup
+[Mosquitto authentication]({{<relref "mqtt-auth.md">}}), you need to update
+the configuration file `/etc/lora-gateway-bridge/lora-gateway-bridge.toml`.
 
 ## Installing LoRa Server
 
@@ -202,6 +139,7 @@ sudo apt install loraserver
 Set up your configuration (only the most important settings are addressed here)
 by changing the configuration file `/etc/loraserver/loraserver.toml`:
 
+* `network_server.net_id` - The LoRaWAN NetID of the network.
 * `network_server.band.name` - The ISM band to use. E.g. for US installations, use `US_902_928`.
 * `postgresql.dsn` - The URL to the postgres server. Add `username:password@`
   to the URL. e.g., `postgres://loraserver_ns:dbpassword@localhost/loraserver_ns?sslmode=disable`.
@@ -210,17 +148,6 @@ by changing the configuration file `/etc/loraserver/loraserver.toml`:
 * `postgresql.automigrate` - Leave this set to true, as it only takes a moment to run
   at server startup, and ensures that database changes will always be applied
   with each upgrade.
-* `network_server.gateway.backend.mqtt.username` and
-  `network_server.gateway.backend.mqtt.password` - since the MQTT server is publicly
-  accessible (so [LoRa Gateway Bridge](/lora-gateway-bridge/) instances can
-  send data), it is best to have a username and password for the server here.
-  These credentials were the ones set up in the *Mosquitto authentication* step.
-* `network_server.gateway.stats.create_gateway_on_stats` - creates a gateway
-  record for the gateway when stats are seen. Otherwise gateway data must be
-  populated manually using the [LoRa App Server](/lora-app-server/) UI or via
-  the gRPC interface to [LoRa Server](/loraserver/).
-* `network_server.gateway.stats.aggregation_intervals` - defines collection time periods for
-  statistics gathering on gateways.
 
 Start the LoRa Server service:
 
@@ -233,16 +160,6 @@ Logging for loraserver is accessible via (add `-f` to *follow*):
 ```bash
 journalctl -u loraserver
 ```
-
-Note that you may see errors at this point along the lines of:
-
-```
-INFO[0001] grpc: addrConn.resetTransport failed to create client transport: connection error: desc = "transport: dial tcp 0.0.0.0:8000: getsockopt: connection refused"; Reconnecting to {0.0.0.0:8000 <nil>}
-```
-
-This indicates that [LoRa App Server](/lora-app-server/) is not yet running.
-[LoRa Server](/loraserver/) is trying to communicate with LoRa App Server via
-the gRPC api. Once LoRa App Server is running, this error should stop.
 
 ## Installing LoRa App Server
 
@@ -262,11 +179,6 @@ by changing the configuration file `/etc/lora-app-server/lora-app-server.toml`:
 * `postgresql.automigrate` - Leave this set to true, as it only takes a moment to run
   at server startup, and ensures that database changes will always be applied
   with each upgrade.
-* `application_server.integration.mqtt.username` and
-  `application_server.integration.mqtt.password` - since the MQTT server is publicly
-  accessible (so [LoRa Gateway Bridge](/lora-gateway-bridge/) instances can
-  send data), it is best to have a username and password for the server here.
-  These credentials were the ones set up in the *Mosquitto authentication* step.
 * `application_server.api.bind` - The port that serves up the api server. This should be
   `localhost:8001` as [LoRa Server](/loraserver/) is on the same system.
 * `application_server.external_api.bind` - The port that serves up the public api
@@ -367,10 +279,10 @@ Server will be able to handle messaging from the device.
 ## Conclusion
 
 At this point you should be able to follow the logs and see no errors.
-Also, you can user the loraroot account on Mosquitto to watch the message flow:
+Also, you can use the `mosquitto_sub` utility to watch the messages flow:
 
 ```bash
-mosquitto_sub -v -t "#" -u loraroot -P {password} -h localhost -p 1883
+mosquitto_sub -v -t "#" -h localhost -p 1883
 ```
 
 Where:

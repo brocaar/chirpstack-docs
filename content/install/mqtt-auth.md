@@ -40,7 +40,15 @@ Example to create a password file and add add an username (use the `-c` only
 the first time as it will create a new file):
 
 ```bash
-sudo mosquitto_passwd -c /etc/mosquitto/passwd <user_name>
+# Create a password file, with users loraserver_gw, loraserver_ns, loraserver_as
+# and bob.
+sudo mosquitto_passwd -c /etc/mosquitto/passwd loraserver_gw
+sudo mosquitto_passwd /etc/mosquitto/passwd loraserver_ns
+sudo mosquitto_passwd /etc/mosquitto/passwd loraserver_as
+sudo mosquitto_passwd /etc/mosquitto/passwd bob
+
+# Secure the password file
+sudo chmod 600 /etc/mosquitto/pwd
 ```
 
 #### ACLs
@@ -61,15 +69,15 @@ topic write gateway/+/tx
 topic read gateway/+/rx
 
 user loraserver_as
-topic write application/+/node/+/rx
-topic write application/+/node/+/join
-topic write application/+/node/+/ack
-topic write application/+/node/+/error
-topic read application/+/node/+/tx
+topic write application/+/device/+/rx
+topic write application/+/device/+/join
+topic write application/+/device/+/ack
+topic write application/+/device/+/error
+topic read application/+/device/+/tx
 
 user bob
-topic read application/123/node/+/+
-topic write application/123/node/+/tx
+topic read application/123/device/+/+
+topic write application/123/device/+/tx
 ```
 
 The access parameter for each topic can be `read`, `write` or `readwrite`.
@@ -78,13 +86,13 @@ nodes in the above example).
 
 #### Mosquitto configuration
 
-Then edit the `/etc/mosquitto/mosquitto.conf` config file so that it contains
-the following entries:
+Then add a new configuration file called `/etc/mosquitto/conf.d/auth.conf` with
+the following configuration:
 
 ```
+allow_anonymous false
 password_file /etc/mosquitto/passwd
 acl_file /etc/mosquitto/acls
-allow_anonymous false
 ```
 
 ### Mosquitto Auth Plugin (users and permissions from LoRa App Server)
@@ -245,9 +253,9 @@ topic write gateway/+/tx
 topic read gateway/+/rx
 
 user loraserver_as
-topic write application/+/node/+/rx
-topic write application/+/node/+/join
-topic write application/+/node/+/ack
-topic write application/+/node/+/error
-topic read application/+/node/+/tx
+topic write application/+/device/+/rx
+topic write application/+/device/+/join
+topic write application/+/device/+/ack
+topic write application/+/device/+/error
+topic read application/+/device/+/tx
 ```
