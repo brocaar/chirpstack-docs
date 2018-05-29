@@ -71,15 +71,15 @@ application-key to it (OTAA) or activate the device (ABP).
 
 ## Receive data
 
-To receive data (and events) from your node(s), you need to subscribe to the
-topic of your node and / or application. For this example we will be using
+To receive data (and events) from your devices(s), you need to subscribe to the
+topic of your device and / or application. For this example we will be using
 the MQTT client that comes with [Mosquitto](https://mosquitto.org). However,
 every MQTT client will do. To subscribe to all data / events, subscribe to the
-topic: `application/+/node/+/+`. The `+` is a wildcard (thus all applications,
-nodes and events).
+topic: `application/#`. The `#` is a milti-level wildcard (thus everything under
+the `application/` prefix).
 
 ```bash
-mosquitto_sub -v -t "application/+/node/+/+"
+mosquitto_sub -v -t "application/#"
 ```
 
 In case you configured your node for OTAA, perform a join (from your node).
