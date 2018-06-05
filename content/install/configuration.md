@@ -3,7 +3,7 @@ title: Configuration
 menu:
     main:
         parent: install
-        weight: 7
+        weight: 8
 ---
 
 # Configuring the LoRa Server project applications

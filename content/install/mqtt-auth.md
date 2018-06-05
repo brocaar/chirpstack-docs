@@ -3,7 +3,7 @@ title: MQTT authentication
 menu:
     main:
         parent: install
-        weight: 6
+        weight: 7
 ---
 
 # MQTT authentication & authorization
