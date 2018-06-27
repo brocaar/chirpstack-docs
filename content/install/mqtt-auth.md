@@ -48,7 +48,7 @@ sudo mosquitto_passwd /etc/mosquitto/passwd loraserver_as
 sudo mosquitto_passwd /etc/mosquitto/passwd bob
 
 # Secure the password file
-sudo chmod 600 /etc/mosquitto/pwd
+sudo chmod 600 /etc/mosquitto/passwd
 ```
 
 #### ACLs
