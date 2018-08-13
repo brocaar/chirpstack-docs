@@ -21,10 +21,17 @@ which are by default loaded from (in this order):
 To load a configuration file from an alternative location, use
 the `--config` or `-c` flag.
 
-To print a (new) configuration file, use the `configfile` sub-command. Example:
+To print a (new) configuration file, use the `configfile` sub-command. This
+can not only be used to generate a new configuration file containing all the
+default, but can also be used to update an existing configuration file to
+include the latest defaults (maintaining the already set variables) Example:
 
 ```bash
+# generate new configuration file
 loraserver configfile > loraserver.toml
+
+# migrate configuration file
+loraserver configfile -c loraserver-old.toml > loraserver.toml
 ```
 
 ## Configuration reference

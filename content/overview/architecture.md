@@ -12,16 +12,16 @@ A LoRa Server architecture consists of multiple components:
 
 ![architecture](/img/architecture.png)
 
-## LoRa nodes
+## LoRaWAN devices
 
-The IoT devices or "nodes" (not pictured in the image above) are the devices
+The IoT devices (not pictured in the image above) are the devices
 sending data to the LoRa network (through the LoRa gateways). These devices
 could be for example sensors measuring air quality, temperature, humidity,
 location...
 
 ## LoRa gateway
 
-The gateways are receiving data from the nodes and typically run an
+The gateways are receiving data from the devices and typically run an
 implementation of the [packet-forwarder](https://github.com/Lora-net/packet_forwarder)
 software. This software is responsible for the interface with the LoRa hardware
 on the gateway.
@@ -30,7 +30,7 @@ on the gateway.
 
 The [LoRa Gateway Bridge](/lora-gateway-bridge/)
 component is responsible for the communication with
-your gateway. It "transforms" the packet-forwarder UDP protocol into JSON
+your gateway. It "transforms" the packet-forwarder UDP protocol into messages
 over MQTT. The advantages over directly working with the UDP protocol are:
 
 * It makes debugging easier
@@ -39,47 +39,35 @@ over MQTT. The advantages over directly working with the UDP protocol are:
   Bridge instance responsible for the gateway
 * It enables a secure connection between your gateways and the network
   (using MQTT over TLS)
-* In the future, different bridge versions could handle different gateway
-  protocols, so that the rest of the infrastructure only needs to know about the
-  JSON over MQTT format
 
 ## LoRa Server
 
-The [LoRa Server](/loraserver/) component is
-responsible for the network. It knows about active
-node sessions and when a new node joins the network, it will ask the
-application-server if the node is allowed to your the network and if so,
-which settings to use for this node.
+The [LoRa Server](/loraserver/) component provides the LoRaWAN network-server
+component, responsible for managing the state of the network.
+It has knowledge of devices active on the network and is able to handle
+join-requests when devices want to join the network. 
 
-For the active node-sessions, it de-duplicates the received data (which is
-potentially received by multiple gateways), it authenticates this data (to
-make sure that these are not replay-attacks), it forwards this (encrypted)
-data to the application-server and it will ask the application-server if it
-should send anything back.
+When data is received by multiple gateways, LoRa Server will de-duplicate
+this data and forward it once to the LoRaWAN application-server. When an
+application-server needs to send data back to a device, LoRa Server will
+keep these items in queue, until it is able to send to one of the gateways.
 
-Besides managing the data-flows, it also manages the state of the node through
-so called mac-commands (e.g. to change the data-rate, channels, ...).
-
-LoRa Server implements a gRPC API so that you could easily build your own
-application-server.
+LoRa Server provides an API which can be used for integration or when
+implementing your own application-server.
 
 ## LoRa App Server
 
 The [LoRa App Server](/lora-app-server/) component
-implements an application-server compatible
-with the LoRa Server component. It offers node management per application,
-per organization and gateway management per organization. It also offers user
-management and the possibility to assign users to organizations and / or
-applications. Communication with the application is using JSON over MQTT and
-using the exposed APIs.
+implements a LoRaWAN application-server compatible
+with the LoRa Server component. It provides a web-interface and APIs for
+management of users, organizations, applications, gateways and devices.
 
-LoRa App Servers offers a web-interface that can be used for gateway, node
-and gateway management, but also offers API endpoints so that it can be
-integrated with your own products.
+To receive the application payload sent by one of your devices, you can
+use one of the integrations that LoRa App Server provides (e.g. MQTT, HTTP
+or directly write to an InfluxDB database).
 
 ## Application
 
-The application subscribes to the MQTT topic for receiving the data of the
-node(s) within the application. It is also able to send data back over MQTT.
-If needed, it could also interact with LoRa App Server using the gRPC or
-JSON REST api.
+The end-application (not provided) handles the application-payloads sent by
+your devices. It receives this data from LoRa App Server, using one of the
+possible integrations.

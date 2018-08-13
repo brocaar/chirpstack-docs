@@ -9,8 +9,9 @@ menu:
 # MQTT authentication & authorization
 
 The LoRa Server project does not handle MQTT authentication and authorization
-To make sure that not all data is exposed to all uses, it is advised to setup
-MQTT authentication & authorization.
+for you, this is the responsibility of the MQTT broker. To restrict gateways
+and applications so that they can only publish and subscribe to their own
+MQTT topics, it is recommended to setup MQTT authentication and authorization.
 
 For example, you could give every gateway its own login restricted to its
 own set of MQTT topics and you could give each user its own login, restricted
@@ -21,9 +22,11 @@ to a set of applications.
 For [Mosquitto](https://mosquitto.org) there are multiple ways to setup
 authentication and authorization. This can be pre-configured in so called
 password and ACL (access control list) files and / or can be retrieved
-dynamically from the [LoRa App Server](/lora-app-server/) user tables.
-In the latter case, LoRa App Server users are able to login with their
-own credentials and are limited to the applications to which they have access.
+dynamically from the [LoRa App Server](/lora-app-server/) user table (stored
+in the database). In the latter case, LoRa App Server users are able to login
+with their own credentials when connecting the MQTT broker and are limited to
+the applications to which they have access (in the LoRa App Server
+web-interface).
 
 ### Static password and ACL file
 
@@ -82,7 +85,7 @@ topic write application/123/device/+/tx
 
 The access parameter for each topic can be `read`, `write` or `readwrite`.
 Note that `+` is a wildcard character (e.g. all gateways, applications or
-nodes in the above example).
+devices in the above example).
 
 #### Mosquitto configuration
 

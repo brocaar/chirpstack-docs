@@ -6,22 +6,43 @@ menu:
         weight: 5
 ---
 
-# Ansible and Vagrant install
+# Ansible based deployment
 
-## Vagrant (using VirtualBox)
+[Ansible](https://docs.ansible.com/) is an open-source tool for automating
+deployment and server-management related steps.
 
-In case you would like to setup a local test environment to experiment with
-the LoRa Server project, an easy option is by using the LoRa Server setup
-scripts, which can be used both for a local Vagrant based setup as for remote
-deployments: [https://github.com/brocaar/loraserver-setup](https://github.com/brocaar/loraserver-setup).
+The LoRa Server project provides a so-called Ansible-playbook which can be
+used to deploy LoRa Server, including the setup of all requirements.
 
-See also: [https://www.vagrantup.com](https://www.vagrantup.com)
+The source of this playbook, including additional documentation how to
+use this, can be found at [https://github.com/brocaar/loraserver-setup](https://github.com/brocaar/loraserver-setup).
 
-## Ansible based deployments
+## Local VM deployment using Vagrant
 
-The LoRa Server setup playbook for Ansible will setup the LoRa Server project
-for you, including its dependencies. The same playbook is used to provision
-the Vagrant box (see above). See for instructions:
-[https://github.com/brocaar/loraserver-setup](https://github.com/brocaar/loraserver-setup).
+[Vagrant](https://www.vagrantup.com/) is a tool for automating the creation
+of virtual machines. It can integrate with Ansible so that it not only create
+the VM for you, but also will install all LoRa Server components.
 
-See also: [http://docs.ansible.com](http://docs.ansible.com)
+After following the instructions mentioned in the [loraserver-setup](https://github.com/brocaar/loraserver-setup)
+repository, this allows you to create a local test environment running
+inside a VM:
+
+```bash
+vagrant up
+```
+
+As this is using exactly the same Ansible-playbook as for remote deployments,
+this can also be used for testing before doing a remote deployment, e.g.
+when making modifications to the playbook.
+
+## Remote deployment
+
+Ansible can also be used to do remote deployments. You need to setup a
+so-called inventory of servers, to which Ansible will connect for executing
+the deployment steps. After following the steps mentioned in
+[loraserver-setup](https://github.com/brocaar/loraserver-setup), the following
+would perform a remote deployment:
+
+```bash
+ansible-playbook -i inventory full_deploy.yml
+```

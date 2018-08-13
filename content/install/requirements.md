@@ -26,9 +26,9 @@ MQTT is used by LoRa Gateway Bridge, LoRa Server, and Lora App Server.
 
 #### Debian / Ubuntu
 
-For Ubuntu Trusty (14.04), execute the following command in order to add the
-Mosquitto Apt repository, for Ubuntu Xenial and Debian Jessie you can skip
-this step:
+For Ubuntu Trusty (14.04), execute the command below in order to add the
+Mosquitto Apt repository. for Ubuntu Xenial and Debian Jessie you can skip
+this step as these distributions already contain a recent version of Mosquitto.:
 
 ```bash
 sudo apt-add-repository ppa:mosquitto-dev/mosquitto-ppa
@@ -50,8 +50,12 @@ for information about how to setup Mosquitto for your platform.
 
 The LoRa Server components are using [PostgreSQL](https://www.postgresql.org)
 for persistent data-storage. Note that PostgreSQL 9.5+ is required and that
-each component requires its own database to avoid schema conflicts
-(there is no need to run multiple database instances).
+each component requires its own database to avoid schema conflicts. When
+running multiple LoRa Server instances to support multiple LoRaWAN regions,
+you must create a database for each region!
+
+There is no need to run multiple PostgreSQL instances as a single instance
+can host multiple databases.
 
 PostgreSQL is used by LoRa Server and LoRa App Server.
 

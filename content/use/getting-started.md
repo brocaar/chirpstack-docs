@@ -8,8 +8,22 @@ menu:
 
 # Getting started
 
-After you successfully setup the project, follow the steps below to get started
-with receiving and sending from / to your node:
+After all components are installed, you should be able to navigate to the
+LoRa App Server web-interface. 
+
+To access the LoRa App Server web-interface, enter the IP address or hostname
+of you server, followed by port `8080` (this is a default configuration which
+can be modified through the `lora-app-server.toml` configuration file).
+
+Example: [https://localhost:8080/](https://localhost:8080/). 
+
+## Login
+
+The default login credentials are:
+
+* Username: admin
+* Password: admin
+
 
 ## Add a gateway
 
@@ -31,59 +45,87 @@ this, log in into the [LoRa App Server](/lora-app-server/)
 web-interface and add the gateway to your organization. In case your gateway
 does not have a GPS, you can set the location manually.
 
-## Adding your first device
+## Setting up your first device
 
-The following steps must be performed in the
-[LoRa App Server](/lora-app-server/) web-interface.
+Now all components are installed, you should be able to navigate to the
+LoRa App Server web-interface. 
 
-### Associating the network-server
+To access the LoRa App Server web-interface, enter the IP address or hostname
+of you server, followed by port `8080` (this is a default configuration which
+can be modified through the `lora-app-server.toml` configuration file).
 
-LoRa App Server must know to which network-server(s) to connect. Therefore
-the first action is to add a network-server (LoRa Server instance)
-to your LoRa App Server installation. See
-[network-servers](/lora-app-server/use/network-servers/) for more information.
+Example: [https://localhost:8080/](https://localhost:8080/). 
 
-### Create a service-profile
+### Add network-server
 
-To define what features can be used by users assigned to an organization
-you must create one or multiple service-profiles for each organization.
-See [service-profiles](/lora-app-server/use/service-profiles/) for more
-information.
+In order to connect you LoRa App Server instance with the LoRa Server instance,
+click *Network servers* and then *Add*. As LoRa Server is installed
+on the same host as LoRa App Server in this guide, use `localhost:8000`
+as network-server name (port `8000` is the default port used by LoRa Server,
+this can be modified through `loraserver.toml`). 
 
-### Create a device-profile
+Note that LoRa App Server can connect to multiple LoRa Server instances.
+For example each LoRa Server instance could support a different region.
 
-To define the capabilities of the device you are going to add, you must
-create one or multiple device-profiles for each organization. See
-[device-profiles](/lora-app-server/use/device-profiles/) for more information.
+### Service-profile
 
-### Create an application
+The service-profile defines the features that can be used by an organization.
+Click on *Service-profiles* and then *Create* to create a service-profile
+for the LoRa Server organization. This will also associate the organization
+with the network-server instance.
 
-A device is always part of an application, therefore you need to create
-an application. An application contains one or multiple devices that serve the
-same purpose, for example a weather-station. See
-[applications](/lora-app-server/use/applications/) for more information.
+### Device-profile
 
-### Create a device
+The device-profile defines the device properties of a device. For example
+it defines the activation type (OTAA vs ABP), the implemented LoRaWAN 
+version etc...
 
-After creating the application, you need to create the device and assign a
-device-profile to it. After creating the device, don't forget to add the
-application-key to it (OTAA) or activate the device (ABP).
+Click on *Device-profiles* and then *Create* to create a device-profile for
+the LoRa Server organization.
 
-## Receive data
+### Application
 
-To receive data (and events) from your devices(s), you need to subscribe to the
-topic of your device and / or application. For this example we will be using
-the MQTT client that comes with [Mosquitto](https://mosquitto.org). However,
-every MQTT client will do. To subscribe to all data / events, subscribe to the
-topic: `application/#`. The `#` is a milti-level wildcard (thus everything under
-the `application/` prefix).
+Now that LoRa App Server is associated with the LoRa Server instance, the
+organization has a service-profile and device-profile, it is time to create
+your first application.
+
+Click on *Applications*, then click on *Create*. Once the application has
+been created, click on the created application to see the list of
+devices associated with this application.
+
+### Device
+
+Under the *Devices* tab, click on the *Create* button to create a new device.
+In case of an OTAA device, after creating the device you will be redirected
+to a page where you can enter the root key(s). In case of an ABP device,
+you will be redirect to a page where you can enter the session keys.
+
+### Receive data
+
+It is possible to stream all LoRaWAN frames (raw and encrypted data) and
+device data from the web-interface. Click on the created device and click on
+the *live data* or *live LoRaWAN frames* tab. Now it is time to turn on your
+device and start receiving data!
+
+Besides seeing the data in the web-interface, you can also subscribe to the
+MQTT topic to receive data, for example using the `mosquitto_sub` utility:
 
 ```bash
-mosquitto_sub -v -t "application/#"
+mosquitto_sub -v -t "#" -h localhost -p 1883
 ```
 
-In case you configured your node for OTAA, perform a join (from your node).
-You should see a join event being published over MQTT.
+Where:
+
+* `-v` - verbose output - includes the *topic* of the message
+* `-t "#"` - any message. `"#"` is a multi-level wildcard. Other possibilities
+  include:
+    * `"gateway/#"` - any gateway messages
+    * `"application/#"` - any application messages
+* `-u` - The user to log into mosquitto with
+* `-P` - The password for the user
+* `-h` - The host to log in to
+* `-p` - The mosquitto port
+
 
 Read more more about sending and receiving data in the
 [LoRa App Server](/lora-app-server/use/data/) documentation.

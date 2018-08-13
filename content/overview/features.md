@@ -10,10 +10,9 @@ menu:
 
 ## ISM bands
 
-LoRa Server implements all regional bands that are defined by the
-ISM bands specified by the LoRa Alliance LoRaWAN
-[Regional Parameters 1.0](https://www.lora-alliance.org/For-Developers/LoRaWANDevelopers)
-document. Note that each region has different frequencies and settings on
+LoRa Server provides support for all regions specified by
+[LoRaWAN Regional Parameters](https://www.lora-alliance.org/For-Developers/LoRaWANDevelopers)
+specification. Note that each region has different frequencies and settings on
 which the LoRaWAN protocol operates, to comply to local regulations.
 
 ## Devices classes
@@ -39,8 +38,7 @@ End-devices of Class C have nearly continuously open receive windows, only close
 
 LoRa Server implements adaptive data-rate. For devices that
 support ADR, this will make sure that they are operating at the best data-rate
-possible with the least transmission power. This not only saves battery power,
-but uses the network in the most ideal way as airtime of the node decreases.
+possible using the lowest possible transmission power.
 
 ## Channel re-configuration
 
@@ -49,14 +47,20 @@ by the LoRaWAN Regional Parameters (e.g. for the US region), LoRa Server
 supports channel re-configuration. It will automatically disable channels
 on the node that are not being used by the network.
 
+## Device re-configuration
+
+LoRa Server keeps a copy of network related parameters per device.  When it
+detects that you have made changes, it will automatically signal these
+configuration updates to your devices.
+
 ## Web-interface
 
-LoRa App Server offers a web-interface to manage your nodes per application,
-per organization. By being able to assigning users to organizations and / or
-applications, The LoRa Server project is ideal for multi-team or
-multi-organization setups.
+LoRa App Server provides a web-interface to manage users, organizations,
+applications, gateways and devices. It also provides debugging capabilities
+like inspecting the LoRaWAN frames sent and received by gateways and
+devices and inspecting the application payloads.
 
-## API
+## APIs
 
 Both LoRa Server (the network-server) and LoRa App Server
 (the application-server) provide APIs to make them integratable in your own
