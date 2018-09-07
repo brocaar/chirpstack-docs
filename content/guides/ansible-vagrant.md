@@ -1,12 +1,12 @@
 ---
-title: Ansible and Vagrant install
+title: Ansible and Vagrant
 menu:
-    main:
-        parent: install
-        weight: 5
+  main:
+    parent: guides
+    weight: 2
 ---
 
-# Ansible based deployment
+# Ansible based deployments
 
 [Ansible](https://docs.ansible.com/) is an open-source tool for automating
 deployment and server-management related steps.

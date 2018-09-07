@@ -2,8 +2,8 @@
 title: MQTT authentication
 menu:
     main:
-        parent: install
-        weight: 7
+        parent: guides
+        weight: 3
 ---
 
 # MQTT authentication & authorization
@@ -98,7 +98,7 @@ password_file /etc/mosquitto/passwd
 acl_file /etc/mosquitto/acls
 ```
 
-### Mosquitto Auth Plugin (users and permissions from LoRa App Server)
+### Mosquitto Auth Plugin
 
 To setup Mosquitto so that it retrieves the users and permissions from the
 [LoRa App Server](/lora-app-server/) database, you need to setup the

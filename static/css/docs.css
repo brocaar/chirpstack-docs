@@ -123,3 +123,17 @@ table tbody tr td {
     border-bottom: 2px solid rgba(0, 0, 0, 0.05);
 
 }
+
+#TableOfContents {
+    border-left: 2px solid rgba(0, 0, 0, 0.05);
+    font-size: 14px;
+    float: right;
+    margin: 20px 0px 30px 30px;
+}
+
+#TableOfContents ul {
+    list-style-type: disc;
+    padding-left: 25px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}

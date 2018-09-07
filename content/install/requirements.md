@@ -9,9 +9,7 @@ menu:
 # Requirements
 
 Before getting started with the LoRa Server project, there are a couple of
-requirements that needs to be satisfied.  **Note:** these steps are not needed
-when following the [Quick install]({{< relref "quick-install.md" >}}) as the
-quick install guide includes the steps needed to install all requirements.
+requirements that needs to be satisfied. 
 
 ## MQTT broker
 
@@ -26,16 +24,7 @@ MQTT is used by LoRa Gateway Bridge, LoRa Server, and Lora App Server.
 
 #### Debian / Ubuntu
 
-For Ubuntu Trusty (14.04), execute the command below in order to add the
-Mosquitto Apt repository. for Ubuntu Xenial and Debian Jessie you can skip
-this step as these distributions already contain a recent version of Mosquitto.:
-
-```bash
-sudo apt-add-repository ppa:mosquitto-dev/mosquitto-ppa
-sudo apt-get update
-```
-
-In order to install Mosquitto, execute the following command:
+To install Mosquitto:
 
 ```bash
 sudo apt-get install mosquitto
@@ -63,18 +52,11 @@ PostgreSQL is used by LoRa Server and LoRa App Server.
 
 #### Debian / Ubuntu
 
-To install the latest PostgreSQL:
+To install the PostgreSQL:
 
 ```bash
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-
-export DISTRIB_CODENAME=`lsb_release -sc`
-sudo echo "deb http://apt.postgresql.org/pub/repos/apt/ ${DISTRIB_CODENAME}-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
-sudo apt-get update
-
-sudo apt-get install postgresql-9.6
+sudo apt-get install postgresql
 ```
-Please note that currently there are no binaries available for the Raspberry Pi at http://apt.postgresql.org/pub/repos/apt/dists/jessie-pgdg/. We recommend to install a Backport of postgresql-9.6 following the instructions at https://backports.debian.org/Instructions/ .
 
 #### Other platforms
 

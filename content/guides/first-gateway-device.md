@@ -1,9 +1,9 @@
 ---
-title: Getting started
+title: First gateway and device
 menu:
     main:
-        parent: use
-        weight: 1
+        parent: guides
+        weight: 4
 ---
 
 # Getting started

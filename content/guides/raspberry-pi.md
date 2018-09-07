@@ -2,8 +2,8 @@
 title: Raspberry Pi
 menu:
     main:
-        parent: install
-        weight: 6
+        parent: guides
+        weight: 2
 ---
 
 # Raspberry Pi install

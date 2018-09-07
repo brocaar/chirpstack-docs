@@ -30,7 +30,7 @@ on the used Linux distribution.
 The LoRa Server project provides Debian / Ubuntu `.deb` packages which
 can be downloaded from the LoRa Server Deb repository. To guarantee
 compatibility, for each major version a separate repository is provided.
-Please refer to the [Quick install]({{<relref "quick-install.md">}}) page
+Please refer to the [Debian / Ubuntu install guide]({{<ref "/guides/debian-ubuntu.md">}})
 for a step-by-step guide.
 
 ## Docker

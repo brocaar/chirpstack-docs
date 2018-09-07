@@ -1,20 +1,26 @@
 ---
-title: Quick Install
+title: Quickstart Debian / Ubuntu
 menu:
   main:
-    parent: install
+    parent: guides
     weight: 1
 ---
 
-# Quick Install
+# Quickstart on Debian or Ubuntu
 
 This tutorial describes the steps needed to setup the LoRa Server project
-**including all requirements** on a single Ubuntu 16.04 LTS instance. Note that
-this version of Ubuntu is not required by LoRa Server, but is used in this
-tutorial as it is the latest Ubuntu LTS version. Please refer to the other
-install pages for more generic installation instructions.
+**including all requirements** on a single machine. It has been tested on
+the following distributions:
 
-## Assumptions
+* Ubuntu 16.04 LTS
+* Ubuntu 18.04 LTS
+* Debian 9 (Stretch)
+
+Please refer to the other install pages for more generic installation
+instructions.
+
+
+## Assumtions
 
 Many configurations of these packages is possible. Dependent software packages
 could be installed on any number of remote servers, and the packages themselves
@@ -27,7 +33,7 @@ installation, we will assume the following deployment architecture:
    on the server, but can also be installed on the gateway itself.
 * A self-signed certificate will be used for LoRa App Server (generated on
   installation).
-* No gateway rules are setup.
+* No firewall rules are setup.
 
 Of course, optimizations may need to be made depending on the performance of
 your systems. You may opt to move the PostgreSQL database to another server.
@@ -39,8 +45,6 @@ relatively straight-forward.
 
 ## Install requirements
 
-Software dependencies for the LoRa Server compoments:
-
 * **MQTT broker** - A publish/subscribe protocol that allows users to publish
   information under topics that others can subscribe to. A popular
   implementation of the MQTT protocol is [Mosquitto](https://mosquitto.org/).
@@ -48,14 +52,13 @@ Software dependencies for the LoRa Server compoments:
 * **PostgreSQL** - The long-term storage database used by the open source
   packages.
 
-Use the package manager `apt` to install these dependencies on the Ubuntu
-16.04 LTS server:
+Use the package manager `apt` to install these dependencies:
 
 ```bash
-sudo apt install mosquitto mosquitto-clients redis-server redis-tools postgresql
+sudo apt install mosquitto mosquitto-clients redis-server redis-tools postgresql 
 ```
 
-### PostgreSQL databases and users
+### Setup PostgreSQL databases and users
 
 To enter the command line utility for PostgreSQL:
 
@@ -64,11 +67,11 @@ sudo -u postgres psql
 ```
 
 Inside this prompt, execute the following queries to set up the databases
-that are used by the LoRa Server components. It
-would be wise to change the usernames and passwords. Just remember to use
-these other values when updating the `loraserver.toml` and `lora-app-server.toml`
-configuration files. Since these two applications both use the same table to track
-database upgrades, they must have separate databases.
+that are used by the LoRa Server components. It is recommended to change the
+usernames and passwords. Just remember to use these other values when updating
+the `loraserver.toml` and `lora-app-server.toml` configuration files. Since these
+two applications both use the same table to track database upgrades, they must
+have separate databases.
 
 ```sql
 -- set up the users and the passwords
@@ -94,7 +97,12 @@ create extension pg_trgm;
 ## Setup LoRa Server software repository
 
 The LoRa Server project provides a repository that is compatible with the
-Ubuntu apt package system.
+Ubuntu apt package system. First make sure that both `dirmngr` and
+`apt-transport-https` are installed:
+
+```bash
+sudo apt install apt-transport-https dirmngr
+```
 
 Set up the key for this new repository:
 
@@ -114,7 +122,7 @@ Update the apt package cache:
 sudo apt update
 ```
 
-## Installing LoRa Gateway Bridge
+## Install LoRa Gateway Bridge
 
 **Note:** when you intent to run the [LoRa Gateway Bridge](/lora-gateway-bridge/)
 only on the gateways itself, you can skip this step.
@@ -132,10 +140,10 @@ Start the LoRa Gateway Bridge service:
 
 ```bash
 # start lora-gateway-bridge
-systemctl start lora-gateway-bridge
+sudo systemctl start lora-gateway-bridge
 
 # start lora-gateway-bridge on boot
-systemctl enable lora-gateway-bridge
+sudo systemctl enable lora-gateway-bridge
 ```
 
 ## Installing LoRa Server
@@ -168,7 +176,7 @@ sudo systemctl enable loraserver
 Print the LoRa Server log-output:
 
 ```bash
-journalctl -f -n 100 -u loraserver
+sudo journalctl -f -n 100 -u loraserver
 ```
 
 ### EU868 configuration example
@@ -269,7 +277,7 @@ sudo systemctl enable lora-app-server
 Print the LoRa App Server log-output:
 
 ```bash
-journalctl -f -n 100 -u lora-app-server
+sudo journalctl -f -n 100 -u lora-app-server
 ```
 
 ## Optional: install LoRa Gateway Bridge on the gateway
@@ -283,5 +291,5 @@ LoRa Gateway Bridge instructions for
 
 ## Setting up your first device
 
-To setup your first device, please refer to the [Getting started]({{<ref "use/getting-started.md">}})
+To setup your first device, please refer to the [FIrst gateway and device]({{<relref "first-gateway-device.md">}})
 guide.

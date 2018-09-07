@@ -12,17 +12,17 @@ googleAnalytics = "UA-3512995-9"
     weight = 1
 
 [[menu.main]]
+    pre = "<i class='fas fa-book-open'></i>"
+    name = "Guides"
+    identifier = "guides"
+    url = "/guides/"
+    weight = 2
+
+[[menu.main]]
     pre = "<i class='fas fa-download'></i>"
     name = "Install"
     identifier = "install"
     url = "/install/"
-    weight = 2
-
-[[menu.main]]
-    pre = "<i class='fas fa-user'></i>"
-    name = "Use"
-    identifier = "use"
-    url = "/use/"
     weight = 3
 
 [[menu.main]]
