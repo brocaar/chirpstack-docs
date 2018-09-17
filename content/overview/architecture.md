@@ -55,6 +55,11 @@ keep these items in queue, until it is able to send to one of the gateways.
 LoRa Server provides an API which can be used for integration or when
 implementing your own application-server.
 
+## LoRa Geo Server
+
+The [LoRa Geo Server](/lora-geo-server/) component (optional) provides
+geolocation services for resolving location of each device.
+
 ## LoRa App Server
 
 The [LoRa App Server](/lora-app-server/) component
