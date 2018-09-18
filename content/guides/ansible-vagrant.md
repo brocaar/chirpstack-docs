@@ -4,6 +4,7 @@ menu:
   main:
     parent: guides
     weight: 2
+description: Getting started with the LoRa Server project using Vagrant and / or Ansible.
 ---
 
 # Ansible based deployments

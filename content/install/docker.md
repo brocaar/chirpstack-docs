@@ -4,6 +4,7 @@ menu:
     main:
         parent: install
         weight: 4
+description: Information about the LoRa Server Docker containers and versioning.
 ---
 
 # Docker install

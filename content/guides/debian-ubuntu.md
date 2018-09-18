@@ -4,6 +4,7 @@ menu:
   main:
     parent: guides
     weight: 1
+description: Quickstart tutorial on how to install all components on a Debian / Ubuntu system.
 ---
 
 # Quickstart on Debian or Ubuntu

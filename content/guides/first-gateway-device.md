@@ -4,6 +4,7 @@ menu:
     main:
         parent: guides
         weight: 4
+description: When you have the LoRa Server project components up & running, this guide helps you getting started with your first gateway and device.
 ---
 
 # Getting started

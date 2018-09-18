@@ -4,6 +4,7 @@ menu:
   main:
     parent: guides
     weight: 1
+description: Quickstart guide on how to get started with the LoRa Server project using Docker Compose.
 ---
 
 # Quickstart using Docker-Compose

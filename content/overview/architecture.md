@@ -4,6 +4,7 @@ menu:
     main:
         parent: overview
         weight: 2
+description: Overview of the LoRa Server architecture and how components are connected.
 ---
 
 # System architecture

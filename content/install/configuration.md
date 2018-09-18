@@ -4,6 +4,7 @@ menu:
     main:
         parent: install
         weight: 8
+description: Instructions on how to configure the LoRa Server components.
 ---
 
 # Configuring the LoRa Server project applications

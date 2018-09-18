@@ -4,6 +4,7 @@ menu:
     main:
         parent: guides
         weight: 3
+description: Guide on how to setup MQTT (Mosquitto) topic-based authentication and authorization.
 ---
 
 # MQTT authentication & authorization

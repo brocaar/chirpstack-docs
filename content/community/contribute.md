@@ -4,6 +4,7 @@ menu:
     main:
         parent: community
         weight: 2
+description: Information how you can contribute to the LoRa Server project.
 ---
 
 # Contribute
@@ -23,4 +24,5 @@ each LoRa Server project component:
 * [Contribute to LoRa Gateway Bridge](/lora-gateway-bridge/community/contribute/)
 * [Contribute to LoRa Server](/loraserver/community/contribute/)
 * [Contribute to LoRa App Server](/lora-app-server/community/contribute/)
+* [Contribute to LoRa Geo Server](/lora-geo-server/community/contribute/)
 * [Contribute to LoRaWAN library](https://github.com/brocaar/lorawan)

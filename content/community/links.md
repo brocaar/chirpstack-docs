@@ -4,13 +4,14 @@ menu:
     main:
         parent: community
         weight: 4
+description: Links to community projects extending or integrating the LoRa Server project.
 ---
 
 # Links
 
 ## Community
 
-Please note that the brojects below are not part of the LoRa Server project.
+Please note that the projects below are not part of the LoRa Server project.
 In case you need support, please contact the author(s) of these projects.
 
 ### Stress testing

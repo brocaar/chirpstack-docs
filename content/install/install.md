@@ -4,6 +4,7 @@ menu:
     main:
         parent: install
         weight: 3
+description: General installation instructions to setup the LoRa Server project components.
 ---
 
 # Installing the LoRa Server project
@@ -14,6 +15,7 @@ downloads can be found at the following URLs:
 * [LoRa Gateway Bridge downloads](/lora-gateway-bridge/overview/downloads/)
 * [LoRa Server downloads](/loraserver/overview/downloads/)
 * [LoRa App Server downloads](/lora-app-server/overview/downloads/)
+* [LoRa Geo Server downloads](/lora-geo-server/overview/downloads/)
 
 ## Manual
 

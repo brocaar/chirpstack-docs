@@ -4,6 +4,7 @@ menu:
     main:
         parent: install
         weight: 2
+description: Information about the LoRa Server requirements and how to install these.
 ---
 
 # Requirements
