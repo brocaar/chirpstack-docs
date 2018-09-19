@@ -111,9 +111,9 @@ device and start receiving data!
 Besides seeing the data in the web-interface, you can also subscribe to the
 MQTT topic to receive data, for example using the `mosquitto_sub` utility:
 
-```bash
+{{<highlight bash>}}
 mosquitto_sub -v -t "#" -h localhost -p 1883
-```
+{{< /highlight >}}
 
 Where:
 

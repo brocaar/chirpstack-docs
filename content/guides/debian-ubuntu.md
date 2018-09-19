@@ -55,17 +55,17 @@ relatively straight-forward.
 
 Use the package manager `apt` to install these dependencies:
 
-```bash
+{{<highlight bash>}}
 sudo apt install mosquitto mosquitto-clients redis-server redis-tools postgresql 
-```
+{{< /highlight >}}
 
 ### Setup PostgreSQL databases and users
 
 To enter the command line utility for PostgreSQL:
 
-```bash
+{{<highlight bash>}}
 sudo -u postgres psql
-```
+{{< /highlight >}}
 
 Inside this prompt, execute the following queries to set up the databases
 that are used by the LoRa Server components. It is recommended to change the
@@ -74,7 +74,7 @@ the `loraserver.toml` and `lora-app-server.toml` configuration files. Since thes
 two applications both use the same table to track database upgrades, they must
 have separate databases.
 
-```sql
+{{<highlight sql>}}
 -- set up the users and the passwords
 -- (note that it is important to use single quotes and a semicolon at the end!)
 create role loraserver_as with login password 'dbpassword';
@@ -93,7 +93,7 @@ create extension pg_trgm;
 
 -- exit psql
 \q
-```
+{{< /highlight >}}
 
 ## Setup LoRa Server software repository
 
@@ -101,27 +101,27 @@ The LoRa Server project provides a repository that is compatible with the
 Ubuntu apt package system. First make sure that both `dirmngr` and
 `apt-transport-https` are installed:
 
-```bash
+{{<highlight bash>}}
 sudo apt install apt-transport-https dirmngr
-```
+{{< /highlight >}}
 
 Set up the key for this new repository:
 
-```bash
+{{<highlight bash>}}
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1CE2AFD36DBCCA00
-```
+{{< /highlight >}}
 
 Add the repository to the repository list by creating a new file:
 
-```bash
+{{<highlight bash>}}
 sudo echo "deb https://artifacts.loraserver.io/packages/2.x/deb stable main" | sudo tee /etc/apt/sources.list.d/loraserver.list
-```
+{{< /highlight >}}
 
 Update the apt package cache:
 
-```bash
+{{<highlight bash>}}
 sudo apt update
-```
+{{< /highlight >}}
 
 ## Install LoRa Gateway Bridge
 
@@ -130,30 +130,30 @@ only on the gateways itself, you can skip this step.
 
 Install the package using `apt`:
 
-```bash
+{{<highlight bash>}}
 sudo apt install lora-gateway-bridge
-```
+{{< /highlight >}}
 
 The configuration file is located at `/etc/lora-gateway-bridge/lora-gateway-bridge.toml`.
 The default configuration is sufficient for this guide.
 
 Start the LoRa Gateway Bridge service:
 
-```bash
+{{<highlight bash>}}
 # start lora-gateway-bridge
 sudo systemctl start lora-gateway-bridge
 
 # start lora-gateway-bridge on boot
 sudo systemctl enable lora-gateway-bridge
-```
+{{< /highlight >}}
 
 ## Installing LoRa Server
 
 Install the package using apt:
 
-```bash
+{{<highlight bash>}}
 sudo apt install loraserver
-```
+{{< /highlight >}}
 
 The configuration file is located at `/etc/loraserver/loraserver.toml` and
 must be updated to match the database and band configuration. See below
@@ -166,23 +166,23 @@ that there are no errors.
 
 Start the LoRa Server service:
 
-```bash
+{{<highlight bash>}}
 # start loraserver
 sudo systemctl start loraserver
 
 # start loraserver on boot
 sudo systemctl enable loraserver
-```
+{{< /highlight >}}
 
 Print the LoRa Server log-output:
 
-```bash
+{{<highlight bash>}}
 sudo journalctl -f -n 100 -u loraserver
-```
+{{< /highlight >}}
 
 ### EU868 configuration example
 
-```toml
+{{<highlight toml>}}
 [general]
 log_level=4
 
@@ -219,11 +219,11 @@ net_id="000000"
   frequency=867900000
   min_dr=0
   max_dr=5
-```
+{{< /highlight >}}
 
 ### US915 configuration example
 
-```toml
+{{<highlight toml>}}
 [general]
 log_level=4
 
@@ -236,15 +236,15 @@ net_id="000000"
   [network_server.band]
   name="US_902_928"
   enabled_uplink_channels=[0, 1, 2, 3, 4, 5, 6, 7]
-```
+{{< /highlight >}}
 
 ## Installing LoRa App Server
 
 Install the package using apt:
 
-```bash
+{{<highlight bash>}}
 sudo apt install lora-app-server
-```
+{{< /highlight >}}
 
 The configuration file is located at `/etc/lora-app-server/lora-app-server.toml` and
 must be updated to match the database configuration. See below a configuration
@@ -252,7 +252,7 @@ example which matches the database which we have created in one of the previous 
 For more information about the LoRa App Server configuration options, see
 [LoRa App Server configuration](/lora-app-server/install/config/).
 
-```toml
+{{<highlight toml>}}
 [general]
 log_level=4
 
@@ -263,23 +263,23 @@ dsn="postgres://loraserver_as:dbpassword@localhost/loraserver_as?sslmode=disable
   tls_cert="/etc/lora-app-server/certs/http.pem"
   tls_key="/etc/lora-app-server/certs/http-key.pem"
   jwt_secret="verysecret"
-```
+{{< /highlight >}}
 
 Start the LoRa App Server service:
 
-```bash
+{{<highlight bash>}}
 # start lora-app-server
 sudo systemctl start lora-app-server
 
 # start lora-app-server on boot
 sudo systemctl enable lora-app-server
-```
+{{< /highlight >}}
 
 Print the LoRa App Server log-output:
 
-```bash
+{{<highlight bash>}}
 sudo journalctl -f -n 100 -u lora-app-server
-```
+{{< /highlight >}}
 
 ## Optional: install LoRa Gateway Bridge on the gateway
 

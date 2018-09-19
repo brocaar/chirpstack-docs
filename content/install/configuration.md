@@ -27,13 +27,13 @@ can not only be used to generate a new configuration file containing all the
 default, but can also be used to update an existing configuration file to
 include the latest defaults (maintaining the already set variables) Example:
 
-```bash
+{{<highlight bash>}}
 # generate new configuration file
 loraserver configfile > loraserver.toml
 
 # migrate configuration file
 loraserver configfile -c loraserver-old.toml > loraserver.toml
-```
+{{< /highlight >}}
 
 ## Configuration reference
 

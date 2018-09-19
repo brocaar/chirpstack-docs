@@ -43,10 +43,10 @@ and also contains more documentation.
 
 To clone this repository, you need to execute the following commands:
 
-```bash
+{{<highlight bash>}}
 $ git clone https://github.com/brocaar/loraserver-docker.git
 $ cd loraserver-docker
-```
+{{< /highlight >}}
 
 
 
@@ -55,9 +55,9 @@ $ cd loraserver-docker
 After you have updated the configuration, you can run the following command
 to start all Docker containers:
 
-```bash
+{{<highlight bash>}}
 $ docker-compose up
-```
+{{< /highlight >}}
 
 Please note that the first time you execute this command, there might be
 some errors logged as the database needs to be initialized.

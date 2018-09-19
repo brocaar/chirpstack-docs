@@ -3,6 +3,7 @@ languageCode = "en-us"
 relativeURLs = true
 title = "LoRa Server, open-source LoRaWAN network-server"
 googleAnalytics = "UA-3512995-9"
+pygmentsUseClasses = true
 
 [[menu.main]]
     pre = "<i class='fas fa-hand-point-right'></i>"

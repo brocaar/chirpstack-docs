@@ -27,9 +27,9 @@ MQTT is used by LoRa Gateway Bridge, LoRa Server, and Lora App Server.
 
 To install Mosquitto:
 
-```bash
+{{<highlight bash>}}
 sudo apt-get install mosquitto
-```
+{{< /highlight >}}
 
 #### Other platforms
 
@@ -55,9 +55,9 @@ PostgreSQL is used by LoRa Server and LoRa App Server.
 
 To install the PostgreSQL:
 
-```bash
+{{<highlight bash>}}
 sudo apt-get install postgresql
-```
+{{< /highlight >}}
 
 #### Other platforms
 
@@ -78,9 +78,9 @@ Redis is used by LoRa Server.
 
 To Install Redis:
 
-```bash
+{{<highlight bash>}}
 sudo apt-get install redis-server
-```
+{{< /highlight >}}
 
 #### Other platforms
 

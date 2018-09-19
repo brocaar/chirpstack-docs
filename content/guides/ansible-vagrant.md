@@ -28,9 +28,9 @@ After following the instructions mentioned in the [loraserver-setup](https://git
 repository, this allows you to create a local test environment running
 inside a VM:
 
-```bash
+{{<highlight bash>}}
 vagrant up
-```
+{{< /highlight >}}
 
 As this is using exactly the same Ansible-playbook as for remote deployments,
 this can also be used for testing before doing a remote deployment, e.g.
@@ -44,6 +44,6 @@ the deployment steps. After following the steps mentioned in
 [loraserver-setup](https://github.com/brocaar/loraserver-setup), the following
 would perform a remote deployment:
 
-```bash
+{{<highlight bash>}}
 ansible-playbook -i inventory full_deploy.yml
-```
+{{< /highlight >}}
