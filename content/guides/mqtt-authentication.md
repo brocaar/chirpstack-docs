@@ -33,7 +33,7 @@ web-interface).
 
 These steps describe how to setup Mosquitto with a static password and ACL
 file. In case you would like to setup Mosquitto so that users and permissions
-are retrieved from LoRa App Server, go to the next section (Mosquitto Auth Plugin).
+are retrieved from LoRa App Server, go to the next sections for instruction on how to configure Mosquitto Auth Plugin or the alternative Mosquitto Go Auth.
 
 #### Passwords
 
@@ -244,6 +244,162 @@ For the static passwords created in the previous step, you probably want to
 limit these logins to a certain set of topics. For this you can add ACL rules
 to limit the set of topics per username in the file
 `/etc/mosquitto/mosquitto-auth-plug/acls`. An example:
+
+{{<highlight text>}}
+user loraserver_gw
+topic write gateway/+/stats
+topic write gateway/+/rx
+topic read gateway/+/tx
+
+user loraserver_ns
+topic read gateway/+/stats
+topic write gateway/+/tx
+topic read gateway/+/rx
+
+user loraserver_as
+topic write application/+/device/+/rx
+topic write application/+/device/+/join
+topic write application/+/device/+/ack
+topic write application/+/device/+/error
+topic read application/+/device/+/tx
+{{< /highlight >}}
+
+
+### Alternative plugin: Mosquitto Go Auth
+
+An alternative to the mosquitto auth plugin is [mosquitto-go-auth](https://github.com/iegomez/mosquitto-go-auth). It also provides authentication and authorization to Mosquitto, and the most relevant differences are that it's written in Go (easy to extend and build) and that it provides a local JWT backend. It may be used **instead** of mosquitto-auth-plug.
+
+#### Build
+
+This package needs Go to be built. Check https://golang.org/dl/ for instructions on installing Go.
+
+Start by cloning the plugin and then installing requirements:
+
+{{<highlight bash>}}
+cd go/src/github.com/iegomez/
+git clone https://github.com/iegomez/mosquitto-go-auth.git
+cd mosquitto-go-auth
+make requirements
+{{< /highlight >}}
+
+
+Compile the plugin:
+
+{{<highlight bash>}}
+make
+{{< /highlight >}}
+
+This will create the `go-auth.so` shared object and the `pw` binary utility.
+
+#### Configure mosquitto-go-auth
+
+Create a directory and empty files for additional static passwords and ACLs:
+
+{{<highlight bash>}}
+sudo mkdir /etc/mosquitto/mosquitto-go-auth
+sudo touch /etc/mosquitto/mosquitto-go-auth/passwords
+sudo touch /etc/mosquitto/mosquitto-go-auth/acls
+{{< /highlight >}}
+
+This guide assumes that you have Redis running in your host as it's a requirement of loraserver. Redis is used by the plugin for cache purposes. The cache may be disabled or configured differently, check the repo for more details.  
+
+Also, we'll configure the plugin with the JWT backend in local mode using lora-app-server's DB. This allows you to connect a client using a lora-app-server user's JWT token.
+
+Write the following content to `/etc/mosquitto/conf.d/mosquitto-go-auth.conf`:
+
+{{<highlight text>}}
+
+auth_opt_log_level debug
+auth_plugin /home/your-user/go/src/github.com/iegomez/mosquitto-go-auth/go-auth.so
+auth_opt_backends files, postgres, jwt
+auth_opt_check_prefix false
+allow_anonymous false
+
+auth_opt_password_path /etc/mosquitto/auth/passwords
+auth_opt_acl_path /etc/mosquitto/auth/acls
+
+auth_opt_cache true
+auth_opt_cache_reset true
+
+auth_opt_pg_host localhost
+auth_opt_pg_port 5432
+auth_opt_pg_dbname loraserver_as
+auth_opt_pg_user loraserver_as
+auth_opt_pg_password loraserver_as_password
+auth_opt_pg_userquery select password_hash from "user" where username = $1 and is_active = true limit 1
+auth_opt_pg_superquery select count(*) from "user" where username = $1 and is_admin = true
+auth_opt_pg_aclquery select distinct 'application/' || a.id || '/#' from "user" u inner join organization_user ou on ou.user_id = u.id inner join organization o on o.id = ou.organization_id inner join application a on a.organization_id = o.id where u.username = $1 and $2 = $2
+
+auth_opt_jwt_remote false
+auth_opt_jwt_db postgres
+auth_opt_jwt_secret lora-app-server-jwt-secret
+auth_opt_jwt_userquery select count(*) from "user" where username = $1 and is_active = true limit 1
+auth_opt_jwt_superquery select count(*) from "user" where username = $1 and is_admin = true
+auth_opt_jwt_aclquery select distinct 'application/' || a.id || '/#' from "user" u inner join organization_user ou on ou.user_id = u.id inner join organization o on o.id = ou.organization_id inner join application a on a.organization_id = o.id where u.username = $1 and $2 = $2
+
+#Change to whatever redis DB you want to avoid messing with other services.
+auth_opt_redis_db 4
+
+{{< /highlight >}}
+
+You might want to change the following configuration, to match your
+[LoRa App Server](/lora-app-server/) configuration:
+
+* `auth_plugin`: path to the generated `go-auth.so` shared object
+
+* `auth_opt_pg_host`: database hostname
+* `auth_opt_pg_port`: database port
+* `auth_opt_pg_dbname`: database name
+* `auth_opt_pg_user`: database username
+* `auth_opt_pg_password`: database password
+
+* `auth_opt_jwt_secret`: lora-app-server jwt secret
+* `auth_opt_redis_db`: redis db to use as cache
+
+Finally, add the following to the end of `/etc/mosquitto/mosquitto.conf` to include the `conf.d` directory.
+
+{{<highlight text>}}
+include_dir /etc/mosquitto/conf.d
+{{< /highlight >}}
+
+#### Static passwords
+
+As [LoRa Gateway Bridge](/lora-gateway-bridge/), [LoRa Server](/loraserver/)
+and [LoRa App Server](/lora-app-server/) also make use of MQTT, you might want
+to configure static passwords for these services.
+
+To generate a password readable by mosquitto-go-auth, you may use the `pw` utility generated when building the plugin. It will print a hash version of the password given to the `-p` flag.
+
+{{<highlight bash>}}
+cd go/src/github.com/iegomez/
+./pw -p your-password
+PBKDF2$sha512$100000$dUI9gW3+7pUXXTh49ZVT3w==$FJIajqgLKPgDaa78cJ7HkqKTsSiXxmjlpgbqDjKuAZYcSIt5x73ZPAL06b6q0gJhChIrkifD1fFiVZoae4LQgQ==
+{{< /highlight >}}
+
+You may change number of iterations and algorithm (sha512 or sha256) with the `-i` and `-a` flags. Defaults are sha512 and 1000 iterations.
+
+{{<highlight bash>}}
+cd go/src/github.com/iegomez/
+./pw -p your-password -a sha256 -i 500
+PBKDF2$sha256$500$MEyshu2cmqV7T4oVzvn39g==$asVpX5WPRwDy2EGTN5P6fRN+jlkg6VoSiWAGz6+9AZ4=
+{{< /highlight >}}
+
+You now need to write this output to the `/etc/mosquitto/mosquitto-go-auth/passwords`
+file, where each line is in the format `USERNAME:PASSWORDHASH`. In the end your
+passwords file should look like this:
+
+{{<highlight text>}}
+loraserver_gw:PBKDF2$sha256$100000$7GKPpz5FmcthzI8P$hNljou3w7CIoZMoIN7cj/H8CHnP9770t
+loraserver_ns:PBKDF2$sha256$100000$jXjd9LKwjkLhec/m$qwhGxiPON/tKCXcfS6fpfAr1xQec8AQI
+loraserver_as:PBKDF2$sha256$100000$AC51663HqjWlPisA$uV4WQmy0c6nMsLwEffXUeVqIFRDb4Y+h
+{{< /highlight >}}
+
+#### Static ACLs
+
+For the static passwords created in the previous step, you probably want to
+limit these logins to a certain set of topics. For this you can add ACL rules
+to limit the set of topics per username in the file
+`/etc/mosquitto/mosquitto-go-auth/acls`. An example:
 
 {{<highlight text>}}
 user loraserver_gw
