@@ -273,7 +273,7 @@ An alternative to the mosquitto auth plugin is [mosquitto-go-auth](https://githu
 
 This package needs Go to be built. Check https://golang.org/dl/ for instructions on installing Go.
 
-Start by cloning the plugin and then installing requirements:
+Start by cloning the plugin and then installing requirements (dep is used to manage dependencies and may be installed with `make dev-requirements`):
 
 {{<highlight bash>}}
 cd go/src/github.com/iegomez/
