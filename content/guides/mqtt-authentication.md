@@ -282,14 +282,26 @@ cd mosquitto-go-auth
 make requirements
 {{< /highlight >}}
 
+Now we need to create the `go-auth.so` shared object and the `pw` binary utility.
 
-Compile the plugin:
+##### Build for mosquitto 1.4.x
+
+Compile the plugin with:
 
 {{<highlight bash>}}
 make
 {{< /highlight >}}
 
-This will create the `go-auth.so` shared object and the `pw` binary utility.
+##### Build for mosquitto 1.5.x
+
+
+Export needed flags and compile the plugin with:
+
+{{<highlight bash>}}
+export CGO_CFLAGS="-I/usr/local/include -fPIC"
+export CGO_LDFLAGS="-shared"
+make
+{{< /highlight >}}
 
 #### Configure mosquitto-go-auth
 
