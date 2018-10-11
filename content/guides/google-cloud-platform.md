@@ -198,7 +198,7 @@ const {google} = require('googleapis');
 
 // configuration options
 const REGION = 'europe-west1';
-const PROJECT_ID = 'loraserver';
+const PROJECT_ID = 'lora-server-tutorial';
 const REGISTRY_ID = 'eu868-gateways';
 
 
