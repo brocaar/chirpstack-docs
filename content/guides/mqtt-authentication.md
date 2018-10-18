@@ -321,7 +321,6 @@ Write the following content to `/etc/mosquitto/conf.d/mosquitto-go-auth.conf`:
 
 {{<highlight text>}}
 
-auth_opt_log_level debug
 auth_plugin /home/your-user/go/src/github.com/iegomez/mosquitto-go-auth/go-auth.so
 auth_opt_backends files, postgres, jwt
 auth_opt_check_prefix false
