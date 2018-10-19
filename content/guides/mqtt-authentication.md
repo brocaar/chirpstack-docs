@@ -66,11 +66,15 @@ user loraserver_gw
 topic write gateway/+/stats
 topic write gateway/+/rx
 topic read gateway/+/tx
+topic write gateway/+/ack
+topic read gateway/+/config
 
 user loraserver_ns
 topic read gateway/+/stats
 topic write gateway/+/tx
 topic read gateway/+/rx
+topic read gateway/+/ack
+topic write gateway/+/config
 
 user loraserver_as
 topic write application/+/device/+/rx
@@ -78,6 +82,8 @@ topic write application/+/device/+/join
 topic write application/+/device/+/ack
 topic write application/+/device/+/error
 topic read application/+/device/+/tx
+topic write application/+/device/+/status
+topic write application/+/device/+/location
 
 user bob
 topic read application/123/device/+/+
@@ -250,11 +256,15 @@ user loraserver_gw
 topic write gateway/+/stats
 topic write gateway/+/rx
 topic read gateway/+/tx
+topic write gateway/+/ack
+topic read gateway/+/config
 
 user loraserver_ns
 topic read gateway/+/stats
 topic write gateway/+/tx
 topic read gateway/+/rx
+topic read gateway/+/ack
+topic write gateway/+/config
 
 user loraserver_as
 topic write application/+/device/+/rx
@@ -262,6 +272,8 @@ topic write application/+/device/+/join
 topic write application/+/device/+/ack
 topic write application/+/device/+/error
 topic read application/+/device/+/tx
+topic write application/+/device/+/status
+topic write application/+/device/+/location
 {{< /highlight >}}
 
 
@@ -417,11 +429,15 @@ user loraserver_gw
 topic write gateway/+/stats
 topic write gateway/+/rx
 topic read gateway/+/tx
+topic write gateway/+/ack
+topic read gateway/+/config
 
 user loraserver_ns
 topic read gateway/+/stats
 topic write gateway/+/tx
 topic read gateway/+/rx
+topic read gateway/+/ack
+topic write gateway/+/config
 
 user loraserver_as
 topic write application/+/device/+/rx
@@ -429,4 +445,6 @@ topic write application/+/device/+/join
 topic write application/+/device/+/ack
 topic write application/+/device/+/error
 topic read application/+/device/+/tx
+topic write application/+/device/+/status
+topic write application/+/device/+/location
 {{< /highlight >}}
