@@ -32,8 +32,6 @@ installation, we will assume the following deployment architecture:
    single server instance.
 * The [LoRa Gateway Bridge](/lora-gateway-bridge/) component will be installed
    on the server, but can also be installed on the gateway itself.
-* A self-signed certificate will be used for LoRa App Server (generated on
-  installation).
 * No firewall rules are setup.
 
 Of course, optimizations may need to be made depending on the performance of
@@ -260,8 +258,6 @@ log_level=4
 dsn="postgres://loraserver_as:dbpassword@localhost/loraserver_as?sslmode=disable"
 
   [application_server.external_api]
-  tls_cert="/etc/lora-app-server/certs/http.pem"
-  tls_key="/etc/lora-app-server/certs/http-key.pem"
   jwt_secret="verysecret"
 {{< /highlight >}}
 

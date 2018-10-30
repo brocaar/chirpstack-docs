@@ -617,8 +617,6 @@ url="redis://[REDIS_IP]:6379"
 
   [application_server.external_api]
   bind="0.0.0.0:8080"
-  tls_cert="/etc/lora-app-server/certs/http.pem"
-  tls_key="/etc/lora-app-server/certs/http-key.pem"
   jwt_secret="[JWT_SECRET]"
 {{< /highlight >}}
 

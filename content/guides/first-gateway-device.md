@@ -16,7 +16,11 @@ To access the LoRa App Server web-interface, enter the IP address or hostname
 of you server, followed by port `8080` (this is a default configuration which
 can be modified through the `lora-app-server.toml` configuration file).
 
-Example: [https://localhost:8080/](https://localhost:8080/). 
+If a TLS certificate has been configured (optional), use http**s://**
+else use the http:// option (default). Examples:
+
+* **http://** [http://localhost:8080/](http://localhost:8080/)
+* **https://** [https://localhost:8080/](https://localhost:8080/)
 
 ## Login
 
@@ -24,7 +28,6 @@ The default login credentials are:
 
 * Username: admin
 * Password: admin
-
 
 ## Add a gateway
 
