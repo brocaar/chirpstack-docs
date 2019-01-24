@@ -21,7 +21,7 @@ Please refer to the other install pages for more generic installation
 instructions.
 
 
-## Assumtions
+## Assumptions
 
 Many configurations of these packages is possible. Dependent software packages
 could be installed on any number of remote servers, and the packages themselves
@@ -288,5 +288,5 @@ LoRa Gateway Bridge instructions for
 
 ## Setting up your first device
 
-To setup your first device, please refer to the [FIrst gateway and device]({{<relref "first-gateway-device.md">}})
+To setup your first device, please refer to the [First gateway and device]({{<relref "first-gateway-device.md">}})
 guide.

@@ -19,7 +19,7 @@ payloads. [Mosquitto](http://mosquitto.org/) is a popular open-source MQTT
 server, but any MQTT broker implementing MQTT 3.1.1 should work.
 In case you install Mosquitto, make sure you install a **recent** version.
 
-MQTT is used by LoRa Gateway Bridge, LoRa Server, and Lora App Server.
+MQTT is used by LoRa Gateway Bridge, LoRa Server, and LoRa App Server.
 
 ### Install
 

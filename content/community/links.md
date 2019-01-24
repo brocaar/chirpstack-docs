@@ -28,4 +28,4 @@ Watch message received from loraserver/gateway/application.
 
 #### [https://github.com/panyingyun/vmloragateway](https://github.com/panyingyun/vmloragateway)
 
-Virtual Lora Gateway connect to connect to lora-gateway-bridge for testing.
+Virtual LoRa Gateway connect to lora-gateway-bridge for testing.

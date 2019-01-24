@@ -32,7 +32,7 @@ There is a great deal of information available there.
 
 ## About the Lora Server Project
 
-The Lora Server project is an open-source set of applications that fill the
+The LoRa Server project is an open-source set of applications that fill the
 gap between the gateways receiving messages from the nodes to just before the
 applications receiving the data. It provides mechanisms for managing the
 gateways on the LoRa network, the applications supported, and the devices
