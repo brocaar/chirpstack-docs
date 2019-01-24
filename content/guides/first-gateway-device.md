@@ -62,7 +62,7 @@ Example: [https://localhost:8080/](https://localhost:8080/).
 
 ### Add network-server
 
-In order to connect you LoRa App Server instance with the LoRa Server instance,
+In order to connect your LoRa App Server instance with the LoRa Server instance,
 click *Network servers* and then *Add*. As LoRa Server is installed
 on the same host as LoRa App Server in this guide, use `localhost:8000`
 as network-server name (port `8000` is the default port used by LoRa Server,
