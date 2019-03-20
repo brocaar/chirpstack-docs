@@ -343,6 +343,8 @@ auth_opt_acl_path /etc/mosquitto/auth/acls
 
 auth_opt_cache true
 auth_opt_cache_reset true
+#Change to whatever redis DB you want to avoid messing with other services.
+auth_opt_cache_db 4
 
 auth_opt_pg_host localhost
 auth_opt_pg_port 5432
@@ -359,9 +361,7 @@ auth_opt_jwt_secret lora-app-server-jwt-secret
 auth_opt_jwt_userquery select count(*) from "user" where username = $1 and is_active = true limit 1
 auth_opt_jwt_superquery select count(*) from "user" where username = $1 and is_admin = true
 auth_opt_jwt_aclquery select distinct 'application/' || a.id || '/#' from "user" u inner join organization_user ou on ou.user_id = u.id inner join organization o on o.id = ou.organization_id inner join application a on a.organization_id = o.id where u.username = $1 and $2 = $2
-
-#Change to whatever redis DB you want to avoid messing with other services.
-auth_opt_redis_db 4
+auth_opt_jwt_userfield Username
 
 {{< /highlight >}}
 
