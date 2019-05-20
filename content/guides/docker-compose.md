@@ -48,8 +48,6 @@ $ git clone https://github.com/brocaar/loraserver-docker.git
 $ cd loraserver-docker
 {{< /highlight >}}
 
-
-
 ### Start
 
 After you have updated the configuration, you can run the following command

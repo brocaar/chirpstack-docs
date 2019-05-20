@@ -59,7 +59,7 @@ validate this by subscribing to this topic. When using the `mosquitto_sub`
 utility, you can execute the following command:
 
 {{<highlight bash>}}
-mosquitto_sub -v -t "application/+/device/+/+"
+mosquitto_sub -v -t "application/#"
 {{< /highlight >}}
 
 When you do not see any data appear when LoRa App Server receives uplink device
@@ -115,7 +115,7 @@ server {
 	ssl_certificate_key /etc/lora-app-server/certs/http-key.pem;
 
 	location ~ ^/api/(gateways|devices)/(\w+)/(frames|events)$ {
-		proxy_pass https://localhost:8080/api/$1/$2/$3;
+		proxy_pass http://localhost:8080/api/$1/$2/$3;
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection "Upgrade";
@@ -124,7 +124,7 @@ server {
 	}
 
 	location / {
-		proxy_pass https://localhost:8080/;
+		proxy_pass http://localhost:8080/;
 	}
 }
 {{< /highlight >}}

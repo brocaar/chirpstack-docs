@@ -115,24 +115,20 @@ you need update the `lora-gateway-bridge.toml` [Configuration file](/lora-gatewa
 Minimal configuration example:
 
 {{< highlight toml >}}
-[backend.mqtt]
-marshaler="protobuf"
+[integration.mqtt.auth]
+type="gcp_cloud_iot_core"
 
-  [backend.mqtt.auth]
-  type="gcp_cloud_iot_core"
-
-    [backend.mqtt.auth.gcp_cloud_iot_core]
-    server="ssl://mqtt.googleapis.com:8883"
-    device_id="gw-0102030405060708"
-    project_id="lora-server-tutorial"
-    cloud_region="europe-west1"
-    registry_id="eu868-gateways"
-    jwt_key_file="/path/to/private-key.pem"
+  [integration.mqtt.auth.gcp_cloud_iot_core]
+  server="ssl://mqtt.googleapis.com:8883"
+  device_id="gw-0102030405060708"
+  project_id="lora-server-tutorial"
+  cloud_region="europe-west1"
+  registry_id="eu868-gateways"
+  jwt_key_file="/path/to/private-key.pem"
 {{< /highlight >}}
 
 In short:
 
-* This will configure the `protobuf` marshaler (either `protobuf` or `json` must be configured)
 * This will configure the Google Cloud IoT Core MQTT authentication
 * Configures the GCP project ID, cloud-region and registry ID
 
@@ -145,11 +141,11 @@ is able to connect with the Cloud IoT Core MQTT bridge. The log output should
 look like this when your gateway receives an uplink message from your LoRaWAN device:
 
 {{<highlight text>}}
-INFO[0000] starting LoRa Gateway Bridge                  docs="https://www.loraserver.io/lora-gateway-bridge/" version=2.6.0
-INFO[0000] gateway: starting gateway udp listener        addr="0.0.0.0:1700"
-INFO[0000] mqtt: connected to mqtt broker
-INFO[0007] mqtt: subscribing to topic                    qos=0 topic="/devices/gw-0102030405060708/commands/#"
-INFO[0045] mqtt: publishing message                      qos=0 topic=/devices/gw-0102030405060708/events/up
+INFO[0000] starting LoRa Gateway Bridge                  docs="https://www.loraserver.io/lora-gateway-bridge/" version=3.0.0
+INFO[0000] backend/semtechudp: starting gateway udp listener  addr="0.0.0.0:1700"
+INFO[0000] integration/mqtt: connected to mqtt broker
+INFO[0007] integration/mqtt: subscribing to topic                    qos=0 topic="/devices/gw-0102030405060708/commands/#"
+INFO[0045] integration/mqtt: publishing message                      qos=0 topic=/devices/gw-0102030405060708/events/up
 {{< /highlight >}}
 
 Your gateway is now communicating succesfully with the Cloud IoT Core MQTT bridge!

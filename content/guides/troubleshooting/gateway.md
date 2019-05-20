@@ -133,14 +133,13 @@ When the [packet-forwarder](https://github.com/lora-net/packet_forwarder) sends
 data to the LoRa Gateway Bridge (this could be a "ping"), you will see the following logs:
 
 {{<highlight text>}}
-INFO[0013] mqtt: subscribing to topic qos=0 topic=gateway/7276ff002e062c18/tx
-INFO[0013] mqtt: subscribing to topic qos=0 topic=gateway/7276ff002e062c18/config
+INFO[0013] mqtt: subscribing to topic qos=0 topic=gateway/7276ff002e062c18/command/#
 {{< /highlight >}}
 
 When your device sends an uplink message, you will see something like:
 
 {{<highlight text>}}
-INFO[0267] mqtt: publishing message qos=0 topic=gateway/7276ff002e062c18/rx
+INFO[0267] mqtt: publishing message qos=0 topic=gateway/7276ff002e062c18/event/up
 {{< /highlight >}} 
 
 If you see these logs, then this indicates that the LoRa Gateway Bridge
@@ -187,11 +186,11 @@ data sent by the packet-forwarder, it is time to confirm LoRa Gateway Brige is
 succesfully publishing this data to the MQTT broker.
 
 To validate that the LoRa Gateway Bridge is publishing LoRa frames to the MQTT
-broker, you can subscribe to the gateway/+/rx MQTT topic. When using the
+broker, you can subscribe to the `gateway/#` MQTT topic. When using the
 `mosquitto_sub` utility, you can execute the following command:
 
 {{<highlight bash>}}
-mosquitto_sub -v -t "gateway/+/rx"
+mosquitto_sub -v -t "gateway/#"
 {{< /highlight >}}
 
 When you do not see any data appear when your device sends data, then make sure

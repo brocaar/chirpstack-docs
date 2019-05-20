@@ -33,7 +33,8 @@ web-interface).
 
 These steps describe how to setup Mosquitto with a static password and ACL
 file. In case you would like to setup Mosquitto so that users and permissions
-are retrieved from LoRa App Server, go to the next sections for instruction on how to configure Mosquitto Auth Plugin or the alternative Mosquitto Go Auth.
+are retrieved from LoRa App Server, go to the next sections for instruction on
+how to configure Mosquitto Auth Plugin or the alternative Mosquitto Go Auth.
 
 #### Passwords
 
@@ -63,18 +64,12 @@ example is:
 
 {{<highlight text>}}
 user loraserver_gw
-topic write gateway/+/stats
-topic write gateway/+/rx
-topic read gateway/+/tx
-topic write gateway/+/ack
-topic read gateway/+/config
+topic write gateway/+/event/+
+topic read gateway/+/command/+
 
 user loraserver_ns
-topic read gateway/+/stats
-topic write gateway/+/tx
-topic read gateway/+/rx
-topic read gateway/+/ack
-topic write gateway/+/config
+topic read gateway/+/event/+
+topic write gateway/+/command/+
 
 user loraserver_as
 topic write application/+/device/+/rx
@@ -253,18 +248,12 @@ to limit the set of topics per username in the file
 
 {{<highlight text>}}
 user loraserver_gw
-topic write gateway/+/stats
-topic write gateway/+/rx
-topic read gateway/+/tx
-topic write gateway/+/ack
-topic read gateway/+/config
+topic write gateway/+/event/+
+topic read gateway/+/command/+
 
 user loraserver_ns
-topic read gateway/+/stats
-topic write gateway/+/tx
-topic read gateway/+/rx
-topic read gateway/+/ack
-topic write gateway/+/config
+topic read gateway/+/event/+
+topic write gateway/+/command/+
 
 user loraserver_as
 topic write application/+/device/+/rx
@@ -279,13 +268,17 @@ topic write application/+/device/+/location
 
 ### Alternative plugin: Mosquitto Go Auth
 
-An alternative to the mosquitto auth plugin is [mosquitto-go-auth](https://github.com/iegomez/mosquitto-go-auth). It also provides authentication and authorization to Mosquitto, and the most relevant differences are that it's written in Go (easy to extend and build) and that it provides a local JWT backend. It may be used **instead** of mosquitto-auth-plug.
+An alternative to the mosquitto auth plugin is [mosquitto-go-auth](https://github.com/iegomez/mosquitto-go-auth).
+It also provides authentication and authorization to Mosquitto, and the most relevant differences are that it's
+written in Go (easy to extend and build) and that it provides a local JWT backend. It may be used **instead**
+of mosquitto-auth-plug.
 
 #### Build
 
 This package needs Go to be built. Check https://golang.org/dl/ for instructions on installing Go.
 
-Start by cloning the plugin and then installing requirements (dep is used to manage dependencies and may be installed with `make dev-requirements`):
+Start by cloning the plugin and then installing requirements (dep is used to manage dependencies and may be
+installed with `make dev-requirements`):
 
 {{<highlight bash>}}
 cd go/src/github.com/iegomez/
@@ -325,9 +318,14 @@ sudo touch /etc/mosquitto/mosquitto-go-auth/passwords
 sudo touch /etc/mosquitto/mosquitto-go-auth/acls
 {{< /highlight >}}
 
-This guide assumes that you have Redis running in your host as it's a requirement of loraserver. Redis is used by the plugin for cache purposes. The cache may be disabled or configured differently, check the repo for more details.  
+This guide assumes that you have Redis running in your host as it's a
+requirement of loraserver. Redis is used by the plugin for cache purposes.
+The cache may be disabled or configured differently, check the repo for more
+details.  
 
-Also, we'll configure the plugin with the JWT backend in local mode using lora-app-server's DB. This allows you to connect a client using a lora-app-server user's JWT token.
+Also, we'll configure the plugin with the JWT backend in local mode using
+lora-app-server's DB. This allows you to connect a client using a
+lora-app-server user's JWT token.
 
 Write the following content to `/etc/mosquitto/conf.d/mosquitto-go-auth.conf`:
 
@@ -379,7 +377,8 @@ You might want to change the following configuration, to match your
 * `auth_opt_jwt_secret`: lora-app-server jwt secret
 * `auth_opt_redis_db`: redis db to use as cache
 
-Finally, add the following to the end of `/etc/mosquitto/mosquitto.conf` to include the `conf.d` directory.
+Finally, add the following to the end of `/etc/mosquitto/mosquitto.conf` to
+include the `conf.d` directory.
 
 {{<highlight text>}}
 include_dir /etc/mosquitto/conf.d
@@ -391,7 +390,9 @@ As [LoRa Gateway Bridge](/lora-gateway-bridge/), [LoRa Server](/loraserver/)
 and [LoRa App Server](/lora-app-server/) also make use of MQTT, you might want
 to configure static passwords for these services.
 
-To generate a password readable by mosquitto-go-auth, you may use the `pw` utility generated when building the plugin. It will print a hash version of the password given to the `-p` flag.
+To generate a password readable by mosquitto-go-auth, you may use the `pw`
+utility generated when building the plugin. It will print a hash version
+of the password given to the `-p` flag.
 
 {{<highlight bash>}}
 cd go/src/github.com/iegomez/
@@ -399,7 +400,8 @@ cd go/src/github.com/iegomez/
 PBKDF2$sha512$100000$dUI9gW3+7pUXXTh49ZVT3w==$FJIajqgLKPgDaa78cJ7HkqKTsSiXxmjlpgbqDjKuAZYcSIt5x73ZPAL06b6q0gJhChIrkifD1fFiVZoae4LQgQ==
 {{< /highlight >}}
 
-You may change number of iterations and algorithm (sha512 or sha256) with the `-i` and `-a` flags. Defaults are sha512 and 1000 iterations.
+You may change number of iterations and algorithm (sha512 or sha256) with the
+`-i` and `-a` flags. Defaults are sha512 and 1000 iterations.
 
 {{<highlight bash>}}
 cd go/src/github.com/iegomez/
@@ -426,18 +428,12 @@ to limit the set of topics per username in the file
 
 {{<highlight text>}}
 user loraserver_gw
-topic write gateway/+/stats
-topic write gateway/+/rx
-topic read gateway/+/tx
-topic write gateway/+/ack
-topic read gateway/+/config
+topic write gateway/+/event/+
+topic read gateway/+/command/+
 
 user loraserver_ns
-topic read gateway/+/stats
-topic write gateway/+/tx
-topic read gateway/+/rx
-topic read gateway/+/ack
-topic write gateway/+/config
+topic read gateway/+/event/+
+topic write gateway/+/command/+
 
 user loraserver_as
 topic write application/+/device/+/rx

@@ -112,7 +112,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1CE2AFD36DBCCA00
 Add the repository to the repository list by creating a new file:
 
 {{<highlight bash>}}
-sudo echo "deb https://artifacts.loraserver.io/packages/2.x/deb stable main" | sudo tee /etc/apt/sources.list.d/loraserver.list
+sudo echo "deb https://artifacts.loraserver.io/packages/3.x/deb stable main" | sudo tee /etc/apt/sources.list.d/loraserver.list
 {{< /highlight >}}
 
 Update the apt package cache:
@@ -219,7 +219,7 @@ net_id="000000"
   max_dr=5
 {{< /highlight >}}
 
-### US915 configuration example
+### US915 configuration example (channels 0 - 7)
 
 {{<highlight toml>}}
 [general]
@@ -231,9 +231,30 @@ dsn="postgres://loraserver_ns:dbpassword@localhost/loraserver_ns?sslmode=disable
 [network_server]
 net_id="000000"
 
-  [network_server.band]
-  name="US_902_928"
-  enabled_uplink_channels=[0, 1, 2, 3, 4, 5, 6, 7]
+[network_server.band]
+name="US_902_928"
+
+[network_server.network_settings]
+enabled_uplink_channels=[0, 1, 2, 3, 4, 5, 6, 7]
+{{< /highlight >}}
+
+### US915 configuration example (channels 8 - 15, same as The Things Network)
+
+{{<highlight toml>}}
+[general]
+log_level=4
+
+[postgresql]
+dsn="postgres://loraserver_ns:dbpassword@localhost/loraserver_ns?sslmode=disable"
+
+[network_server]
+net_id="000000"
+
+[network_server.band]
+name="US_902_928"
+
+[network_server.network_settings]
+enabled_uplink_channels=[8, 9, 10, 11, 12, 13, 14, 15]
 {{< /highlight >}}
 
 ## Installing LoRa App Server
@@ -261,6 +282,9 @@ dsn="postgres://loraserver_as:dbpassword@localhost/loraserver_as?sslmode=disable
   jwt_secret="verysecret"
 {{< /highlight >}}
 
+**Note:** you **must** replace the `jwt_secret` with a secure secret!
+You could use the command `openssl rand -base64 32` to generate a random secret.
+
 Start the LoRa App Server service:
 
 {{<highlight bash>}}
@@ -284,7 +308,7 @@ secure connection between your gateways and your server.
 
 As there are many types of gateways available, please refer to the
 LoRa Gateway Bridge instructions for
-[installing LoRa Gateway Bridge on the gateway](/lora-gateway-bridge/install/gateway/).
+[installing LoRa Gateway Bridge on the gateway](/lora-gateway-bridge/gateway/).
 
 ## Setting up your first device
 
