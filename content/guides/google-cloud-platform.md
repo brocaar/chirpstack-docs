@@ -406,7 +406,7 @@ sudo apt install apt-transport-https dirmngr
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1CE2AFD36DBCCA00
 
 # add the repository to apt configuration
-sudo echo "deb https://artifacts.loraserver.io/packages/2.x/deb stable main" | sudo tee /etc/apt/sources.list.d/loraserver.list
+sudo echo "deb https://artifacts.loraserver.io/packages/3.x/deb stable main" | sudo tee /etc/apt/sources.list.d/loraserver.list
 
 # update the package cache
 sudo apt update
@@ -463,7 +463,6 @@ If all is well, then you can start the service in the background using:
 
 {{<highlight bash>}}
 sudo systemctl start loraserver
-sudo systemctl enable loraserver
 {{< /highlight >}}
 
 ##### EU868 configuration example
