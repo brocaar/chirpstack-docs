@@ -132,7 +132,7 @@ Where:
 
 
 Read more more about sending and receiving data in the
-[LoRa App Server](/lora-app-server/use/data/) documentation.
+[LoRa App Server](/lora-app-server/) documentation.
 
 In case you don't see any data confirm (in the logs) that:
 
