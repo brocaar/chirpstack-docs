@@ -359,9 +359,11 @@ create database loraserver_ns with owner loraserver_ns;
 -- change to the LoRa App Server database
 \c loraserver_as
 
--- enable the pq_trgm extension
+-- enable the pq_trgm and hstore extensions
 -- (this is needed to facilidate the search feature)
 create extension pg_trgm;
+-- (this is needed to store additional k/v meta-data)
+create extension hstore;
 
 -- exit psql
 \q
