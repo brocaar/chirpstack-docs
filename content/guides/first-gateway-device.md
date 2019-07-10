@@ -7,7 +7,7 @@ menu:
 description: When you have the LoRa Server project components up & running, this guide helps you getting started with your first gateway and device.
 ---
 
-# Getting started
+# First gateway and device
 
 After all components are installed, you should be able to navigate to the
 LoRa App Server web-interface. 
