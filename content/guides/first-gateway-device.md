@@ -60,51 +60,41 @@ can be modified through the `lora-app-server.toml` configuration file).
 
 Example: [https://localhost:8080/](https://localhost:8080/). 
 
+Once you have the interface working, you are ready to add the configurations required in order to receive data from a device.
+
 ### Add network-server
 
-In order to connect your LoRa App Server instance with the LoRa Server instance,
-click *Network servers* and then *Add*. As LoRa Server is installed
-on the same host as LoRa App Server in this guide, use `localhost:8000`
-as network-server name (port `8000` is the default port used by LoRa Server,
-this can be modified through `loraserver.toml`). 
+In order to connect your LoRa App Server instance with the LoRa Server instance, click *Network servers* and then *Add*. As the LoRa Server is installed on the same host as the LoRa App Server in this guide, use `localhost:8000` as network-server name (port `8000` is the default port used by LoRa Server, this can be modified through `loraserver.toml`). 
 
-Note that LoRa App Server can connect to multiple LoRa Server instances.
-For example each LoRa Server instance could support a different region.
+Note that the LoRa App Server can connect to multiple LoRa Server instances. For example each LoRa Server instance could support a different region.
 
 ### Service-profile
 
 The service-profile defines the features that can be used by an organization.
-Click on *Service-profiles* and then *Create* to create a service-profile
-for the LoRa Server organization. This will also associate the organization
-with the network-server instance.
+
+Click on *Service-profiles* and then *Create* to create a service-profile for the LoRa Server organization. This will also associate the organization with the network-server instance.
 
 ### Device-profile
 
-The device-profile defines the device properties of a device. For example
-it defines the activation type (OTAA vs ABP), the implemented LoRaWAN 
-version etc...
+The device-profile defines the device properties of a device. For example it defines the activation type (OTAA vs ABP), the implemented LoRaWAN version etc...
 
-Click on *Device-profiles* and then *Create* to create a device-profile for
-the LoRa Server organization.
+Click on *Device-profiles* and then *Create* to create a device-profile for the LoRa Server organization.
 
 ### Application
 
-Now that LoRa App Server is associated with the LoRa Server instance, the
-organization has a service-profile and device-profile, it is time to create
-your first application.
+Now that there is a LoRa App Server/LoRa Server association, a service-profile for the organization and device-profile, it is time to create your first application.
 
-Click on *Applications*, then click on *Create*. Once the application has
-been created, click on the created application to see the list of
-devices associated with this application.
+Click on *Applications*, then click on *Create*.
+
+Next, click on the created application to see the list of devices associated with this application. This will be an empty list until you complete the next step...
 
 ### Device
 
-Under the *Devices* tab, click on the *Create* button to create a new device.
-In case of an OTAA device, after creating the device you will be redirected
-to a page where you can enter the root key(s). In case of an ABP device,
-you will be redirect to a page where you can enter the session keys.
+Click on the *Devices* tab (found under Application/_YourApp_ if you aren't there already), then click on the *Create* button to create a new device.
+    
+After the creation of an Over the Air Activation (OTAA) device, you will be redirected to a page where you can enter the root key(s). After the creation of an Activation By Personalization (ABP) device, you will be redirected to a page where you can enter the session keys. The selected Device Profile that was created in the steps above determines whether the device uses OTAA or ABP.
 
-### Receive data
+### Check that you are receiving data
 
 It is possible to stream all LoRaWAN frames (raw and encrypted data) and
 device data from the web-interface. Click on the created device and click on
