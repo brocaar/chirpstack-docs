@@ -86,7 +86,7 @@ create database loraserver_ns with owner loraserver_ns;
 \c loraserver_as
 
 -- enable the pq_trgm and hstore extensions
--- (this is needed to facilidate the search feature)
+-- (this is needed to facilitate the search feature)
 create extension pg_trgm;
 -- (this is needed to store additional k/v meta-data)
 create extension hstore;
@@ -125,8 +125,8 @@ sudo apt update
 
 ## Install LoRa Gateway Bridge
 
-**Note:** when you intent to run the [LoRa Gateway Bridge](/lora-gateway-bridge/)
-only on the gateways itself, you can skip this step.
+**Note:** If you intend to run the [LoRa Gateway Bridge](/lora-gateway-bridge/)
+only on gateway(s) themselves, you can skip this step.
 
 Install the package using `apt`:
 
