@@ -1,5 +1,5 @@
 ---
-title: LoRa Server project guides
+title: ChirpStack stack guides
 menu:
     main:
         parent: guides
@@ -7,4 +7,4 @@ menu:
 hidden: true
 ---
 
-# LoRa Server project guides
+# ChirpStack stack guides

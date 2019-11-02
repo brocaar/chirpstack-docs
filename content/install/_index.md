@@ -7,4 +7,4 @@ menu:
 hidden: true
 ---
 
-# LoRa Server project installation
+# ChirpStack LoRaWAN<sup>&reg;</sup> Network Server stack installation

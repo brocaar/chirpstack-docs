@@ -4,45 +4,44 @@ menu:
   main:
     parent: guides
     weight: 1
-description: Quickstart tutorial on how to install all components on a Debian / Ubuntu system.
+description: Quickstart tutorial on installing the ChirpStack stack on a single Debian / Ubuntu based machine.
 ---
 
 # Quickstart on Debian or Ubuntu
 
-This tutorial describes the steps needed to setup the LoRa Server project
+This tutorial describes the steps needed to setup the ChirpStack stack
 **including all requirements** on a single machine. It has been tested on
-the following distributions:
+the following distributions (but with non or minimal modifications it will
+work on other versions too):
 
-* Ubuntu 16.04 LTS
 * Ubuntu 18.04 LTS
-* Debian 9 (Stretch)
+* Debian 10 (Buster)
 
 Please refer to the other install pages for more generic installation
 instructions.
 
-
 ## Assumptions
 
-Many configurations of these packages is possible. Dependent software packages
+Many configurations of these packages are possible. Dependent software packages
 could be installed on any number of remote servers, and the packages themselves
 could be on their own servers. However, in order to simplify the initial
 installation, we will assume the following deployment architecture:
 
-* All LoRa Server components and their dependencies will be installed on a
-   single server instance.
-* The [LoRa Gateway Bridge](/lora-gateway-bridge/) component will be installed
-   on the server, but can also be installed on the gateway itself.
+* All ChirpStack components and their dependencies will be installed on a single
+  server instance.
+* The [ChirpStack Gateway Bridge](/gateway-bridge/) component will be
+  installed on the server, but can also be installed on the gateway itself.
 * No firewall rules are setup.
 
 Of course, optimizations may need to be made depending on the performance of
 your systems. You may opt to move the PostgreSQL database to another server.
-Or you may decide to put your MQTT server on a different system, or even use a
+Or you may decide to put your MQTT broker on a different system, or even use a
 different server than the one recommended in this document. These and other
 installation changes are beyond the scope of this document. However, you
 should be able to find the information here that would make these changes
 relatively straight-forward.
 
-## Install requirements
+## Install dependencies
 
 * **MQTT broker** - A publish/subscribe protocol that allows users to publish
   information under topics that others can subscribe to. A popular
@@ -66,24 +65,24 @@ sudo -u postgres psql
 {{< /highlight >}}
 
 Inside this prompt, execute the following queries to set up the databases
-that are used by the LoRa Server components. It is recommended to change the
+that are used by the ChirpStack stack components. It is recommended to change the
 usernames and passwords. Just remember to use these other values when updating
-the `loraserver.toml` and `lora-app-server.toml` configuration files. Since these
-two applications both use the same table to track database upgrades, they must
-have separate databases.
+the `chirpstack-network-server.toml` and `chirpstack-application-server.toml` configuration files.
+Since these two applications both use the same table to track database upgrades,
+they must have separate databases.
 
 {{<highlight sql>}}
 -- set up the users and the passwords
 -- (note that it is important to use single quotes and a semicolon at the end!)
-create role loraserver_as with login password 'dbpassword';
-create role loraserver_ns with login password 'dbpassword';
+create role chirpstack_as with login password 'dbpassword';
+create role chirpstack_ns with login password 'dbpassword';
 
 -- create the database for the servers
-create database loraserver_as with owner loraserver_as;
-create database loraserver_ns with owner loraserver_ns;
+create database chirpstack_as with owner chirpstack_as;
+create database chirpstack_ns with owner chirpstack_ns;
 
--- change to the LoRa App Server database
-\c loraserver_as
+-- change to the ChirpStack Application Server database
+\c chirpstack_as
 
 -- enable the pq_trgm and hstore extensions
 -- (this is needed to facilitate the search feature)
@@ -95,9 +94,9 @@ create extension hstore;
 \q
 {{< /highlight >}}
 
-## Setup LoRa Server software repository
+## Setup ChirpStack software repository
 
-The LoRa Server project provides a repository that is compatible with the
+ChirpStack provides a repository that is compatible with the
 Ubuntu apt package system. First make sure that both `dirmngr` and
 `apt-transport-https` are installed:
 
@@ -114,7 +113,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1CE2AFD36DBCCA00
 Add the repository to the repository list by creating a new file:
 
 {{<highlight bash>}}
-sudo echo "deb https://artifacts.loraserver.io/packages/3.x/deb stable main" | sudo tee /etc/apt/sources.list.d/loraserver.list
+sudo echo "deb https://artifacts.chirpstack.io/packages/3.x/deb stable main" | sudo tee /etc/apt/sources.list.d/chirpstack.list
 {{< /highlight >}}
 
 Update the apt package cache:
@@ -123,61 +122,61 @@ Update the apt package cache:
 sudo apt update
 {{< /highlight >}}
 
-## Install LoRa Gateway Bridge
+## Install ChirpStack Gateway Bridge
 
-**Note:** If you intend to run the [LoRa Gateway Bridge](/lora-gateway-bridge/)
+**Note:** If you intend to run the [ChirpStack Gateway Bridge](/gateway-bridge/)
 only on gateway(s) themselves, you can skip this step.
 
 Install the package using `apt`:
 
 {{<highlight bash>}}
-sudo apt install lora-gateway-bridge
+sudo apt install chirpstack-gateway-bridge
 {{< /highlight >}}
 
-The configuration file is located at `/etc/lora-gateway-bridge/lora-gateway-bridge.toml`.
+The configuration file is located at `/etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml`.
 The default configuration is sufficient for this guide.
 
-Start the LoRa Gateway Bridge service:
+Start the ChirpStack Gateway Bridge service:
 
 {{<highlight bash>}}
-# start lora-gateway-bridge
-sudo systemctl start lora-gateway-bridge
+# start chirpstack-gateway-bridge
+sudo systemctl start chirpstack-gateway-bridge
 
-# start lora-gateway-bridge on boot
-sudo systemctl enable lora-gateway-bridge
+# start chirpstack-gateway-bridge on boot
+sudo systemctl enable chirpstack-gateway-bridge
 {{< /highlight >}}
 
-## Installing LoRa Server
+## Installing the ChirpStack Network Server
 
 Install the package using apt:
 
 {{<highlight bash>}}
-sudo apt install loraserver
+sudo apt install chirpstack-network-server
 {{< /highlight >}}
 
-The configuration file is located at `/etc/loraserver/loraserver.toml` and
+The configuration file is located at `/etc/chirpstack-network-server/chirpstack-network-server.toml` and
 must be updated to match the database and band configuration. See below
 two examples for the EU868 and US915 band. For more information about all
-the LoRa Server configuration options, see
-[LoRa Server configuration](/loraserver/install/config/).
+the ChirpStack Network Server configuration options, see
+[ChirpStack Network Server configuration](/network-server/install/config/).
 
-After updating the configuration, you need to restart LoRa Server and validate
+After updating the configuration, you need to restart the ChirpStack Network Server and validate
 that there are no errors.
 
-Start the LoRa Server service:
+Start the ChirpStack Network Server service:
 
 {{<highlight bash>}}
-# start loraserver
-sudo systemctl start loraserver
+# start chirpstack-network-server
+sudo systemctl start chirpstack-network-server
 
-# start loraserver on boot
-sudo systemctl enable loraserver
+# start chirpstack-network-server on boot
+sudo systemctl enable chirpstack-network-server
 {{< /highlight >}}
 
-Print the LoRa Server log-output:
+Print the ChirpStack Network Server log-output:
 
 {{<highlight bash>}}
-sudo journalctl -f -n 100 -u loraserver
+sudo journalctl -f -n 100 -u chirpstack-network-server
 {{< /highlight >}}
 
 ### EU868 configuration example
@@ -187,7 +186,7 @@ sudo journalctl -f -n 100 -u loraserver
 log_level=4
 
 [postgresql]
-dsn="postgres://loraserver_ns:dbpassword@localhost/loraserver_ns?sslmode=disable"
+dsn="postgres://chirpstack_ns:dbpassword@localhost/chirpstack_ns?sslmode=disable"
 
 [network_server]
 net_id="000000"
@@ -228,7 +227,7 @@ net_id="000000"
 log_level=4
 
 [postgresql]
-dsn="postgres://loraserver_ns:dbpassword@localhost/loraserver_ns?sslmode=disable"
+dsn="postgres://chirpstack_ns:dbpassword@localhost/chirpstack_ns?sslmode=disable"
 
 [network_server]
 net_id="000000"
@@ -240,14 +239,16 @@ name="US_902_928"
 enabled_uplink_channels=[0, 1, 2, 3, 4, 5, 6, 7]
 {{< /highlight >}}
 
-### US915 configuration example (channels 8 - 15, same as The Things Network)
+### US915 configuration example (channels 8 - 15)
+
+This is the same channel-plan as used by The Things Network.
 
 {{<highlight toml>}}
 [general]
 log_level=4
 
 [postgresql]
-dsn="postgres://loraserver_ns:dbpassword@localhost/loraserver_ns?sslmode=disable"
+dsn="postgres://chirpstack_ns:dbpassword@localhost/chirpstack_ns?sslmode=disable"
 
 [network_server]
 net_id="000000"
@@ -259,26 +260,26 @@ name="US_902_928"
 enabled_uplink_channels=[8, 9, 10, 11, 12, 13, 14, 15]
 {{< /highlight >}}
 
-## Installing LoRa App Server
+## Installing ChirpStack Application Server
 
 Install the package using apt:
 
 {{<highlight bash>}}
-sudo apt install lora-app-server
+sudo apt install chirpstack-application-server
 {{< /highlight >}}
 
-The configuration file is located at `/etc/lora-app-server/lora-app-server.toml` and
+The configuration file is located at `/etc/chirpstack-application-server/chirpstack-application-server.toml` and
 must be updated to match the database configuration. See below a configuration
 example which matches the database which we have created in one of the previous steps.
-For more information about the LoRa App Server configuration options, see
-[LoRa App Server configuration](/lora-app-server/install/config/).
+For more information about the ChirpStack Application Server configuration options, see
+[ChirpStack Application Server configuration](/application-server/install/config/).
 
 {{<highlight toml>}}
 [general]
 log_level=4
 
 [postgresql]
-dsn="postgres://loraserver_as:dbpassword@localhost/loraserver_as?sslmode=disable"
+dsn="postgres://chirpstack_as:dbpassword@localhost/chirpstack_as?sslmode=disable"
 
   [application_server.external_api]
   jwt_secret="verysecret"
@@ -287,30 +288,30 @@ dsn="postgres://loraserver_as:dbpassword@localhost/loraserver_as?sslmode=disable
 **Note:** you **must** replace the `jwt_secret` with a secure secret!
 You could use the command `openssl rand -base64 32` to generate a random secret.
 
-Start the LoRa App Server service:
+Start the ChirpStack Application Server service:
 
 {{<highlight bash>}}
-# start lora-app-server
-sudo systemctl start lora-app-server
+# start chirpstack-application-server
+sudo systemctl start chirpstack-application-server
 
-# start lora-app-server on boot
-sudo systemctl enable lora-app-server
+# start chirpstack-application-server on boot
+sudo systemctl enable chirpstack-application-server
 {{< /highlight >}}
 
-Print the LoRa App Server log-output:
+Print the ChirpStack Application Server log-output:
 
 {{<highlight bash>}}
-sudo journalctl -f -n 100 -u lora-app-server
+sudo journalctl -f -n 100 -u chirpstack-application-server
 {{< /highlight >}}
 
-## Optional: install LoRa Gateway Bridge on the gateway
+## Optional: install ChirpStack Gateway Bridge on the gateway
 
-It is advised to run LoRa Gateway Bridge on each gateway itself, to enable a
+It is advised to run ChirpStack Gateway Bridge on each gateway itself, to enable a
 secure connection between your gateways and your server.
 
 As there are many types of gateways available, please refer to the
-LoRa Gateway Bridge instructions for
-[installing LoRa Gateway Bridge on the gateway](/lora-gateway-bridge/gateway/).
+ChirpStack Gateway Bridge instructions for
+[installing ChirpStack Gateway Bridge on the gateway](/gateway-bridge/gateway/).
 
 ## Setting up your first device
 

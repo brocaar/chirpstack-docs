@@ -1,36 +1,36 @@
 ---
-title: Network-server troubleshooting
+title: ChirpStack Network Server troubleshooting
 menu:
     main:
         parent: troubleshooting
-description: Troubleshooting network-server (LoRa Server) related issues.
+description: Troubleshooting ChirpStack Network Server related issues.
 ---
 
-# Troubleshooting network-server issues
+# Troubleshooting ChirpStack Network Server issues
 
 This guide helps you to troubleshoot network-server related connectivity
-issues. This guide assumes that your gateway is connected and that the LoRa
+issues. This guide assumes that your gateway is connected and that the ChirpStack
 Gateway Bridge is publishing the received data. If you are not sure, please
-refer to the [Debugging gateway connectivity]({{<relref "gateway.md">}}) guide.
-It also assumes that you have setup the [LoRa Server](/loraserver/) and
-[LoRa App Server](/lora-app-server/) component and that you have
+refer to the [Gateway troubleshooting]({{<relref "gateway.md">}}) guide.
+It also assumes that you have setup the [ChirpStack Network Server](/network-server/) and
+[ChirpStack Application Server](/application-server/) component and that you have
 [setup your gateway and device]({{<ref "/guides/first-gateway-device.md">}})
 through the web-interface.
 
 In this guide we will validate:
 
-* If the [LoRa Server](/loraserver/) component receives uplink data
+* If the [ChirpStack Network Server](/network-server/) component receives uplink data
 * If the received data is valid (MIC and frame-counters)
-* If the received payload is forwarded to [LoRa App Server]({{<relref "application-server.md">}})
+* If the received payload is forwarded to [ChirpStack Application Server]({{<relref "application-server.md">}})
 
-## LoRa Server receives data?
+## ChirpStack Network Server receives data?
 
-To find out if [LoRa Server](/loraserver/) is receiving messages from your
-gateway, you should refer to the logs. Depending how LoRa Server was installed,
+To find out if [ChirpStack Network Server](/network-server/) is receiving messages from your
+gateway, you should refer to the logs. Depending how ChirpStack Network Server was installed,
 one of the following commands will show you the logs:
 
-* `journalctl -f -n 100 -u loraserver`
-* `tail -f -n 100 /var/log/loraserver/loraserver.log`
+* `journalctl -f -n 100 -u chirpstack-network-server`
+* `tail -f -n 100 /var/log/chirpstack-network-server/chirpstack-network-server.log`
 
 ### Expected log output
 
@@ -41,9 +41,9 @@ INFO[0164] device-session saved                          dev_addr=018f5aa9 dev_e
 INFO[0164] finished client unary call                    grpc.code=OK grpc.method=HandleUplinkData grpc.service=as.ApplicationServerService grpc.time_ms=52.204 span.kind=client system=grpc
 {{< /highlight >}}
 
-In this log, LoRa Server has processed the uplink frame, and forwarded the
+In this log, ChirpStack Network Server has processed the uplink frame, and forwarded the
 application payload to the `ApplicationServerService` API
-(provided by [LoRa App Server](/lora-app-server/)).
+(provided by [ChirpStack Application Server](/application-server/)).
 
 ### Invalid MIC or frame-counter
 
@@ -52,7 +52,7 @@ INFO[0581] backend/gateway: uplink frame received
 ERRO[0581] processing uplink frame error                 data_base64="QKlajwGCAgADBwF6Eabhjw==" error="get device-session error: device-session does not exist or invalid fcnt or mic"
 {{< /highlight >}}
 
-In this log, LoRa Server was unable to authenticate the received data and
+In this log, ChirpStack Network Server was unable to authenticate the received data and
 map this to a device-session. The cause could be:
 
 * The device-session (activation) does not exist the device
@@ -62,8 +62,8 @@ map this to a device-session. The cause could be:
 
 Try to re-activate your device. The activation did not match any of the
 device-sessions stored in the database. After a long time of inactivity, it
-could have expired. Also make sure that the LoRaWAN version selected in the
-Device-profile matches the implemented LoRaWAN version by the device!
+could have expired. Also make sure that the LoRaWAN<sup>&reg;</sup> version selected in the
+Device-profile matches the implemented LoRaWAN<sup>&reg;</sup> version by the device!
 
 #### ABP device
 
@@ -77,8 +77,8 @@ a key where `LSB(value)` equals `MSB(value)`. Example: `01010101...`, where
 the order does not matter.
 
 When the error is raised after the device was reset (e.g. power-cycle) then
-the issue is likely related to a frame-counter reset. A LoRaWAN network-server
+the issue is likely related to a frame-counter reset. A LoRaWAN<sup>&reg;</sup> Network Server
 must check that the frame-counter is incremented, if not it will be rejected.
 This is to protect the network against replay-attacks. The problem is that most
 ABP devices reset their frame-counters to `0` on a power-cycle, which is not
-in line with the LoRaWAN specification.
+in line with the LoRaWAN<sup>&reg;</sup> specification.

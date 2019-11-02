@@ -4,17 +4,17 @@ menu:
     main:
         parent: guides
         weight: 4
-description: When you have the LoRa Server project components up & running, this guide helps you getting started with your first gateway and device.
+description: When you have the ChirpStack components up & running, this guide helps you getting started with your first gateway and device.
 ---
 
 # First gateway and device
 
-After all components are installed, you should be able to navigate to the
-LoRa App Server web-interface. 
+After installing the full ChirpStack stack, you should be able to navigate to the
+ChirpStack Application Server web-interface. 
 
-To access the LoRa App Server web-interface, enter the IP address or hostname
+To access the ChirpStack Application Server web-interface, enter the IP address or hostname
 of you server, followed by port `8080` (this is a default configuration which
-can be modified through the `lora-app-server.toml` configuration file).
+can be modified through the `chirpstack-application-server.toml` configuration file).
 
 If a TLS certificate has been configured (optional), use http**s://**
 else use the http:// option (default). Examples:
@@ -29,60 +29,72 @@ The default login credentials are:
 * Username: admin
 * Password: admin
 
-## Add a gateway
+## Add a LoRa<sup>&reg;</sup> gateway
 
 There are two steps involved when adding a gateway. First of all, you need
 to configure your gateway so that it sends data to the
-[LoRa Gateway Bridge](/lora-gateway-bridge/)
+[ChirpStack Gateway Bridge](/gateway-bridge/)
 component. In the [packet-forwarder](https://github.com/Lora-net/packet_forwarder)
 configuration, modify the following configuration keys:
 
-* `server_address` to the IP address / hostname of the LoRa Gateway Bridge
-* `serv_port_up` to `1700` (the default port that LoRa Gateway Bridge is using)
+* `server_address` to the IP address / hostname of the ChirpStack Gateway Bridge
+* `serv_port_up` to `1700` (the default port that ChirpStack Gateway Bridge is using)
 * `serv_port_down` to `1700` (same)
 
 After restarting the packet-forwarder process, you should see log-lines
-appearing in the LoRa Gateway Bridge logs.
+appearing in the ChirpStack Gateway Bridge logs.
 
-The second step is to configure the gateway in your LoRa Server network. For
-this, log in into the [LoRa App Server](/lora-app-server/)
+The second step is to add the LoRa gateway to your ChirpStack Server
+network. For this, log in into the [ChirpStack Application Server](/application-server/)
 web-interface and add the gateway to your organization. In case your gateway
 does not have a GPS, you can set the location manually.
 
-## Setting up your first device
+## Setting up your first LoRaWAN<sup>&reg;</sup> device
 
-Now all components are installed, you should be able to navigate to the
-LoRa App Server web-interface. 
+Now all ChirpStack components are installed, you should be able to navigate to the
+ChirpStack Application Server web-interface. 
 
-To access the LoRa App Server web-interface, enter the IP address or hostname
+To access the ChirpStack Application Server web-interface, enter the IP address or hostname
 of you server, followed by port `8080` (this is a default configuration which
-can be modified through the `lora-app-server.toml` configuration file).
+can be modified through the `chirpstack-application-server.toml` configuration file).
 
 Example: [https://localhost:8080/](https://localhost:8080/). 
 
-Once you have the interface working, you are ready to add the configurations required in order to receive data from a device.
+Once you have the interface working, you are ready to add the configurations
+required in order to receive data from a device.
 
 ### Add network-server
 
-In order to connect your LoRa App Server instance with the LoRa Server instance, click *Network servers* and then *Add*. As the LoRa Server is installed on the same host as the LoRa App Server in this guide, use `localhost:8000` as network-server name (port `8000` is the default port used by LoRa Server, this can be modified through `loraserver.toml`). 
+In order to connect your ChirpStack Application Server instance with the ChirpStack Network Server
+instance, click *Network servers* and then *Add*. As the ChirpStack Network Server is
+installed on the same host as the ChirpStack Application Server in this guide, use
+`localhost:8000` as network-server name (port `8000` is the default port used
+by ChirpStack Network Server, this can be modified through `chirpstack-network-server.toml`). 
 
-Note that the LoRa App Server can connect to multiple LoRa Server instances. For example each LoRa Server instance could support a different region.
+Note that the LoRa App Server can connect to multiple LoRa Server instances.
+For example each LoRa Server instance could support a different region.
 
-### Service-profile
+### Service Profile
 
 The service-profile defines the features that can be used by an organization.
 
-Click on *Service-profiles* and then *Create* to create a service-profile for the LoRa Server organization. This will also associate the organization with the network-server instance.
+Click on *Service-profiles* and then *Create* to create a service-profile for
+the ChirpStack organization. This will also associate the organization with
+the network-server instance.
 
-### Device-profile
+### Device Profile
 
-The device-profile defines the device properties of a device. For example it defines the activation type (OTAA vs ABP), the implemented LoRaWAN version etc...
+The device-profile defines the device properties of a device. For example it
+defines the activation type (OTAA vs ABP), the implemented LoRaWAN version etc...
 
-Click on *Device-profiles* and then *Create* to create a device-profile for the LoRa Server organization.
+Click on *Device-profiles* and then *Create* to create a device-profile for
+the ChirpStack organization.
 
 ### Application
 
-Now that there is a LoRa App Server/LoRa Server association, a service-profile for the organization and device-profile, it is time to create your first application.
+Now that there is a ChirpStack Application Server / ChirpStack Network Server
+association, a service-profile for the organization and device-profile, it is
+time to create your first application.
 
 Click on *Applications*, then click on *Create*.
 
@@ -98,7 +110,7 @@ After the creation of an Over the Air Activation (OTAA) device, you will be redi
 
 It is possible to stream all LoRaWAN frames (raw and encrypted data) and
 device data from the web-interface. Click on the created device and click on
-the *live data* or *live LoRaWAN frames* tab. Now it is time to turn on your
+the *live data* or *LoRaWAN frames* tab. Now it is time to turn on your
 device and start receiving data!
 
 Besides seeing the data in the web-interface, you can also subscribe to the
@@ -122,10 +134,10 @@ Where:
 
 
 Read more more about sending and receiving data in the
-[LoRa App Server](/lora-app-server/) documentation.
+[ChirpStack Application Server](/application-server/) documentation.
 
 In case you don't see any data confirm (in the logs) that:
 
-* [LoRa Gateway Bridge](/lora-gateway-bridge/) received data from your gateway
-* [LoRa Server](/loraserver/) did not return any errors
-* [LoRa App Server](/lora-app-server/) did not return any errors
+* [ChirpStack Gateway Bridge](/gateway-bridge/) received data from your gateway
+* [ChirpStack Network Server](/network-server/) did not return any errors
+* [ChirpStack Application Server](/application-server/) did not return any errors

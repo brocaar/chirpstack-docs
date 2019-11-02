@@ -4,48 +4,37 @@ menu:
     main:
         parent: overview
         weight: 1
+listPages: false
 ---
 
-# The LoRa Server project
+# ChirpStack open-source LoRaWAN<sup>&reg;</sup> Network Server stack
 
-## What is LoRa?
+## LoRaWAN
 
-LoRaWAN is a long range, low power wireless protocol that is intended for use
-in building IoT networks.  IoT devices ("nodes") send small data packets to
-any number of "gateways" that may be in the several-kilometer range of a node
-via the LoRaWAN wireless protocol. The gateways then use more traditional
-communications such as wired Internet connections to forward the messages
-to a network-server which validates the packets and forwards the application
-payload to an application-server.
+LoRaWAN is a Low Power, Wide Area (LPWA)
+networking protocol designed to wirelessly connect battery operated
+‘things’ to the internet in regional, national or global networks, and targets
+key Internet of Things (IoT) requirements such as bi-directional communication,
+end-to-end security, mobility and localization services.
 
-The nature of the LoRa network potentially allows IoT devices to run for years
-on small batteries, occasionally sending out small packets of data, waiting for
-a short time for response messages, and then closing the connection until more
-data needs to be sent. Devices can also be set up so that they are always
-listening for messages from their applications, though this obviously requires
-more power and may be more appropriate for devices that are, say, plugged in
-to a wall socket.
+* [LoRa Alliance](https://www.lora-alliance.org/)
+* [LoRaWAN specification](https://lora-alliance.org/lorawan-for-developers)
 
-Of course there is much more to LoRaWAN than is described here. The LoRaWAN
-protocol is defined and managed by the [LoRa Alliance](https://www.lora-alliance.org/).
-There is a great deal of information available there.
+## About the ChirpStack LoRaWAN Network Server stack
 
-## About the Lora Server Project
+ChirpStack provides open-source components for LoRaWAN
+networks. Together they form a ready-to-use solution including an user-friendly
+web-interface for device management and APIs for integration. The modular
+architecture makes it possible to integrate within existing infrastructures.
+All components are licensed under the MIT license and can be used for commercial
+purposes. The following components are provided:
 
-The LoRa Server project is an open-source set of applications that fill the
-gap between the gateways receiving messages from the nodes to just before the
-applications receiving the data. It provides mechanisms for managing the
-gateways on the LoRa network, the applications supported, and the devices
-associated with the applications.
+* [ChirpStack Gateway Bridge](/gateway-bridge/): _handles the communication with the LoRaWAN gateways_
+* [ChirpStack Network Server](/network-server): _a LoRaWAN Network Server implementation_
+* [ChirpStack Application Server](/application-server/): _a LoRaWAN Application Server implementation_
+* [ChirpStack Geolocation Server](/geolocation-server/):  _integrations with LoRaWAN geolocation backends_
+* [ChirpStack Gateway OS](/gateway-os/): _embedded Linux-based OS to run the (full) ChirpStack stack on a LoRa gateway_
 
-The project is designed so that it may be used in a very flexible manner.
-For example the [LoRa App Server](/lora-app-server/) component implements
-the application-server component and offers a Web UI for users to access and
-modify their gateways, applications and nodes. The system can also be accessed
-via programmatic interfaces implemented in [gRPC](http://www.grpc.io/) and
-JSON REST APIs. Further, the APIs are designed such that the subsystems may
-be replaced by other software implementing the same interfaces.
-
-For a more technical understanding of the parts of the Lora Server software
-system and how they work together, please refer to the
-[architecture]({{< relref "architecture.md" >}}) page.
+For a more technical understanding of the ChirpStack stack components and how
+they work together, please refer to the
+[Architecture]({{< relref "architecture.md" >}}) page.

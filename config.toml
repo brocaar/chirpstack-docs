@@ -1,9 +1,10 @@
-baseURL = "https://www.loraserver.io/"
+baseURL = "https://www.chirpstack.io/"
 languageCode = "en-us"
 relativeURLs = true
-title = "LoRa Server, open-source LoRaWAN network-server"
+title = "ChirpStack, open-source LoRaWAN Network Server stack"
 googleAnalytics = "UA-3512995-9"
 pygmentsUseClasses = true
+theme = "chirpstack-hugo-theme"
 
 [[menu.main]]
     pre = "<i class='fas fa-hand-point-right'></i>"
@@ -32,3 +33,6 @@ pygmentsUseClasses = true
     identifier = "community"
     url = "/community/"
     weight = 4
+
+[params]
+component = "docs"

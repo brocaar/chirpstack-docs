@@ -4,15 +4,15 @@ menu:
     main:
         parent: install
         weight: 4
-description: Information about the LoRa Server Docker containers and versioning.
+description: Information about the ChirpStack Docker images and versioning.
 ---
 
 # Docker install
 
-The LoRa Server project provides [Docker](https://www.docker.com) images
+ChirpStack provides [Docker](https://www.docker.com) images
 for all project components. An overview of available images can be found
-at: [https://hub.docker.com/u/loraserver/](https://hub.docker.com/u/loraserver/).
-Please refer to [Quickstart Docker-Compose]({{<ref "/guides/docker-compose.md">}})
+at: [https://hub.docker.com/u/chirpstack/](https://hub.docker.com/u/chirpstack/).
+Please refer to [Quickstart Docker Compose]({{<ref "/guides/docker-compose.md">}})
 for a guide on getting started with Docker Compose.
 
 ## Versioning

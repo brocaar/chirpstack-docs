@@ -7,4 +7,4 @@ menu:
 hidden: true
 ---
 
-# Community & Support
+# ChirpStack Community & Support

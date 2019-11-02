@@ -1,21 +1,21 @@
 ---
-title: General Installation
+title: General installation
 menu:
     main:
         parent: install
         weight: 3
-description: General installation instructions to setup the LoRa Server project components.
+description: General installation instructions to setup the ChirpStack LoRaWAN Network Server components.
 ---
 
-# Installing the LoRa Server project
+# Installing the ChirpStack components
 
-The LoRa Server components can be setup in multiple ways. For all cases,
-downloads can be found at the following URLs:
+The ChirpStack LoRaWAN<sup>&reg;</sup> Network Server components can be setup in
+multiple ways. For all cases, downloads can be found at the following URLs:
 
-* [LoRa Gateway Bridge downloads](/lora-gateway-bridge/overview/downloads/)
-* [LoRa Server downloads](/loraserver/overview/downloads/)
-* [LoRa App Server downloads](/lora-app-server/overview/downloads/)
-* [LoRa Geo Server downloads](/lora-geo-server/overview/downloads/)
+* [ChirpStack Gateway Bridge downloads](/gateway-bridge/overview/downloads/)
+* [ChirpStack Network Server downloads](/network-server/overview/downloads/)
+* [ChirpStack App Server downloads](/application-server/overview/downloads/)
+* [ChirpStack Geolocation Server downloads](/geolocation-server/overview/downloads/)
 
 ## Manual
 
@@ -29,14 +29,14 @@ on the used Linux distribution.
 
 ## Debian / Ubuntu repository
 
-The LoRa Server project provides Debian / Ubuntu `.deb` packages which
-can be downloaded from the LoRa Server Deb repository. To guarantee
+ChirpStack provides Debian / Ubuntu `.deb` packages which
+can be downloaded from the ChirpStack Deb repository. To guarantee
 compatibility, for each major version a separate repository is provided.
 Please refer to the [Debian / Ubuntu install guide]({{<ref "/guides/debian-ubuntu.md">}})
 for a step-by-step guide.
 
 ## Docker
 
-The LoRa Server project also provides Docker images which for example can be used with
+ChirpStack also provides Docker images which for example can be used with
 [Docker Compose](https://docs.docker.com/compose/). See the
 [Docker install]({{<relref "docker.md">}}) for more information.

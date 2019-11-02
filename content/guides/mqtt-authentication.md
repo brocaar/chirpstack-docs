@@ -9,8 +9,8 @@ description: Guide on how to setup MQTT (Mosquitto) topic-based authentication a
 
 # MQTT authentication & authorization
 
-The LoRa Server project does not handle MQTT authentication and authorization
-for you, this is the responsibility of the MQTT broker. To restrict gateways
+The ChirpStack Network Server and Application Server do not handle MQTT authentication and authorization
+for you as this is the responsibility of the MQTT broker. To restrict gateways
 and applications so that they can only publish and subscribe to their own
 MQTT topics, it is recommended to setup MQTT authentication and authorization.
 
@@ -23,17 +23,17 @@ to a set of applications.
 For [Mosquitto](https://mosquitto.org) there are multiple ways to setup
 authentication and authorization. This can be pre-configured in so called
 password and ACL (access control list) files and / or can be retrieved
-dynamically from the [LoRa App Server](/lora-app-server/) user table (stored
-in the database). In the latter case, LoRa App Server users are able to login
+dynamically from the [ChirpStack Application Server](/application-server/) user table (stored
+in the database). In the latter case, ChirpStack Application Server users are able to login
 with their own credentials when connecting the MQTT broker and are limited to
-the applications to which they have access (in the LoRa App Server
+the applications to which they have access (in the ChirpStack Application Server
 web-interface).
 
 ### Static password and ACL file
 
 These steps describe how to setup Mosquitto with a static password and ACL
 file. In case you would like to setup Mosquitto so that users and permissions
-are retrieved from LoRa App Server, go to the next sections for instruction on
+are retrieved from ChirpStack Application Server, go to the next sections for instruction on
 how to configure Mosquitto Auth Plugin or the alternative Mosquitto Go Auth.
 
 #### Passwords
@@ -45,11 +45,11 @@ Example to create a password file and add add an username (use the `-c` only
 the first time as it will create a new file):
 
 {{<highlight bash>}}
-# Create a password file, with users loraserver_gw, loraserver_ns, loraserver_as
+# Create a password file, with users chirpstack_gw, chirpstack_ns, chirpstack_as
 # and bob.
-sudo mosquitto_passwd -c /etc/mosquitto/passwd loraserver_gw
-sudo mosquitto_passwd /etc/mosquitto/passwd loraserver_ns
-sudo mosquitto_passwd /etc/mosquitto/passwd loraserver_as
+sudo mosquitto_passwd -c /etc/mosquitto/passwd chirpstack_gw
+sudo mosquitto_passwd /etc/mosquitto/passwd chirpstack_ns
+sudo mosquitto_passwd /etc/mosquitto/passwd chirpstack_as
 sudo mosquitto_passwd /etc/mosquitto/passwd bob
 
 # Secure the password file
@@ -63,15 +63,15 @@ Write this file to `/etc/mosquitto/acls`. An
 example is:
 
 {{<highlight text>}}
-user loraserver_gw
+user chirpstack_gw
 topic write gateway/+/event/+
 topic read gateway/+/command/+
 
-user loraserver_ns
+user lchirpstackns
 topic read gateway/+/event/+
 topic write gateway/+/command/+
 
-user loraserver_as
+user chirpstack_as
 topic write application/+/device/+/rx
 topic write application/+/device/+/join
 topic write application/+/device/+/ack
@@ -103,7 +103,7 @@ acl_file /etc/mosquitto/acls
 ### Mosquitto Auth Plugin
 
 To setup Mosquitto so that it retrieves the users and permissions from the
-[LoRa App Server](/lora-app-server/) database, you need to setup the
+[ChirpStack Application Server](/application-server/) database, you need to setup the
 [mosquitto-auth-plug](https://github.com/jpmens/mosquitto-auth-plug)
 plugin. This project provides authentication and authorization to Mosquitto
 using various backends. In our case we're interested in the PostgreSQL and
@@ -186,9 +186,9 @@ auth_opt_backends files,postgres
 
 auth_opt_host localhost
 auth_opt_port 5432
-auth_opt_dbname loraserver_as
-auth_opt_user loraserver_as
-auth_opt_pass loraserver_as
+auth_opt_dbname chirpstack_as
+auth_opt_user chirpstack_as
+auth_opt_pass chirpstack_as
 auth_opt_userquery select password_hash from "user" where username = $1 and is_active = true limit 1
 auth_opt_superquery select count(*) from "user" where username = $1 and is_admin = true
 auth_opt_aclquery select distinct 'application/' || a.id || '/#' from "user" u inner join organization_user ou on ou.user_id = u.id inner join organization o on o.id = ou.organization_id inner join application a on a.organization_id = o.id where u.username = $1 and $2 = $2
@@ -198,7 +198,7 @@ auth_opt_acl_file /etc/mosquitto/mosquitto-auth-plug/acls
 {{< /highlight >}}
 
 You might want to change the following configuration, to match your
-[LoRa App Server](/lora-app-server/) configuration:
+[ChirpStack Application Server](/appplication-server/) configuration:
 
 * `auth_opt_host`: database hostname
 * `auth_opt_port`: database port
@@ -208,8 +208,8 @@ You might want to change the following configuration, to match your
 
 #### Static passwords
 
-As [LoRa Gateway Bridge](/lora-gateway-bridge/), [LoRa Server](/loraserver/)
-and [LoRa App Server](/lora-app-server/) also make use of MQTT, you might want
+As [ChirpStack Gateway Bridge](/gateway-bridge/), [ChirpStack Network Server](/network-server/)
+and [ChirpStack Application Server](/application-server/) also make use of MQTT, you might want
 to configure static passwords for these services.
 
 To generate a password readable by mosquitto-auth-plug, use the following
@@ -234,9 +234,9 @@ file, where each line is in the format `USERNAME:PASSWORDHASH`. In the end your
 passwords file should look like this:
 
 {{<highlight text>}}
-loraserver_gw:PBKDF2$sha256$100000$7GKPpz5FmcthzI8P$hNljou3w7CIoZMoIN7cj/H8CHnP9770t
-loraserver_ns:PBKDF2$sha256$100000$jXjd9LKwjkLhec/m$qwhGxiPON/tKCXcfS6fpfAr1xQec8AQI
-loraserver_as:PBKDF2$sha256$100000$AC51663HqjWlPisA$uV4WQmy0c6nMsLwEffXUeVqIFRDb4Y+h
+chirpstack_gw:PBKDF2$sha256$100000$7GKPpz5FmcthzI8P$hNljou3w7CIoZMoIN7cj/H8CHnP9770t
+chirpstack_ns:PBKDF2$sha256$100000$jXjd9LKwjkLhec/m$qwhGxiPON/tKCXcfS6fpfAr1xQec8AQI
+chirpstack_as:PBKDF2$sha256$100000$AC51663HqjWlPisA$uV4WQmy0c6nMsLwEffXUeVqIFRDb4Y+h
 {{< /highlight >}}
 
 #### Static ACLs
@@ -247,15 +247,15 @@ to limit the set of topics per username in the file
 `/etc/mosquitto/mosquitto-auth-plug/acls`. An example:
 
 {{<highlight text>}}
-user loraserver_gw
+user chirpstack_gw
 topic write gateway/+/event/+
 topic read gateway/+/command/+
 
-user loraserver_ns
+user chirpstack_ns
 topic read gateway/+/event/+
 topic write gateway/+/command/+
 
-user loraserver_as
+user chirpstack_as
 topic write application/+/device/+/rx
 topic write application/+/device/+/join
 topic write application/+/device/+/ack
@@ -319,13 +319,13 @@ sudo touch /etc/mosquitto/mosquitto-go-auth/acls
 {{< /highlight >}}
 
 This guide assumes that you have Redis running in your host as it's a
-requirement of loraserver. Redis is used by the plugin for cache purposes.
+requirement of ChirpStack Network Server. Redis is used by the plugin for cache purposes.
 The cache may be disabled or configured differently, check the repo for more
 details.  
 
 Also, we'll configure the plugin with the JWT backend in local mode using
-lora-app-server's DB. This allows you to connect a client using a
-lora-app-server user's JWT token.
+chirpstack-application-server's DB. This allows you to connect a client using a
+chirpstack-application-server user's JWT token.
 
 Write the following content to `/etc/mosquitto/conf.d/mosquitto-go-auth.conf`:
 
@@ -346,16 +346,16 @@ auth_opt_cache_db 4
 
 auth_opt_pg_host localhost
 auth_opt_pg_port 5432
-auth_opt_pg_dbname loraserver_as
-auth_opt_pg_user loraserver_as
-auth_opt_pg_password loraserver_as_password
+auth_opt_pg_dbname chirpstack_as
+auth_opt_pg_user chirpstack_as
+auth_opt_pg_password chirpstack_as_password
 auth_opt_pg_userquery select password_hash from "user" where username = $1 and is_active = true limit 1
 auth_opt_pg_superquery select count(*) from "user" where username = $1 and is_admin = true
 auth_opt_pg_aclquery select distinct 'application/' || a.id || '/#' from "user" u inner join organization_user ou on ou.user_id = u.id inner join organization o on o.id = ou.organization_id inner join application a on a.organization_id = o.id where u.username = $1 and $2 = $2
 
 auth_opt_jwt_remote false
 auth_opt_jwt_db postgres
-auth_opt_jwt_secret lora-app-server-jwt-secret
+auth_opt_jwt_secret application-server-jwt-secret
 auth_opt_jwt_userquery select count(*) from "user" where username = $1 and is_active = true limit 1
 auth_opt_jwt_superquery select count(*) from "user" where username = $1 and is_admin = true
 auth_opt_jwt_aclquery select distinct 'application/' || a.id || '/#' from "user" u inner join organization_user ou on ou.user_id = u.id inner join organization o on o.id = ou.organization_id inner join application a on a.organization_id = o.id where u.username = $1 and $2 = $2
@@ -364,7 +364,7 @@ auth_opt_jwt_userfield Username
 {{< /highlight >}}
 
 You might want to change the following configuration, to match your
-[LoRa App Server](/lora-app-server/) configuration:
+[ChirpStack Application Server](/application-server/) configuration:
 
 * `auth_plugin`: path to the generated `go-auth.so` shared object
 
@@ -374,7 +374,7 @@ You might want to change the following configuration, to match your
 * `auth_opt_pg_user`: database username
 * `auth_opt_pg_password`: database password
 
-* `auth_opt_jwt_secret`: lora-app-server jwt secret
+* `auth_opt_jwt_secret`: ChirpStack Application Server jwt secret
 * `auth_opt_redis_db`: redis db to use as cache
 
 Finally, add the following to the end of `/etc/mosquitto/mosquitto.conf` to
@@ -386,8 +386,8 @@ include_dir /etc/mosquitto/conf.d
 
 #### Static passwords
 
-As [LoRa Gateway Bridge](/lora-gateway-bridge/), [LoRa Server](/loraserver/)
-and [LoRa App Server](/lora-app-server/) also make use of MQTT, you might want
+As [ChirpStack Gateway Bridge](/gateway-bridge/), [ChirpStack Network Server](/network-server/)
+and [ChirpStack Application Server](/application-server/) also make use of MQTT, you might want
 to configure static passwords for these services.
 
 To generate a password readable by mosquitto-go-auth, you may use the `pw`
@@ -414,9 +414,9 @@ file, where each line is in the format `USERNAME:PASSWORDHASH`. In the end your
 passwords file should look like this:
 
 {{<highlight text>}}
-loraserver_gw:PBKDF2$sha256$100000$7GKPpz5FmcthzI8P$hNljou3w7CIoZMoIN7cj/H8CHnP9770t
-loraserver_ns:PBKDF2$sha256$100000$jXjd9LKwjkLhec/m$qwhGxiPON/tKCXcfS6fpfAr1xQec8AQI
-loraserver_as:PBKDF2$sha256$100000$AC51663HqjWlPisA$uV4WQmy0c6nMsLwEffXUeVqIFRDb4Y+h
+chirpstack_gw:PBKDF2$sha256$100000$7GKPpz5FmcthzI8P$hNljou3w7CIoZMoIN7cj/H8CHnP9770t
+chirpstack_ns:PBKDF2$sha256$100000$jXjd9LKwjkLhec/m$qwhGxiPON/tKCXcfS6fpfAr1xQec8AQI
+chirpstack_as:PBKDF2$sha256$100000$AC51663HqjWlPisA$uV4WQmy0c6nMsLwEffXUeVqIFRDb4Y+h
 {{< /highlight >}}
 
 #### Static ACLs
@@ -427,15 +427,15 @@ to limit the set of topics per username in the file
 `/etc/mosquitto/mosquitto-go-auth/acls`. An example:
 
 {{<highlight text>}}
-user loraserver_gw
+user chirpstack_gw
 topic write gateway/+/event/+
 topic read gateway/+/command/+
 
-user loraserver_ns
+user chirpstack_ns
 topic read gateway/+/event/+
 topic write gateway/+/command/+
 
-user loraserver_as
+user chirpstack_as
 topic write application/+/device/+/rx
 topic write application/+/device/+/join
 topic write application/+/device/+/ack

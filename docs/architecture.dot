@@ -1,0 +1,71 @@
+digraph G {
+	node [shape=record];
+	
+
+	subgraph cluster_0 {
+		style=filled;
+		color="#bbdefb";
+		node [style=filled,color="#e3f2fd"];
+
+		"chirpstack-network-server" -> "pub-sub" [dir="both"];
+		"chirpstack-network-server" -> "chirpstack-geolocation-server" [label="gRPC"];
+		"chirpstack-network-server" -> "chirpstack-application-server" [dir="both",label="gRPC"];
+		"chirpstack-gateway-bridge-cloud" -> "pub-sub" [dir="both" label="MQTT"];
+
+		"chirpstack-network-server" [label="ChirpStack Network Server"];
+		"pub-sub" [label="Pub/Sub broker"];
+		"chirpstack-application-server" [label="ChirpStack Application Server"];
+		"chirpstack-geolocation-server" [label="ChirpStack Geolocation Server"];
+		"chirpstack-gateway-bridge-cloud" [label="ChirpStack Gateway Bridge"];
+
+		label = "Cloud / server / VM";
+	}
+
+	subgraph cluster_1 {
+		style=filled;
+		color="#bbdefb";
+		node [style=filled,color="#e3f2fd"];
+		label="LoRa&reg; Gateway";
+
+		"chirpstack-gateway-bridge-gw" -> "pub-sub" [label="MQTT",dir="both"];
+		"chirpstack-gateway-bridge-gw" [label="Packet Forwarder +\nChirpStack Gateway Bridge"];
+	}
+
+
+	subgraph cluster_2 {
+		style=filled;
+		color="#bbdefb";
+		node [style=filled,color="#e3f2fd"];
+		label="LoRa&reg; Gateway";
+
+		"packet-forwarder-gw2" -> "chirpstack-gateway-bridge-cloud" [label="UDP",dir="both"];
+		"packet-forwarder-gw2" [label="Packet Forwarder"];
+	}
+
+	subgraph cluster_3 {
+		style=filled;
+		color="#bbdefb";
+		node [style=filled,color="#e3f2fd"];
+		label="Integrations";
+
+		"http-int" [label="HTTP"];
+		"mqtt-int" [label="MQTT"];
+		"influxdb-int" [label="InfluxDB"];
+		"postgresql-int" [label="PostgreSQL"];
+		"gcp-pubsub-int" [label="GCP\nPub/Sub topic"];
+		"aws-sns-int" [label="AWS\nSNS"];
+		"azure-service-bus-int" [label="Azure\nService-Bus"];
+		"as-api-client" [label="API client\ngRPC\nRESTful"];
+	}
+
+
+	"chirpstack-application-server" -> "http-int";
+	"chirpstack-application-server" -> "mqtt-int";
+	"chirpstack-application-server" -> "gcp-pubsub-int";
+	"chirpstack-application-server" -> "aws-sns-int";
+	"chirpstack-application-server" -> "azure-service-bus-int";
+	"chirpstack-application-server" -> "influxdb-int";
+	"chirpstack-application-server" -> "postgresql-int";
+
+	"as-api-client" -> "chirpstack-application-server";
+}

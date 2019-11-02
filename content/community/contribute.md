@@ -4,7 +4,7 @@ menu:
     main:
         parent: community
         weight: 2
-description: Information how you can contribute to the LoRa Server project.
+description: How you can contribute to the ChirpStack open-source LoRaWAN Network Server stack.
 ---
 
 # Contribute
@@ -19,10 +19,10 @@ There are a couple of ways to get involved:
 ## Components
 
 Please refer to the following pages to learn more about contributing to
-each LoRa Server project component:
+each ChirpStack component:
 
-* [Contribute to LoRa Gateway Bridge](/lora-gateway-bridge/community/contribute/)
-* [Contribute to LoRa Server](/loraserver/community/contribute/)
-* [Contribute to LoRa App Server](/lora-app-server/community/contribute/)
-* [Contribute to LoRa Geo Server](/lora-geo-server/community/contribute/)
-* [Contribute to LoRaWAN library](https://github.com/brocaar/lorawan)
+* [Contribute to ChirpStack Gateway Bridge](/gateway-bridge/community/contribute/)
+* [Contribute to ChirpStack Network Server](/network-server/community/contribute/)
+* [Contribute to ChirpStack Application Server](/application-server/community/contribute/)
+* [Contribute to ChirpStack Geolocation Server](/geolocation-server/community/contribute/)
+* [Contribute to the LoRaWAN<sup>&reg;</sup> library](https://github.com/brocaar/lorawan)

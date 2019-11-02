@@ -4,33 +4,33 @@ menu:
   main:
     parent: guides
     weight: 1
-description: Quickstart guide on hosting the LoRa Server components on Azure.
+description: Quickstart guide on hosting the ChirpStack Network Server components on Azure.
 ---
 
 # Quickstart Microsoft Azure
 
-This tutorial describes the steps needed to setup the LoRa Server project
+This tutorial describes the steps needed to setup the ChirpStack Network Server project
 on the [Azure Platform](https://azure.microsoft.com/). After completing
 this guide, the following Azure service will be used:
 
 * [IoT Hub](https://azure.microsoft.com/en-us/services/iot-hub/) is used to
-  connect your LoRa gateways with the Azure platform.
+  connect your LoRa<sup>&reg;</sup> gateways with the Azure platform.
 * [Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) is
-  used for messaging between IoT Hub and LoRa Server (uplink).
+  used for messaging between IoT Hub and ChirpStack Network Server (uplink).
 * [Database for PostgreSQL](https://azure.microsoft.com/en-us/services/postgresql/)
   is used as hosted PostgreSQL service.
 * [Cache for Redis](https://azure.microsoft.com/en-us/services/cache/) is used
   as hosted Redis solution.
 * [Virtual Machines](https://azure.microsoft.com/en-us/services/virtual-machines/)
-  is used for launching a VM instance to host LoRa (App) Server.
+  is used for launching a VM instance to host the ChirpStack stack.
 
 ## Assumptions
 
-* In this tutorial we will assume that the [LoRa Gateway Bridge](/lora-gateway-bridge/)
+* In this tutorial we will assume that the [ChirpStack Gateway Bridge](/gateway-bridge/)
   component will be installed on the gateway. 
-* [LoRa Server](/loraserver/) and [LoRa App Server](/lora-app-server) will be installed
+* [ChirpStack Network Server](/network-server/) and [ChirpStack Application Server](/application-server) will be installed
   on a single Virtual Machine instance to simplify this tutorial.
-* The LoRaWAN region used in this tutorial will be EU868. Configuration
+* The LoRaWAN<sup>&reg;</sup> region used in this tutorial will be EU868. Configuration
   examples for US915 are also given for US915.
 * In this tutorial names are given for various entities. These can (and in some
   cases must) be replaced by something different (e.g. when they are already in use).
@@ -49,24 +49,24 @@ this guide, the following Azure service will be used:
 To create a Service Bus namespace, click **Create a resource**, select
 **Service Bus** and click **Create**.
 
-* **Name**: We will name this `loraserver`.
+* **Name**: We will name this `chirpstack`.
 * **Pricing tier**: For testing select **Basic**.
 * **Location**: Select a location close to you.
 
 Click **Create**.
 
 After the Service Bus namespace has been created (this might take a minute
-or two), click **Go To Resource** (hint: you can also search for `loraserver`
+or two), click **Go To Resource** (hint: you can also search for `chirpstack`
 in the search and then click on the resource link).
 
 Under **Settings** click **Shared Access Policies**. Then click **+ Add**.
 
-* **Policy Name:** We will name this `lora-app-server`.
+* **Policy Name:** We will name this `application-server`.
 * **Manage:** Select this field.
 
 Click **Create**.
 
-Click **lora-app-server**. Write down the following information:
+Click **application-server**. Write down the following information:
 
 * **Device Events Connection String:** The **Primary Connection String**.
 
@@ -83,23 +83,23 @@ Click **Create**.
 Then click **eu868-gateway-events**. Under **Settings** click
 **Shared Access Policies** and click **+ Add**. 
 
-* **Policy Name:** We name this `loraserver`.
+* **Policy Name:** We name this `chirpstack`.
 * **Listen:** select this field.
 
 Click **Create**. 
 
-Click **loraserver**, then write down the following information:
+Click **chirpstack**, then write down the following information:
 
 * **Gateway Events Connection String:** The **Primary Connection String**.
 
-### Create LoRa App Server event queue
+### Create ChirpStack Application Server event queue
 
-This queue will be used by LoRa App Server to publish the device events.
+This queue will be used by ChirpStack Application Server to publish the device events.
 Repeat the above steps to create an other queue named `device-events`.
 
 ## Create IoT Hub
 
-The IoT Hub will be used by the gateway(s) to communicate with LoRa Server.
+The IoT Hub will be used by the gateway(s) to communicate with ChirpStack Network Server.
 The gateway(s) connect to the IoT Hub using the IoT Hub MQTT interface.
 Gateway events are written by IoT Hub to a Service Bus Queue.
 
@@ -122,12 +122,12 @@ click **Go to resource** to open the overview and options.
 
 Under **Settings** click **Shared Access Policies** and click **+ Add**.
 
-* **Access Policy Name:** We name this `loraserver`.
+* **Access Policy Name:** We name this `chirpstack`.
 * **Service Connect:** Select this field.
 
 Click **Create**.
 
-Click **loraserver**, then write down the following information:
+Click **chirpstack**, then write down the following information:
 
 * **Gateway Commands Connection String:** The **Connection string - primary key**.
 
@@ -137,7 +137,7 @@ Under **Messaging** click **Message routing**. Click the **Custom endpoints**
 tab and then **+Add > Service Bus Queue**. 
 
 * **Endpoint name:** We name this endpoint `eu868-gateway-events`.
-* **Service Bus Namespace:** Select **loraserver-devel**.
+* **Service Bus Namespace:** Select **chirpstack-devel**.
 * **Service Bus Queue:** Select **eu868-gateway-events**.
 
 Click **Create**.
@@ -161,14 +161,14 @@ Click on the created device (LoRa gateway) to obtain its **Connection string**.
 This string looks like: `HostName=iot-hub-name.azure-devices.net;DeviceId=0102030405060708;SharedAccessKey=...`.
 This **Connection string** will be needed in the next step.
 
-### Configure LoRa Gateway Bridge
+### Configure ChirpStack Gateway Bridge
 
-As there are different ways to install the [LoRa Gateway Bridge](/lora-gateway-bridge/)
+As there are different ways to install the [ChirpStack Gateway Bridge](/gateway-bridge/)
 on your gateway, only the configuration is covered here. For installation
-instructions, please refer to [LoRa Gateway Bridge gateway installation & configuration](/lora-gateway-bridge/install/gateway/).
+instructions, please refer to [ChirpStack Gateway Bridge gateway installation & configuration](/gateway-bridge/install/gateway/).
 
-As LoRa Gateway Bridge will forwards its data to the Azure IoT Hub MQTT
-interface, you need update the `lora-gateway-bridge.toml` [Configuration file](/lora-gateway-bridge/install/config/).
+As ChirpStack Gateway Bridge will forwards its data to the Azure IoT Hub MQTT
+interface, you need update the `chirpstack-gateway-bridge.toml` [Configuration file](/gateway-bridge/install/config/).
 The `device_connection_string` needs to be replaced with the obtained
 **Connection string**.
 
@@ -185,11 +185,11 @@ type="azure_iot_hub"
 In short:
 
 * This will configure the Azure IoT Hub authentication
-* Configures the **Connection string** so that LoRa Gateway Bridge knows how to
+* Configures the **Connection string** so that ChirpStack Gateway Bridge knows how to
   connect to the IoT Hub.
 
 After applying the above configuration changes, validate that the
-LoRa Gateway Bridge connects to the Azure IoT Hub. On publishing events, the
+ChirpStack Gateway Bridge connects to the Azure IoT Hub. On publishing events, the
 log output should look like:
 
 {{<highlight text>}}
@@ -213,13 +213,13 @@ ERRO[0019] mqtt: connection error                        error=EOF
 
 ## Setup Redis database
 
-Redis is used by both LoRa Server and LoRa App Server for storing transient
+Redis is used by both ChirpStack Network Server and ChirpStack Application Server for storing transient
 data (session data, cache, etc...). 
 
 To create a Redis instance, click **Create a resource**, select
 **Azure Cache for Redis** and click **Create**.
 
-* **DNS Name:** We will name this `loraserver`.
+* **DNS Name:** We will name this `chirpstack`.
 * **Location:** Select a location close to you.
 * **Pricing tier:** For testing, **Basic C0** should be sufficient.
 * **Unblock port 6379 (not SSL encrypted):** Select this option.
@@ -234,14 +234,14 @@ Write down the following information:
 
 ## Setup PostgreSQL databases
 
-PostgreSQL is used by LoRa Server and LoRa App Server for storing data that
+PostgreSQL is used by ChirpStack Network Server and ChirpStack Application Server for storing data that
 must be persisted.
 
 To create a PostgreSQL instance, click **Create a resource**, select
 **Azure Database for PostgreSQL** and click **Create**. Under
 **Single Server** click **Create**.
 
-* **Server name:** We name this instance `loraserver`.
+* **Server name:** We name this instance `chirpstack`.
 * **Location:** Select a region close to you.
 * **Version:** Select **10** (the latest version available from the dropdown).
 
@@ -268,7 +268,7 @@ Write down the following information (from the **Overview** page):
 
 ## Setup Virtual Machine
 
-The Virtual Machine will be used to install LoRa Server and LoRa App Server.
+The Virtual Machine will be used to install ChirpStack Network Server and ChirpStack Application Server.
 To keep this tutorial simple, we will use a single instance. However, you are
 free to use other deployment options, including Kubernetes for example.
 
@@ -276,7 +276,7 @@ Under the default **Favorites** click **Virtual Machines**. Click **+ Add**.
 
 _Instance details_
 
-* **Virtual machine name:** We name this instance `loraserver`.
+* **Virtual machine name:** We name this instance `chirpstack`.
 * **Region:** Select a region close to you.
 * **Image:** The default **Debian 9 Stretch** is a fine option.
 * **Size:** For testing, select **Standard B1ls**.
@@ -293,7 +293,7 @@ Under **Settings** click **Networking** and then click
 **Add inbound port rule**. 
 
 * **Source port range:** `*`.
-* **Destination port ranges:** `8080` (this is the default LoRa App Server port).
+* **Destination port ranges:** `8080` (this is the default ChirpStack Application Server port).
 
 Click **Add**.
 
@@ -313,8 +313,8 @@ might prompt you for a password.
 
 ### Initialize databases
 
-In this step we are going to initialize the PostgreSQL database for LoRa Server
-and LoRa App Server.
+In this step we are going to initialize the PostgreSQL database for ChirpStack Network Server
+and ChirpStack Application Server.
 
 First we need to install the PostgreSQL client utilities:
 
@@ -335,29 +335,29 @@ psql -U '[PostgreSQL Admin Username]' -W -h [PostgreSQL Server Name] postgres
 {{</highlight>}}
 
 Inside this prompt, execute the following queries to set up the databases that
-are used by the LoRa Server components. It is recommended to change the
+are used by the ChirpStack Network Server components. It is recommended to change the
 passwords. Just remember to use these other passwords when updating
-the `loraserver.toml` and `lora-app-server.toml` configuration files. Since
+the `chirpstack-network-server.toml` and `chirpstack-application-server.toml` configuration files. Since
 these two applications both use the same table to track database upgrades,
 they must have separate databases.
 
 {{<highlight sql>}}
 -- set up the users and the passwords
 -- (note that it is important to use single quotes and a semicolon at the end!)
-create role loraserver_as with login password 'dbpassword';
-create role loraserver_ns with login password 'dbpassword';
+create role chirpstack_as with login password 'dbpassword';
+create role chirpstack_ns with login password 'dbpassword';
 
 -- here the [PostgreSQL Admin Username] should only be the username before
--- the @, thus if this is admin@loraserver, you must only use admin.
-grant loraserver_as to [PostgreSQL Admin Username];
-grant loraserver_ns to [PostgreSQL Admin Username];
+-- the @, thus if this is admin@chirpstack, you must only use admin.
+grant chirpstack_as to [PostgreSQL Admin Username];
+grant chirpstack_ns to [PostgreSQL Admin Username];
 
 -- create the database for the servers
-create database loraserver_as with owner loraserver_as;
-create database loraserver_ns with owner loraserver_ns;
+create database chirpstack_as with owner chirpstack_as;
+create database chirpstack_ns with owner chirpstack_ns;
 
--- change to the LoRa App Server database
-\c loraserver_as
+-- change to the ChirpStack Application Server database
+\c chirpstack_as
 
 -- enable the pq_trgm and hstore extensions
 -- (this is needed to facilidate the search feature)
@@ -369,7 +369,7 @@ create extension hstore;
 \q
 {{</highlight>}}
 
-### Install LoRa Server
+### Install ChirpStack Network Server
 
 The following commands will be executed on the VM. After the previous step
 you should still be connected using SSH.
@@ -378,32 +378,32 @@ you should still be connected using SSH.
 # add required packages
 sudo apt install apt-transport-https dirmngr
 
-# import LoRa Server key
+# import ChirpStack Network Server key
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1CE2AFD36DBCCA00
 
 # add the repository to apt configuration
-sudo echo "deb https://artifacts.loraserver.io/packages/3.x/deb stable main" | sudo tee /etc/apt/sources.list.d/loraserver.list
+sudo echo "deb https://artifacts.chirpstack.io/packages/3.x/deb stable main" | sudo tee /etc/apt/sources.list.d/chirpstack.list
 
 # update the package cache
 sudo apt update
 
-# install loraserver
-sudo apt install loraserver
+# install ChirpStack Network Server
+sudo apt install chirpstack-network-server
 {{< /highlight >}}
 
-### Configure LoRa Server
+### Configure ChirpStack Network Server
 
-The LoRa Server configuration file is located at
-`/etc/loraserver/loraserver.toml`. Below you will find two (minimal but working)
-configuration examples. Please refer to the LoRa Server
-[Configuration](/loraserver/install/config/) documentation for all the
+The ChirpStack Network Server configuration file is located at
+`/etc/chirpstack-network-server/chirpstack-network-server.toml`. Below you will find two (minimal but working)
+configuration examples. Please refer to the ChirpStack Network Server
+[Configuration](/network-server/install/config/) documentation for all the
 available options.
 
 To test if there are no errors, you can execute the following command:
 
 
 {{<highlight bash>}}
-sudo loraserver
+sudo chirpstack-network-server
 {{< /highlight >}}
 
 This should output something like (it is important that there are no errors):
@@ -426,22 +426,22 @@ If all is well (ignore the **get gateway error**), then you can start the
 service in the background using:
 
 {{<highlight bash>}}
-sudo systemctl start loraserver
+sudo systemctl start chirpstack-network-server
 {{< /highlight >}}
 
 #### Configuration examples
 
-Important note for **[loraserver_ns username]**: Remember that your
+Important note for **[chirpstack_ns username]**: Remember that your
 **[PostgreSQL Admin Username]** contained a _@_. In case this is 
-**admin@loraserver**, then replace **admin** with **loraserver_ns**.
-To continue this example, then the **loraserver_ns username** will be
-**loraserver_ns**@loraserver.
+**admin@chirpstack**, then replace **admin** with **chirpstack_ns**.
+To continue this example, then the **chirpstack_ns username** will be
+**chirpstack_ns**@chirpstack.
 
 ##### EU868 example
 
 {{<highlight toml>}}
 [postgresql]
-dsn="postgres://[loraserver_ns username]:[loraserver_ns database password]@[PostgreSQL Server Name]/loraserver_ns"
+dsn="postgres://[chirpstack_ns username]:[chirpstack_ns database password]@[PostgreSQL Server Name]/chirpstack_ns"
 
 [redis]
 url="redis://:[Redis Password]@[Redis Host Name]:6379"
@@ -489,7 +489,7 @@ net_id="000000"
 
 {{<highlight toml>}}
 [postgresql]
-dsn="postgres://[loraserver_ns username]:[loraserver_ns database password]@[PostgreSQL Server Name]/loraserver_ns"
+dsn="postgres://[chirpstack_ns username]:[chirpstack_ns database password]@[PostgreSQL Server Name]/chirpstack_ns"
 
 [redis]
 url="redis://:[Redis Password]@[Redis Host Name]:6379"
@@ -515,7 +515,7 @@ net_id="000000"
 
 {{<highlight toml>}}
 [postgresql]
-dsn="postgres://[loraserver_ns username]:[loraserver_ns database password]@[PostgreSQL Server Name]/loraserver_ns"
+dsn="postgres://[chirpstack_ns username]:[chirpstack_ns database password]@[PostgreSQL Server Name]/chirpstack_ns"
 
 [redis]
 url="redis://:[Redis Password]@[Redis Host Name]:6379"
@@ -537,27 +537,27 @@ net_id="000000"
     commands_connection_string="[Gateway Commands Connection String]"
 {{</highlight>}}
 
-### Install LoRa App Server
+### Install ChirpStack Application Server
 
 The following commands will be executed on the VM. After the previous step
 you should still be connected using SSH.
 
 {{<highlight bash>}}
-sudo apt install lora-app-server
+sudo apt install chirpstack-application-server
 {{</highlight>}}
 
-### Configure LoRa App Server
+### Configure ChirpStack Application Server
 
-The LoRa App Server configuration file is located at
-`/etc/lora-app-server/lora-app-server.toml`. Below you will find a minimal
-but working configuration example. Please refer to the LoRa App Server
-[Configuration](/lora-app-server/install/config/) documentation for all the
+The ChirpStack Application Server configuration file is located at
+`/etc/application-server/application-server.toml`. Below you will find a minimal
+but working configuration example. Please refer to the ChirpStack Application Server
+[Configuration](/application-server/install/config/) documentation for all the
 available options.
 
 To test if there are no errors, you can execute the following command:
 
 {{<highlight bash>}}
-sudo lora-app-server
+sudo application-server
 {{< /highlight >}}
 
 This should output something like (it is important that there are no errors):
@@ -574,20 +574,20 @@ INFO[0005] api/js: starting join-server api              bind="0.0.0.0:8003" ca_
 If all is well, then you can start the service in the background using:
 
 {{<highlight bash>}}
-sudo systemctl start lora-app-server
+sudo systemctl start application-server
 {{< /highlight >}}
 
 #### Configuration example
 
-Important note for **[loraserver_as username]**: Remember that your
+Important note for **[chirpstack_as username]**: Remember that your
 **[PostgreSQL Admin Username]** contained a _@_. In case this is
-**admin@loraserver**, then replace **admin** with **loraserver_as**.
-To continue this example, then the **loraserver_as username** will be
-**loraserver_as@loraserver.
+**admin@chirpstack**, then replace **admin** with **chirpstack_as**.
+To continue this example, then the **chirpstack_as username** will be
+**chirpstack_as@chirpstack.
 
 {{<highlight toml>}}
 [postgresql]
-dsn="postgres://[loraserver_as username]:[loraserver_as database password]@[PostgreSQL Server Name]/loraserver_as"
+dsn="postgres://[chirpstack_as username]:[chirpstack_as database password]@[PostgreSQL Server Name]/chirpstack_as"
 
 [redis]
 url="redis://:[Redis Password]@[Redis Host Name]:6379"
@@ -612,13 +612,13 @@ url="redis://:[Redis Password]@[Redis Host Name]:6379"
 
 ### Setup your first gateway and device
 
-To get started with LoRa (App) Server, please follow the [First gateway and device]({{<relref "first-gateway-device.md">}})
+To get started with the ChirpStack Network Server stack, please follow the [First gateway and device]({{<relref "first-gateway-device.md">}})
 guide. It will explain how to login into the web-interface and add your first
 gateway and device.
 
 ### Integrate your applications
 
-We have configured LoRa App Server to send data to an Azure Service Bus Queue.
+We have configured ChirpStack Application Server to send data to an Azure Service Bus Queue.
 
 For more information about Azure Service Bus, please refer to the following
 pages:
