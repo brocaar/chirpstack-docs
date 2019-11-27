@@ -52,9 +52,10 @@ digraph G {
 		"mqtt-int" [label="MQTT"];
 		"influxdb-int" [label="InfluxDB"];
 		"postgresql-int" [label="PostgreSQL"];
-		"gcp-pubsub-int" [label="GCP\nPub/Sub topic"];
+		"gcp-pubsub-int" [label="GCP\nPub/Sub"];
 		"aws-sns-int" [label="AWS\nSNS"];
 		"azure-service-bus-int" [label="Azure\nService-Bus"];
+		"thigsboard" [label="ThingsBoard"];
 		"as-api-client" [label="API client\ngRPC\nRESTful"];
 	}
 
@@ -66,6 +67,7 @@ digraph G {
 	"chirpstack-application-server" -> "azure-service-bus-int";
 	"chirpstack-application-server" -> "influxdb-int";
 	"chirpstack-application-server" -> "postgresql-int";
+	"chirpstack-application-server" -> "thigsboard";
 
 	"as-api-client" -> "chirpstack-application-server";
 }
