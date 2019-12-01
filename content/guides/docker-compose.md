@@ -66,6 +66,6 @@ As each container has its own hostname, you must use the hostname of the
 `networkserver` container when adding the network-server in the ChirpStack Application Server
 web-interface.
 
-When using the above example, it means that you must enter `networkserver:8000`
+When using the above example, it means that you must enter `chirpstack-network-server:8000`
 as the network-server hostname:IP. See [Network Servers](/application-server/use/network-servers/)
 for more information.
