@@ -24,7 +24,7 @@ measuring air quality, temperature, humidity, location...
 ## LoRa<sup>&reg;</sup> Gateway
 
 A LoRa Gateway listens to (usually) 8 or more channels
-simultaniously and forwards received data (from devices) to a
+simultaneously and forwards received data (from devices) to a
 LoRaWAN network-server (in this case the ChirpStack Network Server).
 The software running on the LoRa Gateway responsible for
 receiving and sending is called a Packet Forwarder. Common implementations
