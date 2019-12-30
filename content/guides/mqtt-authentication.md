@@ -67,7 +67,7 @@ user chirpstack_gw
 topic write gateway/+/event/+
 topic read gateway/+/command/+
 
-user lchirpstackns
+user chirpstackns
 topic read gateway/+/event/+
 topic write gateway/+/command/+
 
@@ -152,7 +152,7 @@ MOSQUITTO_SRC =
 OPENSSLDIR = /usr
 
 # Specify optional/additional linker/compiler flags here
-# On macOS, add 
+# On macOS, add
 #	CFG_LDFLAGS = -undefined dynamic_lookup
 # as described in https://github.com/eclipse/mosquitto/issues/244
 CFG_LDFLAGS =
