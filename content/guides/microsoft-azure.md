@@ -485,7 +485,7 @@ net_id="000000"
     commands_connection_string="[Gateway Commands Connection String]"
 {{</highlight>}}
 
-##### US915 example (channels 0 - 7)
+##### US915 example sub-band 1 (125kHz channels 0 - 7 & 500kHz channel 64)
 
 {{<highlight toml>}}
 [postgresql]
@@ -501,7 +501,7 @@ net_id="000000"
   name="US_902_928"
 
   [network_server.network_settings]
-  enabled_uplink_channels=[0, 1, 2, 3, 4, 5, 6, 7]
+  enabled_uplink_channels=[0, 1, 2, 3, 4, 5, 6, 7, 64]
 
   [network_server.gateway.backend]
   type="azure_iot_hub"
@@ -511,7 +511,7 @@ net_id="000000"
     commands_connection_string="[Gateway Commands Connection String]"
 {{</highlight>}}
 
-##### US915 example (channels 8 - 15)
+##### US915 example sub-band 2 (125kHz channels 8 - 15 & 500kHz channel 65)
 
 {{<highlight toml>}}
 [postgresql]
@@ -527,7 +527,7 @@ net_id="000000"
   name="US_902_928"
 
   [network_server.network_settings]
-  enabled_uplink_channels=[8, 9, 10, 11, 12, 13, 14, 15]
+  enabled_uplink_channels=[8, 9, 10, 11, 12, 13, 14, 15, 65]
 
   [network_server.gateway.backend]
   type="azure_iot_hub"
