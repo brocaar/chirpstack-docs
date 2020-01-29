@@ -220,7 +220,7 @@ net_id="000000"
   max_dr=5
 {{< /highlight >}}
 
-### US915 configuration example (channels 0 - 7)
+### US915 configuration example sub-band 1 (125kHz channels 0 - 7 & 500kHz channel 64)
 
 {{<highlight toml>}}
 [general]
@@ -236,10 +236,10 @@ net_id="000000"
 name="US_902_928"
 
 [network_server.network_settings]
-enabled_uplink_channels=[0, 1, 2, 3, 4, 5, 6, 7]
+enabled_uplink_channels=[0, 1, 2, 3, 4, 5, 6, 7, 64]
 {{< /highlight >}}
 
-### US915 configuration example (channels 8 - 15)
+### US915 configuration example sub-band 2 (125kHz channels 8 - 15 & 500kHz channel 65)
 
 This is the same channel-plan as used by The Things Network.
 
@@ -257,7 +257,7 @@ net_id="000000"
 name="US_902_928"
 
 [network_server.network_settings]
-enabled_uplink_channels=[8, 9, 10, 11, 12, 13, 14, 15]
+enabled_uplink_channels=[8, 9, 10, 11, 12, 13, 14, 15, 65]
 {{< /highlight >}}
 
 ## Installing ChirpStack Application Server
