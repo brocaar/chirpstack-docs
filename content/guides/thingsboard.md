@@ -43,8 +43,8 @@ for more information.
 
 ### Docker Compose setup
 
-When you have installed the ChirpStack stack using the Docker Compose guilde, the easiest
-option to integrate with ThingsBoard is by adding the Thiingsboard Docker
+When you have installed the ChirpStack stack using the Docker Compose guide, the easiest
+option to integrate with ThingsBoard is by adding the Thingsboard Docker
 container to the ChirpStack `docker-compose.yml` file.
 
 After making the modifications mentioned below, ThingsBoard will be started
