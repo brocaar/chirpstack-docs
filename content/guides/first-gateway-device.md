@@ -68,7 +68,7 @@ required in order to receive data from a device.
 In order to connect your ChirpStack Application Server instance with the ChirpStack Network Server
 instance, click *Network servers* and then *Add*. As the ChirpStack Network Server is
 installed on the same host as the ChirpStack Application Server in this guide, use
-`localhost:8000` as network-server name (port `8000` is the default port used
+`127.0.0.1:8000` as network-server name (port `8000` is the default port used
 by ChirpStack Network Server, this can be modified through `chirpstack-network-server.toml`). 
 
 Note that the LoRa App Server can connect to multiple LoRa Server instances.
