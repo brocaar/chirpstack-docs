@@ -549,7 +549,7 @@ sudo apt install chirpstack-application-server
 ### Configure ChirpStack Application Server
 
 The ChirpStack Application Server configuration file is located at
-`/etc/application-server/application-server.toml`. Below you will find a minimal
+`/etc/chirpstack-application-server/chirpstack-application-server.toml`. Below you will find a minimal
 but working configuration example. Please refer to the ChirpStack Application Server
 [Configuration](/application-server/install/config/) documentation for all the
 available options.
@@ -557,7 +557,7 @@ available options.
 To test if there are no errors, you can execute the following command:
 
 {{<highlight bash>}}
-sudo application-server
+sudo chirpstack-application-server
 {{< /highlight >}}
 
 This should output something like (it is important that there are no errors):
@@ -574,7 +574,7 @@ INFO[0005] api/js: starting join-server api              bind="0.0.0.0:8003" ca_
 If all is well, then you can start the service in the background using:
 
 {{<highlight bash>}}
-sudo systemctl start application-server
+sudo systemctl start chirpstack-application-server
 {{< /highlight >}}
 
 #### Configuration example
