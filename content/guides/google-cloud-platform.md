@@ -458,7 +458,7 @@ net_id="000000"
 timezone="Local"
 {{< /highlight>}}
 
-##### US915 configuration example
+##### US915 configuration example sub-band 1 (125kHz channels 0 - 7 & 500kHz channel 64)
 
 {{<highlight toml>}}
 [postgresql]
@@ -475,7 +475,7 @@ net_id="000000"
 
   [network_server.network_settings]
   rx1_delay=3
-  enabled_uplink_channels=[0, 1, 2, 3, 4, 5, 6, 7]
+  enabled_uplink_channels=[0, 1, 2, 3, 4, 5, 6, 7, 64]
 
   [network_server.gateway.backend]
   type="gcp_pub_sub"
