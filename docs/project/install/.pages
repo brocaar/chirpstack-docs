@@ -1,0 +1,5 @@
+arrange:
+  - configuration.md
+  - requirements.md
+  - docker.md
+  - install.md

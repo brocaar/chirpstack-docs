@@ -1,0 +1,12 @@
+title: Gateway Bridge
+arrange:
+  - index.md
+  - downloads.md
+  - changelog.md
+  - install
+  - gateway
+  - backends
+  - payloads
+  - integrate
+  - metrics
+  - community

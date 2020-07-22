@@ -1,0 +1,41 @@
+site_name: ChirpStack open-source LoRaWAN<sup>&reg;</sup> Network Server
+side_description: ChirpStack is an open-source LoRaWAN Network Server.
+theme:
+  name: material
+  custom_dir: overrides/
+  favicon: static/icon.png
+  logo: static/logo.png
+  logo_white: static/logo_white.png
+  palette:
+    scheme: default
+    primary: blue
+    accent: blue
+  features:
+    - tabs
+extra:
+  application_server:
+    version: 3.11.0
+  gateway_bridge:
+    version: 3.9.2
+  geolocation_server:
+    version: 3.3.1
+  network_server:
+    version: 3.10.0
+  gateway_os:
+    version: 3.3.0-test.7
+plugins:
+  - search
+  - macros
+  - awesome-pages
+  - minify:
+      minify_html: true
+markdown_extensions:
+  - codehilite
+  - admonition
+  - pymdownx.tasklist:
+      custom_checkbox: true
+extra_css:
+  - static/css/extra.css
+google_analytics:
+  - UA-3512995-9
+  - auto

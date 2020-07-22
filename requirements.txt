@@ -1,0 +1,6 @@
+mkdocs==1.1.2
+mkdocs-material==5.3.3
+mkdocs-markdownextradata-plugin==0.1.7
+mkdocs-macros-plugin==0.4.9
+mkdocs-awesome-pages-plugin==2.2.1
+mkdocs-minify-plugin==0.3.0

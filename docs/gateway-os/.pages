@@ -1,0 +1,7 @@
+title: Gateway OS
+arrange:
+  - index.md
+  - changelog.md
+  - install
+  - use
+  - community

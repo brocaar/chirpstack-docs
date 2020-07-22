@@ -1,0 +1,10 @@
+title: Application Server
+arrange:
+  - index.md
+  - features.md
+  - downloads.md
+  - changelog.md
+  - install
+  - use
+  - integrate
+  - community

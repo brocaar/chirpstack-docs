@@ -1,16 +1,14 @@
-.PHONY: documentation
+.PHONY: clean graphs
 
-build: static/img/graphs
-	@echo "Building documentation"
-	@mkdir -p dist/docs
-	@hugo
+build:
+	@mkdocs build
 
 clean:
 	@echo "Cleaning up workspace"
-	@rm -rf public
-	@rm -rf static/img/graphs
 
-static/img/graphs:
-	@mkdir static/img/graphs
-	@dot -Tpng -o static/img/graphs/architecture.png docs/architecture.dot
-
+graphs:
+	@echo "Generating graphs"
+	@rm -rf docs/static/img/graphs/*.png
+	@rm -rf docs/static/img/network-server/graphs/*.png
+	@cd docs/static/img/graphs && dot -Tpng -O *.dot
+	@cd docs/static/img/network-server/graphs && dot -Tpng -O *.dot

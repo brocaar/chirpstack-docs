@@ -1,0 +1,11 @@
+arrange:
+  - docker-compose.md
+  - debian-ubuntu.md
+  - ansible-vagrant.md
+  - raspberry-pi.md
+  - google-cloud-platform.md
+  - microsoft-azure.md
+  - mqtt-authentication.md
+  - thingsboard.md
+  - first-gateway-device.md
+  - troubleshooting

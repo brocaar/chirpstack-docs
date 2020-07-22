@@ -2,34 +2,20 @@
 
 This repository contains the global [chirpstack.io](https://www.chirpstack.io) documentation.
 
-## Build
+## Requirements
 
-### Git submodules
-
-Init and / or update the Git submodules:
+The docs are generated using [MkDocs](https://www.mkdocs.org/), which is a
+Python based documentation generator. Make sure you have Python and pip installed
+first. To install the MkDocs requirements:
 
 ```bash
-git submodule init
-git submodule update
+pip install -r requirements.txt
 ```
 
+## Test server
 
-### Install Hugo
-
-[Hugo](http://gohugo.io/) is needed to transform the Markdown formatted
-documentation into HTML.
-
-Please refer to the Hugo website for binaries, or install Hugo from source:
+The following command starts a server for testing the documentation:
 
 ```bash
-go get -v github.com/spf13/hugo
-```
-
-### Start Hugo
-
-To start Hugo as a web-server (auto-refreshing on file-change), run the
-following command from the root of this repository:
-
-```bash
-hugo server -w
+mkdocs serve -a 0.0.0.0:9090
 ```

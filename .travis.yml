@@ -1,9 +1,0 @@
-language: go
-sudo: required
-dist: trusty
-
-before_deploy:
-  - wget https://github.com/gohugoio/hugo/releases/download/v0.48/hugo_0.48_Linux-64bit.deb
-  - sudo dpkg -i hugo_0.48_Linux-64bit.deb
-  - rm *.deb
-  - make clean documentation

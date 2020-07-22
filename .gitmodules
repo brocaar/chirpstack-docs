@@ -1,3 +1,0 @@
-[submodule "themes/chirpstack-hugo-theme"]
-	path = themes/chirpstack-hugo-theme
-	url = git@github.com:brocaar/chirpstack-hugo-theme.git

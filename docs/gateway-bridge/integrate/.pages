@@ -1,0 +1,5 @@
+arrange:
+  - generic-mqtt.md
+  - azure-iot-hub.md
+  - gcp-cloud-iot-core.md
+  - metrics.md

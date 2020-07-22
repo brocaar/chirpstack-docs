@@ -1,0 +1,208 @@
+{% extends "main.html" %}
+
+{% block site_nav %}
+	<div class="main-sidebar">
+		{{ super() }}
+	</div>
+{% endblock %}
+
+{% block tabs %}
+  {{ super() }}
+
+  <div class="md-main main-page" data-md-component="main">
+    <div class="md-main__inner md-grid">
+      <div class="md-content md-content--expand">
+        <article class="md-content__inner md-typeset header">
+          <h1>ChirpStack, open-source LoRaWAN<sup>&reg;</sup> Network Server stack</h1>
+          <p>
+            The ChirpStack open-source LoRaWAN Network Server stack provides open-source components for LoRaWAN networks.
+            Together they form a ready-to-use solution including an user-friendly web-interface for device management and
+            APIs for integration. The modular architecture makes it possible to integrate within existing infrastructures.
+            All components are licensed under the MIT license and can be used for commercial purposes.
+          </p>
+          <p>
+            <a class="md-button md-button-primary" href="/project/" title="getting started">Get started</a>
+            <hr />
+          </p>
+        </article>
+
+        <article class="md-content__inner md-typeset screenshot">
+          <img src="/static/img/screenshots/web_applications.png" />
+          <hr />
+        </article>
+
+        <article class="md-content__inner md-typeset grid-blocks">
+          <h2>Feature highlights</h2>
+          <div class="grid">
+            <div>
+              <h4>Class-A support</h4>
+              <p>
+                End-devices of Class A allow for bi-directional communications whereby
+                each end-device‘s uplink transmission is followed by two short downlink
+                receive windows. The transmission slot scheduled by the end-device is
+                based on its own communication needs with a small variation based on
+                a random time basis (ALOHA-type of protocol).
+              </p>
+            </div>
+            <div>
+              <h4>Class-B support</h4>
+              <p>
+                End-devices of Class B allow for more receive slots. In addition to
+                the Class A random receive windows, Class B devices open extra
+                receive windows at scheduled times. In order for the End-device to
+                open it receive window at the scheduled time it receives a time
+                synchronized Beacon from the gateway.
+              </p>
+            </div>
+            <div>
+              <h4>Class-C support</h4>
+              <p>
+                End-devices of Class C have nearly continuously open receive windows,
+                only closed when transmitting. Class C end-device will use more power
+                to operate than Class A or Class B but they offer the lowest latency
+                for server to end-device communication.
+              </p>
+            </div>
+            <div>
+              <h4>Adaptive data-rate</h4>
+              <p>
+                When the end-device has ADR enabled, the ChirpStack LoRaWAN
+                network-server will ensure that the device will operate using the most
+                efficient data-rate and tx-power. this will not only save energy at
+                the device-side, but will also optimize the usage of the radio spectrum,
+                lowering the risk of collisions.
+              </p>
+            </div>
+
+            <div>
+              <h4>Live frame-logging</h4>
+              <p>
+                The ChirpStack LoRaWAN application-server provides live
+                frame-logging per gateway and device. It will display all the RX / TX
+                meta-data, together with the raw LoRaWAN PHYPayload
+                in a readable format. It is like Wireshark for LoRaWAN!
+              </p>
+            </div>
+
+            <div>
+              <h4>Channel (re)configuration</h4>
+              <p>
+                Whether you want to use a sub-set of the LoRaWAN
+                defined channels (e.g. for the US band) or want to configure
+                additional channels (e.g. for the EU band), the ChirpStack LoRaWAN
+                network-server will make sure the device stays always in sync with
+                the network configured channels (using the CFList field and / or
+                mac-commands).
+              </p>
+            </div>
+
+            <div>
+              <h4>Multi-tenant</h4>
+              <p>
+                The ChirpStack LoRaWAN application-server supports the
+                creation of multiple organizations to which (administrator) users can
+                be assigned. By integrating the user-accounts into the MQTT broker
+                authentication, organizations will only see their own data.
+              </p>
+            </div>
+
+            <div>
+              <h4>APIs and integration</h4>
+              <p>
+                All ChirpStack components provide gRPC and / or REST APIs for integration
+                with external services. By default all application data is published
+                to a MQTT broker, however integrations are available for various
+                cloud-providers, databases and visualization platforms.
+              </p>
+            </div>
+
+            <div>
+              <h4>LoRaWAN 1.0 and 1.1 compatible</h4>
+              <p>
+                The ChirpStack LoRaWAN network-server supports
+                LoRaWAN 1.0 and LoRaWAN 1.1
+                devices simultaniously, including all LoRaWAN
+                Regional Parameter Specification revisions and bands.
+              </p>
+            </div>
+
+            <div>
+              <h4>And there is much more...</h4>
+              <p>
+                Please refer to the <a href="/project/">ChirpStack documentation</a>
+                to learn more about all the features provided!
+              </p>
+            </div>
+          </div>
+          <hr />
+        </article>
+
+        <article class="md-content__inner md-typeset grid-blocks support">
+          <h2>Support</h2>
+          <div class="grid">
+            <div>
+              <h4>Bug reporting</h4>
+              <p>
+                Please report a bug by creating an issue at the related GitHub repository. GitHub links can be found at the documentation page of each component.
+              </p>
+            </div>
+            <div>
+              <h4>Community support</h4>
+              <p>
+                For questions and community support, please refer to <a href="https://forum.chirpstack.io">forum.chirpstack.io</a>. 
+              </p>
+            </div>
+            <div>
+              <h4>Commercial support</h4>
+              <p>
+                For commercial support, contact <a href="http://www.brocaar.com">Orne Brocaar</a>, the author of ChirpStack.
+              </p>
+            </div>
+          </div>
+          <hr />
+        </article>
+
+        <article class="md-content__inner md-typeset grid-blocks sponsors">
+          <h2>Supported by</h2>
+          <div class="grid">
+            <div>
+              <p>
+                <a href="https://thingstream.io/"><img src="/static/img/sponsors/thingstream.png" alt="thingstream" /></a>
+              </p>
+            </div>
+            <div>
+              <p>
+                
+              </p>
+            </div>
+            <div>
+              <p>
+                <a href="https://www.afnic.fr/"><img src="/static/img/sponsors/afnic.jpg" alt="afnic" /></a>
+              </p>
+            </div>
+            <div>
+              <p>
+                <a href="https://www.twtg.io/"><img src="/static/img/sponsors/twtg.png" alt="twtg" /></a>
+              </p>
+            </div>
+            <div>
+              <p>
+                <a href="https://www.cablelabs.com/"><img src="/static/img/sponsors/cablelabs.png" alt="cablelabs" /></a>
+              </p>
+            </div>
+            <div>
+              <p>
+                <a href="https://www.sidnfonds.nl/"><img src="/static/img/sponsors/sidn_fonds.png" alt="sidn fonds" /></a>
+              </p>
+            </div>
+          </div>
+          <hr />
+        </article>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}

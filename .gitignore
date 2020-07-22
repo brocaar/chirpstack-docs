@@ -1,6 +1,6 @@
 # hidden files
 .*
+!.pages
 
 # generated html
-public/
-dist/
+/site

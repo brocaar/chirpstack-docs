@@ -1,0 +1,7 @@
+arrange:
+  - image-types.md
+  - getting-started.md
+  - log-files.md
+  - monitoring.md
+  - modifying-files.md
+  - software-update.md
