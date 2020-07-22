@@ -1,4 +1,8 @@
-# Google Cloud Platform Pub/Sub
+---
+description: Receive LoRaWAN device-data using Google Cloud Platform Pub/Sub.
+---
+
+# GCP Pub/Sub
 
 The [Google Cloud Platform](https://cloud.google.com/) [Pub/Sub](https://cloud.google.com/pubsub/)
 integration publishes all the events to a configurable GCP Pub/Sub topic.
@@ -8,9 +12,9 @@ in one of the storage options provided by the Google Cloud Platform.
 
 ## Events
 
-The GCP Pub/Sub integration exposes all events as documented by [Event Types](index.md#event-types).
+The GCP Pub/Sub integration exposes all events as documented by [Event types](events.md).
 
-## Attributes
+### Attributes
 
 The following attributes are added to each Pub/Sub message:
 

@@ -1,4 +1,8 @@
-# InfluxDB integration
+---
+description: Write received LoRaWAN device-data into an InfluxDB database.
+---
+
+# InfluxDB
 
 When configured, the InfluxDB integration will write device data into an
 [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/) database.
@@ -12,8 +16,8 @@ This makes it possible to directly visualize all device data using for example
 
 Before this integration is able to write data into InfluxDB, the uplink
 payloads must be decoded. The payload codec can be configured per
-[device-profile](../../use/device-profiles.md). To validate that the uplink
-payloads are decoded, you can use the [live device event-log](../../use/event-logging.md)
+[device-profile](../use/device-profiles.md). To validate that the uplink
+payloads are decoded, you can use the [live device event-log](../use/event-logging.md)
 feature. Decoded payload data will be available under the `object` key in
 the JSON object.
 
@@ -39,7 +43,7 @@ Example:
 
 The above will translate to the measurement `device_frmpayload_data_temperature_sensor_1`.
 
-**Note:** When using the [CayenneLPP codec](../../use/device-profiles.md)
+**Note:** When using the [CayenneLPP codec](../use/device-profiles.md)
 `camelCasing` is used when the data is presented as JSON. However, for the InfluxDB
 naming, `snake_casing` is used. Thus `temperatureSensor` in JSON translates to
 `temperature_sensor` as measurement name in InfluxDB.

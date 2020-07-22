@@ -11,7 +11,7 @@ organizations, applications and devices can be managed. For integration with
 external services, it offers a [RESTful](integrate/rest.md) 
 and [gRPC](integrate/grpc.md) API.
 
-Device data can be [sent and / or received](integrate/sending-receiving/index.md) over
+Device data can be [sent and / or received](integrations/events.md) over
 MQTT, HTTP and be written directly into InfluxDB.
 
 See also the complete list of [ChirpStack Application Server features](features.md).

@@ -1,3 +1,7 @@
+---
+description: Receive LoRaWAN device-data using the Azure Service Bus.
+---
+
 # Azure Service Bus
 
 The [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/)
@@ -6,14 +10,12 @@ to which applications can subscribe.
 
 ## Events
 
-The Azure Service Bus integration exposes all events as documented by [Event types](index.md#event-types).
+The Azure Service Bus integration exposes all events as documented by [Event types](events.md).
 
-## User properties
+### User properties
 
 The following user properties are added to each published message:
 
 * `event` - the event type
 * `dev_eui` - the device EUI
 * `application_id` - the ChirpStack Application Server application ID
-
-

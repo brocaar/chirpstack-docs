@@ -124,7 +124,7 @@ Now open the ChirpStack Application Server web-interface and navigate to the Dev
 
 Add a variable named **ThingsBoardAccessToken** and with as value the content
 from your clipboard (containing the ThingsBoard Device _Access Token_).
-This step is also documented in the ChirpStack Application Server [ThingsBoard Integration](../../application-server/integrate/sending-receiving/thingsboard.md)
+This step is also documented in the ChirpStack Application Server [ThingsBoard Integration](../../application-server/integrations/thingsboard.md)
 documentation.
 
 ### Setup ChirpStack Application Server ThingsBoard integration

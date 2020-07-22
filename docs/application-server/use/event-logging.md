@@ -23,5 +23,5 @@ E.g. **> payload: {} 9 keys** means you can expand this **payload**
 item as it has nine sub-items.
 
 The payloads that are exposed are documented by the
-[Sending and Receiving](../integrate/sending-receiving/mqtt.md) page.
+[Sending and Receiving](../integrations/mqtt.md) page.
 You will also find examples on this page.

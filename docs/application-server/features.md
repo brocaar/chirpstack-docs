@@ -43,7 +43,7 @@ is implemented using JWT tokens.
 
 ChirpStack Application Server provides different ways of sending and receiving device
 payloads (e.g. MQTT, HTTP, InfluxDB, ...).
-Please refer to [Sending and receiving](integrate/sending-receiving/index.md)
+Please refer to [Sending and receiving](integrations/events.md)
 for all available integrations.
 
 **Note:** downlink payloads can also be scheduled through the API.

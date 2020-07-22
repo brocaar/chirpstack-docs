@@ -6,5 +6,6 @@ arrange:
   - changelog.md
   - install
   - use
+  - integrations
   - integrate
   - community

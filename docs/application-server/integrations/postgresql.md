@@ -1,3 +1,7 @@
+---
+description: Write received LoRaWAN device-data into a PostgreSQL database.
+---
+
 # PostgreSQL
 
 The [PostgreSQL](https://www.postgresql.org/) integration writes all events
@@ -21,7 +25,7 @@ your PostgreSQL installation, these commands might be different.
 
 Enter the PostgreSQL as the `postgres` user:
 
-```
+```bash
 sudo -u postgres psql
 ```
 
@@ -45,7 +49,7 @@ create extension hstore;
 To verify if the user and database have been setup correctly, try to connect
 to it:
 
-```
+```bash
 psql -h localhost -U chirpstack_as_events -W chirpstack_as_events
 ```
 
