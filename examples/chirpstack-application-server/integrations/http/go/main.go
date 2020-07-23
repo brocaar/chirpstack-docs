@@ -7,9 +7,10 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/brocaar/chirpstack-api/go/v3/as/integration"
 	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
+
+	"github.com/brocaar/chirpstack-api/go/v3/as/integration"
 )
 
 type handler struct {

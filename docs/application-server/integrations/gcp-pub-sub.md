@@ -20,3 +20,14 @@ The following attributes are added to each Pub/Sub message:
 
 * `event`: the event type
 * `devEUI`: the device EUI to which the event relates
+
+## Example code
+
+The following code example demonstrates how to consume integration events using
+a [GCP Pub/Sub Subsription](https://cloud.google.com/pubsub/docs/overview).
+
+=== "main.go"
+
+	```go
+	--8<-- "examples/chirpstack-application-server/integrations/gcppubsub/go/main.go"
+	```
