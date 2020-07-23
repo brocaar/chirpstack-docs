@@ -24,7 +24,7 @@ The following attributes are added to each Pub/Sub message:
 ## Example code
 
 The following code example demonstrates how to consume integration events using
-a [GCP Pub/Sub Subsription](https://cloud.google.com/pubsub/docs/overview).
+a [GCP Pub/Sub Subscription](https://cloud.google.com/pubsub/docs/overview).
 
 === "main.go"
 
