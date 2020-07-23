@@ -53,7 +53,7 @@ Unlike the **chirpstack-gateway-os-base** image, you **should not** update the
 ChirpStack Gateway Bridge configuration. It is configured to point to the MQTT broker
 which comes with the **chirpstack-gateway-os-full** image.
 
-When using the **chirpstack-gateway-os-full** image, proceed with [the following](/guides/first-gateway-device/)
+When using the **chirpstack-gateway-os-full** image, proceed with [the following](../../project/guides/first-gateway-device.md)
 guide to get started with ChirpStack Application Server after you have configured the channel-plan.
 
 ## Important to know
