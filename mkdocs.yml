@@ -32,6 +32,9 @@ plugins:
 markdown_extensions:
   - codehilite
   - admonition
+  - pymdownx.snippets
+  - pymdownx.tabbed
+  - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
 extra_css:
