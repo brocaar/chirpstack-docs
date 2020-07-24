@@ -22,7 +22,7 @@ extra:
   network_server:
     version: 3.10.0
   gateway_os:
-    version: 3.3.0-test.7
+    version: 3.3.0-test.8
 plugins:
   - search
   - macros

@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.3.0-test.8
+
+## Bugfixes
+
+* Fix ChirpStack Application Server Makefile execution to include web-interface statics in binary.
+
 ## v3.3.0-test.7
 
 ### Updates
