@@ -856,3 +856,23 @@ Also don't forget to change `server` from `http://...` to `https://...`.
 
 See [https://github.com/brocaar/chirpstack-certificates](https://github.com/brocaar/chirpstack-certificates)
 for a set of scripts to generate such certificates.
+
+## Environment variables
+
+Although using the configuration file is recommended, it is also possible
+to use environment variables to set configuration variables. Configuration 
+dots `.` are replaced with double underscores `__`.
+
+Example:
+
+```toml
+[network_server.scheduler]
+scheduler_interval="1s"
+```
+
+Can be set using the environment variable:
+
+```text
+NETWORK_SERVER__SCHEDULER__SCHEDULER_INTERVAL="1s"
+```
+
