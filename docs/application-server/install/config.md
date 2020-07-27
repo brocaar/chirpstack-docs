@@ -720,5 +720,5 @@ client_id="my_client_id"
 Can be set using the environment variable:
 
 ```text
-APPLICATION_SERVER__USER_AUTHENTICATION__OPENID_CONNECT="my_client_id"
+APPLICATION_SERVER__USER_AUTHENTICATION__OPENID_CONNECT__CLIENT_ID="my_client_id"
 ```
