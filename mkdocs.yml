@@ -30,13 +30,15 @@ plugins:
   - minify:
       minify_html: true
 markdown_extensions:
-  - codehilite
   - admonition
   - pymdownx.snippets
   - pymdownx.tabbed
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.highlight:
+      use_pygments: true
+
 extra_css:
   - static/css/extra.css
 google_analytics:
