@@ -21,5 +21,4 @@ configure the device with the multicast-address, session-keys etc...
 
 ## Sending data
 
-Sending data to the multicast-group happens using the [gRPC](../integrate/grpc.md)
-or [RESTful JSON](../integrate/rest.md) API.
+Sending data to the multicast-group is possible using the [gRPC or RESTful JSON API](../api/index.md).

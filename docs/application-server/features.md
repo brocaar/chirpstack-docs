@@ -21,7 +21,7 @@ have access to these payloads.
 ## Web-interface
 
 ChirpStack Application Server offers a web-interface (built on top of the provided
-[RESTful](integrate/rest.md) api). This web-interface can be used
+[RESTful](api/index.md) api). This web-interface can be used
 to manage users, organizations, applications and devices.
 
 ## User authorization
@@ -34,10 +34,8 @@ and devices.
 
 ## API
 
-For integration with external services, ChirpStack Application Server provides a [RESTFul](integrate/rest.md)
-and [gRPC](integrate/grpc.md) API which exposes the same
-functionality as the web-interface. [Authentication and authorization](integrate/auth.md)
-is implemented using JWT tokens.
+For integration with external services, ChirpStack Application Server provides a [gRPC and RESTFul](api/index.md)
+API which exposes the same functionality as the web-interface.
 
 ## Payloads and device events
 

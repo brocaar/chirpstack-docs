@@ -7,5 +7,5 @@ arrange:
   - install
   - use
   - integrations
-  - integrate
+  - api
   - community

@@ -8,8 +8,7 @@ and encryption of application payloads.
 
 It offers a [web-interface](use/login.md) where users,
 organizations, applications and devices can be managed. For integration with
-external services, it offers a [RESTful](integrate/rest.md) 
-and [gRPC](integrate/grpc.md) API.
+external services, it offers a [gRPC and RESTful](api/index.md) API.
 
 Device data can be [sent and / or received](integrations/events.md) over
 MQTT, HTTP and be written directly into InfluxDB.
