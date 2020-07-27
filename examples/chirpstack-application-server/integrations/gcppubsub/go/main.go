@@ -104,6 +104,7 @@ func newHandler(json bool, projectID, subscriptionName, credentialsFile string) 
 	}
 
 	return &handler{
+		json:         json,
 		subscription: subscription,
 		client:       client,
 	}, nil
