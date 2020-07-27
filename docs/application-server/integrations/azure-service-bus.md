@@ -19,3 +19,14 @@ The following user properties are added to each published message:
 * `event` - the event type
 * `dev_eui` - the device EUI
 * `application_id` - the ChirpStack Application Server application ID
+
+## Example code
+
+The following code example demonstrates how to consume integration events using
+an [Azure Service-Bus Queue](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
+
+=== "main.go"
+
+	```go
+	--8<-- "examples/chirpstack-application-server/integrations/azure-service-bus/go/main.go"
+	```
