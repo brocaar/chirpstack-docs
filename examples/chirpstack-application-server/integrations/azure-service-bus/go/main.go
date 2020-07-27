@@ -120,5 +120,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	h.receive()
+	panic(h.receive())
 }

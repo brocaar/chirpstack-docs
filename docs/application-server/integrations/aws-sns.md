@@ -21,3 +21,17 @@ The following message attributes are added to each published message:
 * `dev_eui` - the device EUI
 * `application_id` - the ChirpStack Application Server application ID
 
+## Example code
+
+The following code example demonstrates how to consume integration events using
+an [AWS SQS](https://aws.amazon.com/sqs/) subscription.
+
+!!! important
+	Make sure the _Enable raw message delivery_ option is enabled on the subscription.
+	If not enabled, the SQS messages will not have the expected attributes.
+
+=== "main.go"
+
+	```go
+	--8<-- "examples/chirpstack-application-server/integrations/aws-sns/go/main.go"
+	```
