@@ -27,26 +27,51 @@ information about the fine-timestamp.
 
 When using Wifi based geolocation, you must configure a payload decoder for
 decoding the FRMPayload into an object expected by the LoRa Cloud integration.
-Example payload for the field containing the Wifi access-points:
 
-```json
-[
-	{
-		"macAddress": "...", // base64 encoded
-		"signalStrength": -70
-	},
-	{
-		"macAddress": "...", // base64 encoded
-		"signalStrength": -80
-	},
-	{
-		"macAddress": "...", // base64 encoded
-		"signalStrength": -75
-	}
-]
+Example payload decoder:
+
+```js
+--8<--- "examples/chirpstack-application-server/codecs/wifi-geolocation/decode.js"
 ```
 
+The an example of the output produced by the above codec:
+
+```json
+{
+	"access_points": [
+		{
+			"macAddress": "...", // base64 encoded
+			"signalStrength": -70
+		},
+		{
+			"macAddress": "...", // base64 encoded
+			"signalStrength": -80
+		},
+		{
+			"macAddress": "...", // base64 encoded
+			"signalStrength": -75
+		}
+	]
+}
+```
+
+In this case you must configure the **Wifi payload field** in the LoRa Cloud
+Geolocation configuration to _access_points_.
+
 ### GNSS
+
+When using GNSS based geolocation, you must configure a payload decoder to split
+the GNSS payload part from the uplink FRMPayload. For example, your application
+might not only send the GNSS payload, but also sends the number of satellites.
+
+Example payload decoder:
+
+```js
+--8<--- "examples/chirpstack-application-server/codecs/gnss-geolocation/decode.js"
+```
+
+In the above case, you must configure the **GNSS payload field** in the LoRa Cloud
+Geolocation configuration to _lr1110_gnss_.
 
 When using the GNSS resolver, either the timestamp included the GNSS payload
 or the receive timestamp (of the uplink) can be used.
