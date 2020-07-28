@@ -703,3 +703,22 @@ instructions. When the `letsencrypt` cli tool has been installed, execute:
 ```bash
 letsencrypt certonly --standalone -d DOMAINNAME.HERE 
 ```
+
+## Environment variables
+
+Although using the configuration file is recommended, it is also possible
+to use environment variables to set configuration variables. Configuration 
+dots `.` are replaced with double underscores `__`.
+
+Example:
+
+```toml
+[application_server.user_authentication.openid_connect]
+client_id="my_client_id"
+```
+
+Can be set using the environment variable:
+
+```text
+APPLICATION_SERVER__USER_AUTHENTICATION__OPENID_CONNECT__CLIENT_ID="my_client_id"
+```

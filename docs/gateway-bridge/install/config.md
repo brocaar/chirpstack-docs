@@ -482,7 +482,8 @@ marshaler="protobuf"
 ## Environment variables
 
 Although using the configuration file is recommended, it is also possible
-to use environment variables to set configuration variables.
+to use environment variables to set configuration variables. Configuration 
+dots `.` are replaced with double underscores `__`.
 
 Example:
 
@@ -494,5 +495,5 @@ udp_bind="0.0.0.0:1700"
 Can be set using the environment variable:
 
 ```text
-BACKEND.SEMTECH_UDP.UDP_BIND="0.0.0.0:1700"
+BACKEND__SEMTECH_UDP__UDP_BIND="0.0.0.0:1700"
 ```
