@@ -26,8 +26,33 @@ The following attributes are added to each Pub/Sub message:
 The following code example demonstrates how to consume integration events using
 a [GCP Pub/Sub Subscription](https://cloud.google.com/pubsub/docs/overview).
 
+### Go
+
 === "main.go"
 
 	```go
 	--8<-- "examples/chirpstack-application-server/integrations/gcppubsub/go/main.go"
+	```
+
+=== "go.mod"
+
+	```text
+	--8<-- "examples/chirpstack-application-server/integrations/gcppubsub/go/go.mod"
+	```
+
+### Python
+
+Please refer to the [Setting up authentication](https://cloud.google.com/pubsub/docs/reference/libraries#client-libraries-install-python)
+section for creating a service-account and setting up the credentials.
+
+=== "main.py"
+
+	```python
+	--8<-- "examples/chirpstack-application-server/integrations/gcppubsub/python/main.py"
+	```
+
+=== "requirements.txt"
+
+	```text
+	--8<-- "examples/chirpstack-application-server/integrations/gcppubsub/python/requirements.txt"
 	```

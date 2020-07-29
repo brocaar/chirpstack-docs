@@ -1,0 +1,2 @@
+chirpstack-api==3.7.2
+google-cloud-pubsub==1.7.0
