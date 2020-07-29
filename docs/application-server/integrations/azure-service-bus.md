@@ -25,8 +25,16 @@ The following user properties are added to each published message:
 The following code example demonstrates how to consume integration events using
 an [Azure Service-Bus Queue](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
 
+### Go
+
 === "main.go"
 
 	```go
 	--8<-- "examples/chirpstack-application-server/integrations/azure-service-bus/go/main.go"
+	```
+
+=== "go.mod"
+
+	```text
+	--8<-- "examples/chirpstack-application-server/integrations/azure-service-bus/go/go.mod"
 	```
