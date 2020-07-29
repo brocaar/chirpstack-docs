@@ -38,3 +38,17 @@ an [Azure Service-Bus Queue](https://docs.microsoft.com/en-us/azure/service-bus-
 	```text
 	--8<-- "examples/chirpstack-application-server/integrations/azure-service-bus/go/go.mod"
 	```
+
+### Python
+
+=== "main.py"
+
+	```python
+	--8<-- "examples/chirpstack-application-server/integrations/azure-service-bus/python/main.py"
+	```
+
+=== "requirements.txt"
+
+	```text
+	--8<-- "examples/chirpstack-application-server/integrations/azure-service-bus/python/requirements.txt"
+	```

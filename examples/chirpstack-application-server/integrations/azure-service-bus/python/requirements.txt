@@ -1,0 +1,2 @@
+chirpstack-api==3.7.2
+azure-servicebus==0.50.3
