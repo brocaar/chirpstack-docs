@@ -1,5 +1,16 @@
 # Changelog
 
+## v3.3.0-test.9
+
+### Updates
+
+* [ChirpStack Concentratord](https://github.com/brocaar/chirpstack-concentratord/) is updated to v3.0.0-test.11.
+
+### Improvements
+
+* `gateway-config` has been updated for the [Pi Supply LoRa Gateway HAT](https://uk.pi-supply.com/products/iot-lora-gateway-hat-for-raspberry-pi).
+* New `gateway-config` option has been added to reload the Gateway ID.
+
 ## v3.3.0-test.8
 
 ## Bugfixes
