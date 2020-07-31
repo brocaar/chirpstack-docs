@@ -4,6 +4,16 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.11.1
+
+### Improvements
+
+* Update Kafka configuration parameters so that it is possible to integrate with Azure Event Hub.
+
+### Bugfixes
+
+* Fix setting LoRa Cloud DAS Modem port default value.
+
 ## v3.11.0
 
 ### Features
