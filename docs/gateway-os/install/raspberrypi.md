@@ -16,6 +16,9 @@ For an initial installation:
 * Download the SD Card image for your Raspberry Pi version using one of the
   links below.
 * Flash the SD Card image using for example [Etcher](https://www.balena.io/etcher/) on a SD Card.
+	* Note: there is no need to extract the `.wic.gz` file first. With the latest version of Etcher,
+      you can also use the url to the `.wic.gz` image, in which case you can skip the download step
+	  as Etcher will download the image for you.
 * Continue with [Using the ChirpStack Gateway OS images](../use/getting-started.md).
 
 ### SD Card images
