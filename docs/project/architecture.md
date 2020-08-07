@@ -19,7 +19,7 @@ simultaneously and forwards received data (from devices) to a
 LoRaWAN network-server (in this case the ChirpStack Network Server).
 The software running on the LoRa Gateway responsible for
 receiving and sending is called a Packet Forwarder. Common implementations
-are the [Semtech UDP Packet Porwarder](https://github.com/Lora-net/packet_forwarder/)
+are the [Semtech UDP Packet Forwarder](https://github.com/Lora-net/packet_forwarder/)
 and the [Semtech Basic Station Packet Forwarder](https://doc.sm.tc/station/).
 
 ## ChirpStack Gateway Bridge
