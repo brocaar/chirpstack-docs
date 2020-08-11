@@ -4,29 +4,37 @@ description: Installing ChirpStack Gateway OS on a Raspberry Pi.
 
 # Raspberry Pi
 
-## Installation
+## Image types
 
 There are two file types:
 
 * `.wic.gz` - Image to use for an initial installation
 * `.swu` - Software update file, see [Software update](../use/software-update.md)
 
-For an initial installation:
-
-* Download the SD Card image for your Raspberry Pi version using one of the
-  links below.
-* Flash the SD Card image using for example [Etcher](https://www.balena.io/etcher/) on a SD Card.
-	* Note: there is no need to extract the `.wic.gz` file first. With the latest version of Etcher,
-      you can also use the url to the `.wic.gz` image, in which case you can skip the download step
-	  as Etcher will download the image for you.
-* Continue with [Using the ChirpStack Gateway OS images](../use/getting-started.md).
-
-### SD Card images
+## Image links
 
 * [Raspberry Zero W](http://artifacts.chirpstack.io/downloads/chirpstack-gateway-os/raspberrypi/raspberrypi0-wifi/{{ gateway_os.version }}/)
 * [Raspberry Pi 1](http://artifacts.chirpstack.io/downloads/chirpstack-gateway-os/raspberrypi/raspberrypi/{{ gateway_os.version }}/)
 * [Raspberry Pi 3](http://artifacts.chirpstack.io/downloads/chirpstack-gateway-os/raspberrypi/raspberrypi3/{{ gateway_os.version }}/)
 * [Raspberry Pi 4](http://artifacts.chirpstack.io/downloads/chirpstack-gateway-os/raspberrypi/raspberrypi4/{{ gateway_os.version }}/)
+
+## SD card flashing
+
+### Using Balena Etcher
+
+* Download the SD card image for your Raspberry Pi (ending with `.wic.gz`).
+* Click the **Flash from file** option in the [Balena Etcher](https://www.balena.io/etcher/) interface.
+* Flash the SD card.
+* Continue with [Using the ChirpStack Gateway OS images](../use/getting-started.md).
+
+### Using Win32DiskImager
+
+* Download the SD card image for your Raspberry Pi (ending with `.wic.gz`).
+* Extract the `.wic.gz` image using for example [7-Zip](https://www.7-zip.org/).
+* Within the [Win32DiskImager](http://sourceforge.net/projects/win32diskimager/) interface, select the extracted `.wic` file.
+  Please note that you must select the `*.*` filter in the _Select a disk image_ popup before you can select the `.wic` file.
+* Flash the SD card.
+* Continue with [Using the ChirpStack Gateway OS images](../use/getting-started.md).
 
 ## Supported shields
 
