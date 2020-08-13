@@ -10,7 +10,7 @@ separated). The `event` URL query parameter indicates the type of the event.
 
 ## Events
 
-The GCP Pub/Sub integration exposes all events as documented by [Event types](events.md).
+The HTTP integration exposes all events as documented by [Event types](events.md).
 
 ## Example code
 
