@@ -27,7 +27,7 @@ in the [chirpstack-api](https://github.com/brocaar/chirpstack-api/) repository.
 	devEUI field for example. When re-encoding this filed to HEX encoding, you
 	will find the expected devEUI string.
 
-## Uplink
+## up
 
 Contains the data and meta-data for an uplink application payload.
 
@@ -86,7 +86,7 @@ Contains the data and meta-data for an uplink application payload.
 
 This message is defined by the `UplinkEvent` Protobuf message.
 
-## Status
+## status
 
 Event for battery and margin status received from devices.
 
@@ -115,7 +115,7 @@ configured by the [service-profile](../use/service-profiles.md).
 
 This message is defined by the `StatusEvent` Protobuf message.
 
-## Join
+## join
 
 Event published when a device joins the network. Please note that this is sent
 after the first received uplink (data) frame.
@@ -172,7 +172,7 @@ after the first received uplink (data) frame.
 
 This message is defined by the `JoinEvent` Protobuf message.
 
-## Ack
+## ack
 
 Event published on downlink frame acknowledgements.
 
@@ -229,7 +229,7 @@ Event published on downlink frame acknowledgements.
 
 This message is defined by the `AckEvent` Protobuf message.
 
-## TxAck
+## txack
 
 Event published when a downlink frame has been acknowledged by the gateway
 for transmission.
@@ -254,7 +254,7 @@ for transmission.
 
 This message is defined by the `TxAckEvent` Protobuf message.
 
-## Error
+## error
 
 Event published in case of an error related to payload scheduling or handling.
 E.g. in case when a payload could not be scheduled as it exceeds the maximum
