@@ -4,6 +4,7 @@ arrange:
   - gateway-bridge
   - network-server
   - application-server
-  - geolocation-server
+  - concentratord
   - gateway-os
+  - geolocation-server
   - forum

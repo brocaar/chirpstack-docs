@@ -23,6 +23,8 @@ extra:
     version: 3.10.0
   gateway_os:
     version: 3.3.0-test.9
+  concentratord:
+    version: 3.0.0
 plugins:
   - search
   - macros

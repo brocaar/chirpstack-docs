@@ -1,0 +1,8 @@
+title: Concentratord
+arrange:
+  - index.md
+  - hardware-support.md
+  - downloads.md
+  - changelog.md
+  - install
+  - api
