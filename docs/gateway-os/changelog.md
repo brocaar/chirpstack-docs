@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.3.0
+
+This marks the first non-testing release of the ChirpStack Gateway OS!
+
+### Updates
+
+* [ChirpStack Concentratord](https://www.chirpstack.io/concentratord/) is updated to v3.0.0.
+
 ## v3.3.0-test.9
 
 ### Updates
