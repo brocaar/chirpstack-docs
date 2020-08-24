@@ -9,7 +9,7 @@ description: Starting firmware update over the air (FUOTA) jobs.
 
 Firmware update over the air (sometimes called FUOTA) makes it possible to
 push firmware updates to one or multiple devices, making use of multicast.
-It it standardized by the following LoRa<sup>&reg</sup> Alliance specifications:
+It is standardized by the following LoRa<sup>&reg;</sup> Alliance specifications:
 
 * LoRaWAN<sup>&reg;</sup> Application Layer Clock Synchronization
 * LoRaWAN<sup>&reg;</sup> Fragmented Data Block Transport

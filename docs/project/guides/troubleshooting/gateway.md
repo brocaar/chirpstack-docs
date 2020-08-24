@@ -170,7 +170,7 @@ documentation.
 
 #### ChirpStack Gateway Bridge configuration
 
-When you have completed the previous steps succesfully, then packet-forwarder
+When you have completed the previous steps successfully, then packet-forwarder
 data is received by your machine / server, but is not seen by the ChirpStack Gateway Bridge service.
 This probably means that ChirpStack Gateway Bridge is binding on a different network
 interface and / or port. Please check your `chirpstack-gateway-bridge.toml` [Configuration](../../../gateway-bridge/install/config.md).
@@ -179,7 +179,7 @@ interface and / or port. Please check your `chirpstack-gateway-bridge.toml` [Con
 
 If you have confirmed that the ChirpStack Gateway Bridge component receives the
 data sent by the packet-forwarder, it is time to confirm ChirpStack Gateway Brige is
-succesfully publishing this data to the MQTT broker.
+successfully publishing this data to the MQTT broker.
 
 To validate that the ChirpStack Gateway Bridge is publishing LoRa<sup>&reg;</sup> frames to the MQTT
 broker, you can subscribe to the `gateway/#` MQTT topic. When using the

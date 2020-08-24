@@ -47,7 +47,7 @@ admin users and define a group of devices with the same purpose.
 ## Users
 
 Users can be assigned to an organization to grant them access to the
-organization. Within the context of that assigment, an user can be an
+organization. Within the context of that assignment, an user can be an
 organization administrator or a regular user.
 
 ### Organization administrator

@@ -23,7 +23,7 @@ description: Lists the changes per ChirpStack Application Server release, includ
 This feature makes it possible to use an OpenID Connect authentication backend
 together with ChirpStack Application Server, for example [Auth0.com](https://auth0.com/).
 Users are automatically matched based on email address on the first login.
-If there is a succesful match, an external OpenID Connect user identifier is
+If there is a successful match, an external OpenID Connect user identifier is
 associated with the user, so that even in case of an email address update, it
 can still be matched (and updated in the ChirpStack Application Server database).
 

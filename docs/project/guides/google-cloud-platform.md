@@ -141,7 +141,7 @@ INFO[0007] integration/mqtt: subscribing to topic                    qos=0 topic
 INFO[0045] integration/mqtt: publishing message                      qos=0 topic=/devices/gw-0102030405060708/events/up
 ```
 
-Your gateway is now communicating succesfully with the Cloud IoT Core MQTT bridge!
+Your gateway is now communicating successfully with the Cloud IoT Core MQTT bridge!
 
 ### Create downlink Pub/Sub topic
 
@@ -324,7 +324,7 @@ You can close the Cloud Shell.
 
 ## Install ChirpStack Network Server
 
-When you have succesfully completed the previous steps, then your gateway is
+When you have successfully completed the previous steps, then your gateway is
 connected to the Cloud IoT Core MQTT bridge, all the ChirpStack Network Server and ChirpStack Application Server
 requirements are set up and is it time to install [ChirpStack Network Server](../../network-server/index.md) and
 [ChirpStack Application Server](../../application-server/index.md).

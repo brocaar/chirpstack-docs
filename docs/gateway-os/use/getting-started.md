@@ -17,7 +17,7 @@ as access-point with the name `ChirpStackAP` and password `ChirpStackAP`.
 Once connected with `ChirpStackAP` the IP of the gateway is `192.168.0.1`.
 
 If you are connected using ethernet, then it uses DHCP to obtain an IP address.
-Many internet routers provide a web-interface with the IP addresses of conncted
+Many internet routers provide a web-interface with the IP addresses of connected
 devices.
 
 If the IP of your gateway is `192.168.0.1`:

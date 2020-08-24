@@ -9,7 +9,7 @@ description: Events that are sent by the ChirpStack Application Server to one or
 Depending the integration, it is possible to encode events in several ways:
 
 * JSON: JSON based on the Protocol Buffers JSON mapping
-* Profobuf: Protocol Buffers binary encoding
+* Protobuf: Protocol Buffers binary encoding
 * JSON (v3): Legacy JSON format, this option will be removed in the next major release and exists for backwards compatibility
 
 The way in which a payload is encoded can be either configured per integration
