@@ -11,7 +11,7 @@ in the [Configuration](../install/config.md) file which will
 handle the authentication of the device and the generation of the session-keys.
 The Join Server API is specified by the [LoRaWAN Backend Interfaces](https://www.lora-alliance.org/lorawan-for-developers)
 specification. By default [ChirpStack Application Server](../../application-server/index.md)
-fulfils this role.
+fulfills this role.
 
 ## Activation By Personalization (ABP)
 

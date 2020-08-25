@@ -8,7 +8,7 @@ ChirpStack Network Server has support for creating multicast-groups to which dev
 assigned. When enqueueing a downlink payload for a multicast-group, ChirpStack Network Server
 will analyze which gateways must be used for broadcasting to cover the complete
 multicast-group. This means that potentially, a single multicast downlink
-payload will be emitted multiple times. To avoid colissions, ChirpStack Network Server will
+payload will be emitted multiple times. To avoid collisions, ChirpStack Network Server will
 put a delay between multiple emissions.
 
 Multicast can be used for the following device-classes:

@@ -14,7 +14,7 @@ by the device, ChirpStack Network Server is able to schedule a downlink transmis
 
 Received frames are de-duplicated (in case it has been received by multiple
 gateways), after which the mac-layer is handled by ChirpStack Network Server and the
-encrypted application-playload is forwarded to
+encrypted application-payload is forwarded to
 the [Application Server](../../application-server/index.md).
 
 ### Downlink
@@ -36,8 +36,8 @@ an acknowledgement, a nACK is sent to the application-server.
 ChirpStack Network Server supports Class-B devices. A Class-B device synchronizes its
 internal clock using Class-B beacons emitted by the gateway, this process
 is also called a "beacon lock". Once in the state of a beacon lock, the
-device negotioates its ping-interval. ChirpStack Network Server is then able to schedule
-downlink transmissions on each occuring ping-interval. 
+device negotiates its ping-interval. ChirpStack Network Server is then able to schedule
+downlink transmissions on each occurring ping-interval. 
 
 ### Downlink
 

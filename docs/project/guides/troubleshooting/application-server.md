@@ -6,7 +6,7 @@ description: Troubleshooting ChirpStack Application Server related issues.
 
 This guide helps you to troubleshoot application-server related connectivity issues.
 This guide assumes that your gateway is connected, the ChirpStack Gateway Bridge
-is publishing the received data and that data is succesfully processed by the
+is publishing the received data and that data is successfully processed by the
 ChirpStack Network Server component. If you are not sure, please refer to the
 [ChirpStack Network Server troubleshooting](network-server.md) guide.
 It also assumes that you have installed the [ChirpStack Network Server](../../../network-server/index.md)
@@ -18,7 +18,7 @@ In this guide we will validate:
 
 * If [ChirpStack Application Server](../../../application-server/index.md) receives data from [ChirpStack Network Server](../../../network-server/index.md)
 * If the application payload is decrypted correctly
-* If the application payload is succesfully published over MQTT
+* If the application payload is successfully published over MQTT
 * If the web-interface is able to connect to the WebSocket API
 
 ## ChirpStack Application Server receives data?

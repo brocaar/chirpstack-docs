@@ -58,7 +58,7 @@ sudo apt-get update
 
 ## Install ChirpStack Application Server
 
-In order to install ChirpStack Application Server, execute the follwing command:
+In order to install ChirpStack Application Server, execute the following command:
 
 ```bash
 sudo apt-get install chirpstack-application-server

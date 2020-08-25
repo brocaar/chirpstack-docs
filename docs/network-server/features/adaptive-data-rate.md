@@ -7,7 +7,7 @@ description: Adaptive data-rate reduces airtime and the device energy consumptio
 Adaptive data-rate lets ChirpStack Network Server control the data-rate and
 tx-power of the device, so that it uses less airtime and less power to
 transmit the same amount of data. This is not only beneficial for the
-energy consumtion of the device, but also optimizes the spectrum.
+energy consumption of the device, but also optimizes the spectrum.
 
 **Important:** ADR should only be used for static devices (devices that
 do not move)!
