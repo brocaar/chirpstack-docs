@@ -4,6 +4,36 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.12.0
+
+### Features
+
+#### LoRa Cloud DAS GNSS resolving
+
+This implements the handling of [LoRa Cloud](https://www.loracloud.com/)
+Device & Application Services GNSS payload on pre-configured port (default 198).
+
+#### Dashboards
+
+Implement global and per organization dashboard of active devices and gateways.
+Please note that for devices, you must configure the expected uplink interval
+in the device-profile so that ChirpStack knows the difference between an active
+and inactive devices.
+
+### Improvements
+
+* Add WebSocket ping (30s interval) to avoid that load-balancers close the connection after inactivity.
+* Add Prometheus metrics for MQTT integration.
+* Make it possible for organization admins to update the name of the organization.
+* Add `logout_url` configuration option for OpenID Connect authentication.
+
+### Bugfixes
+
+* Fix create FUOTA deployment and network-server with empty name. ([#511](https://github.com/brocaar/chirpstack-application-server/pull/511))
+* Fix 'can't evaluate field TLS in type struct' error for `configfile` command. ([#518](https://github.com/brocaar/chirpstack-application-server/pull/518))
+* Fix `/api/network-servers` error when using API key. ([#488](https://github.com/brocaar/chirpstack-network-server/issues/488))
+* Fix `/api/gateway-profiles` error when using API key. ([#525](https://github.com/brocaar/chirpstack-application-server/issues/525))
+
 ## v3.11.1
 
 ### Improvements
