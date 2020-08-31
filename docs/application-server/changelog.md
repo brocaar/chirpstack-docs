@@ -4,6 +4,13 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.12.1
+
+### Bugfixes
+
+* Fix duplicated network-server entries in API and web-interface.
+* Fix auto-complete select placeholder. ([#526](https://github.com/brocaar/chirpstack-application-server/pull/526))
+
 ## v3.12.0
 
 ### Features
