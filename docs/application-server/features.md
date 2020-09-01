@@ -21,7 +21,7 @@ have access to these payloads.
 ## Web-interface
 
 ChirpStack Application Server offers a web-interface (built on top of the provided
-[RESTful](api/index.md) api). This web-interface can be used
+[RESTful](api/index.md) API). This web-interface can be used
 to manage users, organizations, applications and devices.
 
 ## User authorization
