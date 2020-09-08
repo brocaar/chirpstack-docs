@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.3.1
+
+### Updates
+
+* [ChirpStack Concentratord](https://www.chirpstack.io/concentratord/) is updated to v3.0.1.
+* [ChirpStack Application Server](https://www.chirpstack.io/application-server/) is updated to v3.12.1.
+* [ChirpStack Gateway Bridge](https://www.chirpstack.io/gateway-bridge/) is updated to v3.9.2.
+
 ## v3.3.0
 
 This marks the first non-testing release of the ChirpStack Gateway OS!
