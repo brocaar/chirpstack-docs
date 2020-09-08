@@ -226,6 +226,12 @@ id="6d5db27e-4ce2-4b2b-b5d7-91f069397978"
     # with '/auth/oidc/callback' path, e.g. https://example.com/auth/oidc/callback.
     redirect_url=""
 
+        # Logout URL.
+        #
+        # When set, ChirpStack Application Server will redirect to this URL instead
+        # of redirecting to the login page.
+        logout_url=""
+
     # Login label.
     #
     # The login label is used in the web-interface login form.
@@ -407,6 +413,11 @@ id="6d5db27e-4ce2-4b2b-b5d7-91f069397978"
   # Brokers, e.g.: localhost:9092.
   brokers=["localhost:9092"]
 
+  # TLS.
+  #
+  # Set this to true when the Kafka client must connect using TLS to the Broker.
+  tls=false
+
   # Topic for events.
   topic="chirpstack_as"
 
@@ -417,6 +428,12 @@ id="6d5db27e-4ce2-4b2b-b5d7-91f069397978"
   # decisions.  A header "event" with the event type is included in each
   # message. There is no need to parse it from the key.
   event_key_template="application.{{ .ApplicationID }}.device.{{ .DevEUI }}.event.{{ .EventType }}"
+
+  # Username (optional).
+  username=""
+
+  # Password (optional).
+  password=""
 
 
   # PostgreSQL database integration.
