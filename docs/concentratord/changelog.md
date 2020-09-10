@@ -4,6 +4,12 @@ description: ChirpStack Concentratord changelog.
 
 # Changelog
 
+## v3.0.2
+
+### Bugfixes
+
+* Fix sending 0, 0 coordinates when GPS is unavailable.
+
 ## v3.0.1
 
 ### Bugfixes
