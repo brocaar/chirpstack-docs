@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.3.2
+
+### Updates
+
+* [ChirpStack Concentratord](https://www.chirpstack.io/concentratord/) is updated to v3.0.2.
+
 ## v3.3.1
 
 ### Updates
