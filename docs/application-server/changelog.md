@@ -4,6 +4,18 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.12.2
+
+### Improvements
+
+* Add gateway-profile option to configure (expected) gateway stats interval.
+* Implement workaround for parsing LoRa Cloud stream records containing GNSS payloads.
+
+### Bugfixes
+
+* Revert 'Add WebSocket ping (30s interval) to avoid that load-balancers close the connection after inactivity' as it causes more issues that that it solves.
+* Fix resetting altitude when updating the gateway location.
+
 ## v3.12.1
 
 ### Bugfixes
