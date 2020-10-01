@@ -7,5 +7,6 @@ arrange:
   - microsoft-azure.md
   - mqtt-authentication.md
   - thingsboard.md
+  - pilot-things.md
   - first-gateway-device.md
   - troubleshooting

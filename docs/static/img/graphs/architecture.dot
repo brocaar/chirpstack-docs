@@ -56,6 +56,7 @@ digraph G {
 		"aws-sns-int" [label="AWS\nSNS"];
 		"azure-service-bus-int" [label="Azure\nService-Bus"];
 		"loracloud" [label="LoRa Cloud"];
+		"pilot-things" [label="Pilot Things"];
 		"as-api-client" [label="API client\ngRPC\nRESTful"];
 	}
 
@@ -70,6 +71,7 @@ digraph G {
 	"chirpstack-application-server" -> "postgresql-int";
 	"chirpstack-application-server" -> "thigsboard";
 	"chirpstack-application-server" -> "amqp";
+	"chirpstack-application-server" -> "pilot-things";
 
 	"as-api-client" -> "chirpstack-application-server";
 }
