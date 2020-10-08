@@ -19,8 +19,11 @@ guide continues.
 
 ## Setting up gateway and device
 
-The steps to setup your first gateway and device are covered in the
-[First Gateway and Device](first-gateway-device.md) guide.
+To get started with your first gateway and device, please refer to the following
+documentation:
+
+* [Connecting a gateway](connect-gateway.md)
+* [Connecting a device](connect-device.md)
 
 It is also recommended to setup a Payload Codec. A Payload Codec will decode
 the received payload into "readable" information like `temperature: 21.5`.

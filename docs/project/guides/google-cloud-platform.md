@@ -602,9 +602,11 @@ sudo systemctl start chirpstack-application-server
 
 ### Setup your first gateway and device
 
-To get started with the ChirpStack Network Server stack, please follow the [First gateway and device](first-gateway-device.md)
-guide. It explains how to log in to the web-interface and add your first
-gateway and device.
+To get started with your first gateway and device, please refer to the following
+documentation:
+
+* [Connecting a gateway](connect-gateway.md)
+* [Connecting a device](connect-device.md)
 
 ### Integrate your applications
 

@@ -310,5 +310,7 @@ ChirpStack Gateway Bridge instructions for
 
 ## Setting up your first device
 
-To setup your first device, please refer to the [First gateway and device](first-gateway-device.md)
-guide.
+To setup your first gateway and device, refer to the following documentation:
+
+* [Connecting a gateway](connect-gateway.md)
+* [Connecting a device](connect-device.md)
