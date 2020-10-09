@@ -89,6 +89,11 @@ this field was unique this field has been deprecated. It is still present in
 the database as `email_old` so that the new `email` field (containing the old
 `username` as value) can be updated by hand if needed.
 
+
+**Notice:** This change will break the both ACL plugins for MQTT. The queries
+in the config file must be updated. See the [guide](../project/guides/mqtt-authentication.md)
+for more info.
+
 ##### Create users
 
 Creating new users as an organization admin has been removed. However, the
