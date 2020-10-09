@@ -89,10 +89,10 @@ this field was unique this field has been deprecated. It is still present in
 the database as `email_old` so that the new `email` field (containing the old
 `username` as value) can be updated by hand if needed.
 
-
-**Notice:** This change will break the both ACL plugins for MQTT. The queries
-in the config file must be updated. See the [guide](../project/guides/mqtt-authentication.md)
-for more info.
+**Note:** If you have integrated your MQTT broker with the ChirpStack PostgreSQL database,
+you must update your SQL queries when upgrading to this release as the `username` field in the
+database has been renamed to `email`. Please refer to the [MQTT authentication](../project/guides/mqtt-authentication.md)
+documentation for more information.
 
 ##### Create users
 
