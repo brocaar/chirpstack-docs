@@ -5,7 +5,7 @@ description: Connecting LoRa gateways to ChirpStack and steps for troubleshootin
 # Connecting a gateway
 
 This guide describes how to connect your gateway to ChirpStack and how
-to validate that it is succesfully communicating with the [ChirpStack Network Server](../../network-server/index.md).
+to validate that it is successfully communicating with the [ChirpStack Network Server](../../network-server/index.md).
 At this point it is expected that you have the [ChirpStack Application Server](../../application-server/index.md)
 and [ChirpStack Network Server](../../network-server/index.md) components up
 and running.

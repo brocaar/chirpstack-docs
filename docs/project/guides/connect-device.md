@@ -5,10 +5,10 @@ description: Connecting LoRaWAN devices with ChirpStack and steps for troublesho
 # Connecting a device
 
 This guide describes how to connect your LoRaWAN device with ChirpStack
-and how to validate that it can succesfully activate. At this point it is
+and how to validate that it can successfully activate. At this point it is
 expected that you have the [ChirpStack Network Server](../../network-server/index.md)
 and [ChirpStack Application Server](../../application-server/index.md) components
-installed and that you have succesfully [connected a LoRa gateway](connect-gateway.md)
+installed and that you have successfully [connected a LoRa gateway](connect-gateway.md)
 to it.
 
 ## Requirements
@@ -39,10 +39,13 @@ The default credentials are:
 
 ### Device-profile
 
-Before you can add the device to ChirpStack, you have to create a [Device-profile](../../application-server/use/device-profiles.md).
+Before you can add the device to ChirpStack, you have to create a [Device-profile](../../application-server/use/device-profiles.md)
+if you haven't done this already. In general it is a good practice to create
+separate device-profiles for different types of devices.
 A device-profile contains the capabilities of your device. For example if it
 uses ABP or OTAA for activation, which LoRaWAN version and Regional Parameters
-revision is implemented by the device, etc...
+revision is implemented by the device, etc... It can also be configured with a
+function to decode the payloads sent by the devices using the device-profile.
 
 Within the ChirpStack Application Server web-interface, click
 **Service-profiles** and then **Create**. Fill in the required fields and
@@ -104,7 +107,7 @@ the **LoRaWAN frames** tab.
 For OTAA devices, confirm that when the device tries to OTAA activate, you see a
 _JoinRequest_ message followed by a _JoinAccept_ message.
 
-If you do not see a _JoinAccept_ and _JoinAccept_, make sure that the device
+If you do not see a _JoinRequest_ and _JoinAccept_, make sure that the device
 sends an OTAA request and that your gateway is correctly configured. Refer to
 the [Connecting a gateway](connect-gateway.md) for validating and troubleshooting
 instructions.
@@ -142,7 +145,7 @@ by the gateway. Continue with the _Device data_ section.
 
 If you do not see a _JoinRequest_, but you did see a _JoinRequest_ in the
 **LoRaWAN frames** tab of your gateway, then it is likely that you have
-misconfigured the DevEUI of your device.
+mis-configured the DevEUI of your device.
 
 #### Uplink data
 
@@ -176,5 +179,5 @@ can ignore this error.
 
 A common error with ABP devices is that they "forget" their frame-counters
 after a power-cycle. This is against the latest specifications, but
-unfortunatey happens with many devices. In this case you can enable the
+unfortunately happens with many devices. In this case you can enable the
 **Disable frame-counter check** option in the device configuration.
