@@ -58,7 +58,8 @@ Devices are grouped by applications. For example you could group your
 temperature sensors under one application and weather stations under an other
 application.
 
-Click **Applications**, then click **Create**. Fill in the required fields
+If you haven't created an application yet to which you want to add the device,
+click **Applications**, then click **Create**. Fill in the required fields
 and save the application.
 
 ### Device
