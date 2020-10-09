@@ -179,9 +179,9 @@ auth_opt_port 5432
 auth_opt_dbname chirpstack_as
 auth_opt_user chirpstack_as
 auth_opt_pass chirpstack_as
-auth_opt_userquery select password_hash from "user" where username = $1 and is_active = true limit 1
-auth_opt_superquery select count(*) from "user" where username = $1 and is_admin = true
-auth_opt_aclquery select distinct 'application/' || a.id || '/#' from "user" u inner join organization_user ou on ou.user_id = u.id inner join organization o on o.id = ou.organization_id inner join application a on a.organization_id = o.id where u.username = $1 and $2 = $2
+auth_opt_userquery select password_hash from "user" where email = $1 and is_active = true limit 1
+auth_opt_superquery select count(*) from "user" where email = $1 and is_admin = true
+auth_opt_aclquery select distinct 'application/' || a.id || '/#' from "user" u inner join organization_user ou on ou.user_id = u.id inner join organization o on o.id = ou.organization_id inner join application a on a.organization_id = o.id where u.email = $1 and $2 = $2
 
 auth_opt_password_file /etc/mosquitto/mosquitto-auth-plug/passwords
 auth_opt_acl_file /etc/mosquitto/mosquitto-auth-plug/acls
@@ -333,16 +333,16 @@ auth_opt_pg_port 5432
 auth_opt_pg_dbname chirpstack_as
 auth_opt_pg_user chirpstack_as
 auth_opt_pg_password chirpstack_as_password
-auth_opt_pg_userquery select password_hash from "user" where username = $1 and is_active = true limit 1
-auth_opt_pg_superquery select count(*) from "user" where username = $1 and is_admin = true
-auth_opt_pg_aclquery select distinct 'application/' || a.id || '/#' from "user" u inner join organization_user ou on ou.user_id = u.id inner join organization o on o.id = ou.organization_id inner join application a on a.organization_id = o.id where u.username = $1 and $2 = $2
+auth_opt_pg_userquery select password_hash from "user" where email = $1 and is_active = true limit 1
+auth_opt_pg_superquery select count(*) from "user" where email = $1 and is_admin = true
+auth_opt_pg_aclquery select distinct 'application/' || a.id || '/#' from "user" u inner join organization_user ou on ou.user_id = u.id inner join organization o on o.id = ou.organization_id inner join application a on a.organization_id = o.id where u.email = $1 and $2 = $2
 
 auth_opt_jwt_remote false
 auth_opt_jwt_db postgres
 auth_opt_jwt_secret application-server-jwt-secret
-auth_opt_jwt_userquery select count(*) from "user" where username = $1 and is_active = true limit 1
-auth_opt_jwt_superquery select count(*) from "user" where username = $1 and is_admin = true
-auth_opt_jwt_aclquery select distinct 'application/' || a.id || '/#' from "user" u inner join organization_user ou on ou.user_id = u.id inner join organization o on o.id = ou.organization_id inner join application a on a.organization_id = o.id where u.username = $1 and $2 = $2
+auth_opt_jwt_userquery select count(*) from "user" where email = $1 and is_active = true limit 1
+auth_opt_jwt_superquery select count(*) from "user" where email = $1 and is_admin = true
+auth_opt_jwt_aclquery select distinct 'application/' || a.id || '/#' from "user" u inner join organization_user ou on ou.user_id = u.id inner join organization o on o.id = ou.organization_id inner join application a on a.organization_id = o.id where u.email = $1 and $2 = $2
 auth_opt_jwt_userfield Username
 ```
 
