@@ -97,7 +97,7 @@ opkg update
    [https://artifacts.chirpstack.io/vendor/multitech/conduit/](https://artifacts.chirpstack.io/vendor/multitech/conduit/).
    Example (assuming you want to install `chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_arm926ejste.ipk`):
 
-		wget https://artifacts.chirpstack.io/vendor/multitech/conduit/chirpstack-gateway-bridge_3.1.0-r1_arm926ejste.ipk
+		wget https://artifacts.chirpstack.io/vendor/multitech/conduit/chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_arm926ejste.ipk
 
 3. Now that the `.ipk` package is stored on the Conduit, you can install it
    using the `opkg` package-manager utility. Example (assuming the same
