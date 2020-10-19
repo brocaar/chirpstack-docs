@@ -4,6 +4,27 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.13.0 (development)
+
+### Features
+
+#### Pilot Things integration
+
+This release adds a per-application [Pilot Things](https://www.pilot-things.com/)
+integration. ([#527](https://github.com/brocaar/chirpstack-application-server/pull/527))
+
+#### Improvements
+
+* Expose gateway certificate expiration date in web-interface.
+* Improve organization auto-complete with total count of available options.
+* Make setting default [gRPC resolver](https://github.com/grpc/grpc/blob/master/doc/naming.md) a config option.
+	* **Note**: this changes the default resolver from `dns` back to `passthrough`,
+	  which is the default value for the Go gRPC library.
+
+#### Bugfixes
+
+* Exclude email validation for admin user. ([#540](https://github.com/brocaar/chirpstack-application-server/issues/540))
+
 ## v3.12.2
 
 ### Improvements
