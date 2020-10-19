@@ -3,6 +3,52 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.11.0 (development)
+
+### Features
+
+#### Passive roaming
+
+This release provides an experimental implementation of the Passive Roaming
+implementation as specified by the LoRaWAN Backend Interfaces v1.0.0
+specification.
+
+### Improvements
+
+#### Improve uplink de-duplication
+
+This removes the de-duplication that was also performed by the MQTT backend.
+It also updates the current deduplication function to include the full `TXInfo`
+within the de-duplication key. Uplinks received on multiple channels will
+therefore be processed (and MIC validated) separately.
+
+#### Add stats interval to gateway profile
+
+This makes it possible to set the gateway stats interval when supported by
+the gateway (currently only [Concentratord](https://www.chirpstack.io/concentratord/)
+is supported).
+
+#### Internal join-server cleanup
+
+This removes old join-server code on favor of the client code which is also
+used for Passive Roaming (as both are based on the LoRaWAN Backend Interfaces
+specification).
+
+#### Expose gateway expiration date
+
+When creating a gateway certificate, the expiration is now exposed in the
+API response.
+
+#### Join-server DNS resolving
+
+When no join-server is pre-configured, DNS resolving is enabled and the JoinEUI
+does resolve, the the same certificate configuration will be used as when
+connecting to the default join-server.
+
+### Bugfixes
+
+* Always respond to `RXParamSetupAns` requests. ([#493](https://github.com/brocaar/chirpstack-network-server/pull/493))
+
 ## v3.10.0
 
 ### Features
