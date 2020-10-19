@@ -226,39 +226,50 @@ create index idx_device_location_application_id on device_location(application_i
 create index idx_device_location_tags on device_location(tags);
 ```
 
-## Activating the Integration
+## Activating the integration
 
-In order for ChirpStack to start writing event data to a Postgres database, the integration must be explicitly enabled and configured in the `chirpstack-application-server.toml` configuration file.
+In order for ChirpStack to start writing event data to a Postgres database, the
+integration must be explicitly enabled and configured in the
+`chirpstack-application-server.toml` configuration file.
 
-### Enabling the Integration 
-
-Run `sudo nano /etc/chirpstack-application-server/chirpstack-application-server.toml` to open it in an editor.
+### Enabling the integration 
 
 In the file, find this section:
+
 ```toml
 [application_server.integration]
-  # Enabled integrations.
-  enabled=["mqtt"]
+# Enabled integrations.
+enabled=["mqtt"]
 ```
-Your `enabled` line may look slightly different, as you may have other integrations already active. Add `"postgresql"` to the array. In this case, the modified line should appear as `enabled=["mqtt", "postgresql"]`.
 
-### Configuring the Integration
+Your `enabled` line may look slightly different, as you may have other
+integrations already active. Add `"postgresql"` to the array. In this case,
+the modified line should appear as `enabled=["mqtt", "postgresql"]`.
 
-You must also set the configuration settings for the integration. If your configuration file does not already contain the following section, add it now:
+### Configuring the integration
+
+You must also set the configuration settings for the integration. If your
+configuration file does not already contain the following section, add it now:
+
 ```toml
-  # PostgreSQL database integration.
-  [application_server.integration.postgresql]
-  # PostgreSQL dsn (e.g.: postgres://user:password@hostname/database?sslmode=disable).
-  dsn="postgres://<username>:<password>@<host>/<database>?sslmode=disable"
-  
-  # This sets the max. number of open connections that are allowed in the
-  # PostgreSQL connection pool (0 = unlimited).
-  max_open_connections=0
+# PostgreSQL database integration.
+[application_server.integration.postgresql]
+# PostgreSQL dsn (e.g.: postgres://user:password@hostname/database?sslmode=disable).
+dsn="postgres://<username>:<password>@<host>/<database>?sslmode=disable"
 
-  # Max idle connections.
-  #
-  # This sets the max. number of idle connections in the PostgreSQL connection
-  # pool (0 = no idle connections are retained).
-  max_idle_connections=2
+# This sets the max. number of open connections that are allowed in the
+# PostgreSQL connection pool (0 = unlimited).
+max_open_connections=0
+
+# Max idle connections.
+#
+# This sets the max. number of idle connections in the PostgreSQL connection
+# pool (0 = no idle connections are retained).
+max_idle_connections=2
 ```
-In the `dns=` line, modify `<username>`, `<password>`, `<host>`, and `<database>` with your appropriate credentials and targets. If you followed the example above, you would use `chirpstack_as_events` as your username and target database. If your target Postgres database is on the same machine as the Application Server, use `localhost` as your host.
+
+In the `dns=` line, modify `<username>`, `<password>`, `<host>`, and
+`<database>` with your appropriate credentials and targets. If you followed
+the example above, you would use `chirpstack_as_events` as your username and
+target database. If your target Postgres database is on the same machine as
+the Application Server, use `localhost` as your host.
