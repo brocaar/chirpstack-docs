@@ -419,11 +419,6 @@ topic read gateway/+/event/+
 topic write gateway/+/command/+
 
 user chirpstack_as
-topic write application/+/device/+/rx
-topic write application/+/device/+/join
-topic write application/+/device/+/ack
-topic write application/+/device/+/error
-topic read application/+/device/+/tx
-topic write application/+/device/+/status
-topic write application/+/device/+/location
+topic write application/+/device/+/event/+
+topic read application/+/device/+/command/+
 ```
