@@ -23,6 +23,7 @@ gateway) console cable.
 started. Please consult the Cisco Wireless Gateway documentation for a complete
 manual.
 
+
 ### Connect to console
 
 You can use `screen` to connect to the Cisco (serial) Console. Example:
@@ -57,8 +58,42 @@ gateway:
 show version
 ```
 
-Make sure that the version is (at least) 2.0.32. If your gateway has an older
+Make sure that the version is (at least) 2.1.0. If your gateway has an older
 version installed, please update it first.
+
+#### Upgrade
+
+To upgrade the firmware, put the firmware image on an USB key, then insert
+the USB key into the gateway. In the following example, the firmware image
+is named `ixm_mdm_i_k9-2.1.0.2.tar.gz`.
+
+Mount the USB key and change directory and list its content:
+
+```shell
+enable usb
+cd usb:/
+dir
+```
+
+The output should look simmilar to:
+
+```shell
+Directory of usb:/
+
+  -rwx    87371566  Nov 17 2020 20:06:06  ixm_mdm_i_k9-2.1.0.2.tar.gz
+```
+
+To only update the firmware and keep the user data:
+
+```shell
+archive download-sw firmware /normal /save-reload ixm_mdm_i_k9-2.1.0.2.tar.gz
+```
+
+To upgrade the firmware and delete the user data:
+
+```shell
+archive download-sw firmware /factory /force-reload ixm_mdm_i_k9-2.1.0.2.tar.gz
+```
 
 ### Network setup
 
@@ -125,307 +160,196 @@ exit
 copy running-config startup-config
 ```
 
-### Packet Forwarder
+### Radio status
 
-The Cisco Wireless Gateway comes with an UDP Packet Forwarder for testing
-purposes. This Packet Forwarder is running in an isolated LXC container. To
-access the shell for this LXC container:
+Enter the following commands to make sure the radio is enabled:
 
 ```shell
-# Request lxc-container console access
-request shell container-console
+show radio
 ```
 
-You will be requested to enter the _System Password_. By default this is `admin`.
-
-#### Configuration
-
-Create the directory to store the Packet Forwarder configuration:
-
-```bash
-mkdir /etc/lora-packet-forwarder
-```
-
-Cisco provides a list of configuration templates. To list the available
-templates:
-
-```bash
-ls -l /tools/templates
-```
-
-Copy the configuration template to `/etc/lora-packet-forwarder`:
-
-```bash
-cp /tools/templates/<template> /etc/lora-packet-forwarder/config.json
-```
-
-Next update the configuration file so that it forwards the UDP data to
-`localhost` on port `1700`.
-
-```bash
-vi /etc/lora-packet-forwarder/config.json
-```
-
-Under `gateway_conf` update the following keys:
-
-* `server_address`: `"localhost"`
-* `serv_port_up`: `1700`
-* `serv_port_down`: `1700`
-
-To test the Packet Forwarder, you can run the following command:
-
-```bash
-/tools/pkt_forwarder -c /etc/lora-packet-forwarder/config.json -g /dev/ttyS1
-```
-
-#### Init script
-
-To start the Packet Forwarder automatically, you need to create an init script.
-To create this file:
-
-```bash
-vi /etc/init.d/S60lora-packet-forwarder
-```
-
-Then paste the following content:
-
-```bash
-#!/bin/sh
-
-start() {
-  echo "Starting lora-packet-forwarder"
-  start-stop-daemon \
-  	--start \
-	--background \
-	--make-pidfile \
-	--pidfile /var/run/lora-packet-forwarder.pid \
-	--exec /tools/pkt_forwarder -- -c /etc/lora-packet-forwarder/config.json -g /dev/ttyS1
-}
-
-stop() {
-  echo "Stopping lora-packet-forwarder"
-  start-stop-daemon \
-  	--stop \
-	--oknodo \
-	--quiet \
-	--pidfile /var/run/lora-packet-forwarder.pid
-}
-
-restart() {
-  stop
-  sleep 1
-  start
-}
-
-case "$1" in
-  start)
-    start
-    ;;
-  stop)
-    stop
-    ;;
-  restart|reload)
-    restart
-    ;;
-  *)
-    echo "Usage: $0 {start|stop|restart}"
-    exit 1
-esac
-
-exit $?
-```
-
-Then make the init script executable:
-
-```bash
-chmod +x /etc/init.d/S60lora-packet-forwarder
-```
-
-To start the Packet Forwarder manually:
-
-```bash
-/etc/init.d/S60lora-packet-forwarder start
-```
-
-The next time when the Wireless Gateway is (re)started, the Packet Forwarder
-will be started automatically.
-
-### ChirpStack Gateway Bridge
-
-By installing the ChirpStack Gateway Bridge directly on the Wireless Gateway, it can
-be directly connected to a MQTT broker. When you have exited the LXC shell,
-enter it again:
+When it is turned of, turn it on with the following commands:
 
 ```shell
-# Request lxc-container console access
-request shell container-console
+# Configure gateway from the terminal
+configure terminal
+
+# Enable the radio
+no radio off
+
+# Exit configuration mode
+exit
+
+# Save the configuration
+copy running-config startup-config
 ```
 
-#### Download
+### Common Packet Forwarder
 
-Copy the link to the latest ChirpStack Gateway Bridge **armv7.tar.gz** package from
-the [Downloads](../downloads.md) page. Then:
+The Cisco Wireless Gateway comes with a Common Packet Forwarder which is
+compatible with the [Semtech Basic Station](https://doc.sm.tc/station/).
+In this case, the ChirpStack Gateway Bridge will not run on the gateway, but
+must be installed on a separate server, with the Basic Station backend enabled.
 
-```bash
-# Create directories
-mkdir -p /opt/chirpstack-gateway-bridge
+#### ChirpStack Gateway Bridge configuration
 
-# Download ChirpStack Gateway Bridge
-cd /opt/chirpstack-gateway-bridge
-wget <download-link>
-
-# Uncompress archive
-tar zxf *.tar.gz
-
-# Remove archive file
-rm *.tar.gz
-```
-
-#### Configuration
-
-The ChirpStack Gateway Bridge uses a file for configuration. Please refer to
-[Configuration](../install/config.md) for a full example.
-Below you will find a minimal configuration example to get you started.
-
-To create the configuration directory and create the configuration file:
-
-```bash
-mkdir /etc/chirpstack-gateway-bridge
-vi /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml
-```
-
-Then paste the following configuration and make modifications where needed:
+Below you will find a simplified configuration example for the EU868 band.
+Refer to the [Configuration](../install/config.md) page for a full configuration
+example.
 
 ```toml
-{% raw %}
 # Gateway backend configuration.
 [backend]
+
 # Backend type.
-type="semtech_udp"
+type="basic_station"
 
-  # Semtech UDP packet-forwarder backend.
-  [backend.semtech_udp]
+  # Basic Station backend.
+  [backend.basic_station]
 
-  # ip:port to bind the UDP listener to
-  #
-  # Example: 0.0.0.0:1700 to listen on port 1700 for all network interfaces.
-  # This is the listener to which the packet-forwarder forwards its data
-  # so make sure the 'serv_port_up' and 'serv_port_down' from your
-  # packet-forwarder matches this port.
-  udp_bind = "0.0.0.0:1700"
+  # ip:port to bind the Websocket listener to.
+  bind=":3001"
+
+  # Region.
+  region="EU868"
+
+  # Minimal frequency (Hz).
+  frequency_min=863000000
+
+  # Maximum frequency (Hz).
+  frequency_max=870000000
+
+  # Concentrator configuration.
+  # Note: this is defined twice as the Cisco gateway has two SX1301 chips.
+  [[backend.basic_station.concentrators]]
+    # Multi-SF channel configuration.
+    [backend.basic_station.concentrators.multi_sf]
+ 
+    # Frequencies (Hz).
+    frequencies=[
+      868100000,
+      868300000,
+      868500000,
+      867100000,
+      867300000,
+      867500000,
+      867700000,
+      867900000,
+    ]
+  
+    # LoRa STD channel.
+    [backend.basic_station.concentrators.lora_std]
+  
+    # Frequency (Hz).
+    frequency=868300000
+  
+    # Bandwidth (Hz).
+    bandwidth=250000
+  
+    # Spreading factor.
+    spreading_factor=7
+  
+    # FSK channel.
+    [backend.basic_station.concentrators.fsk]
+  
+    # Frequency (Hz).
+    frequency=868800000
+
+  [[backend.basic_station.concentrators]]
+    # Multi-SF channel configuration.
+    [backend.basic_station.concentrators.multi_sf]
+ 
+    # Frequencies (Hz).
+    frequencies=[
+      868100000,
+      868300000,
+      868500000,
+      867100000,
+      867300000,
+      867500000,
+      867700000,
+      867900000,
+    ]
+  
+    # LoRa STD channel.
+    [backend.basic_station.concentrators.lora_std]
+  
+    # Frequency (Hz).
+    frequency=868300000
+  
+    # Bandwidth (Hz).
+    bandwidth=250000
+  
+    # Spreading factor.
+    spreading_factor=7
+  
+    # FSK channel.
+    [backend.basic_station.concentrators.fsk]
+  
+    # Frequency (Hz).
+    frequency=868800000
 
 
 # Integration configuration.
 [integration]
+
 # Payload marshaler.
-#
-# This defines how the MQTT payloads are encoded. Valid options are:
-# * protobuf:  Protobuf encoding
-# * json:      JSON encoding
 marshaler="protobuf"
-
-  # MQTT integration configuration.
-  [integration.mqtt]
-  # Event topic template.
-  event_topic_template="gateway/{{ .GatewayID }}/event/{{ .EventType }}"
-
-  # Command topic template.
-  command_topic_template="gateway/{{ .GatewayID }}/command/#"
 
   # MQTT authentication.
   [integration.mqtt.auth]
-  # Type defines the MQTT authentication type to use.
-  #
-  # Set this to the name of one of the sections below.
   type="generic"
 
     # Generic MQTT authentication.
     [integration.mqtt.auth.generic]
-    # MQTT server (e.g. scheme://host:port where scheme is tcp, ssl or ws)
-    server="tcp://127.0.0.1:1883"
-
-    # Connect with the given username (optional)
-    username=""
-
-    # Connect with the given password (optional)
-    password=""
-{% endraw %}
+    # MQTT servers.
+    #
+    # Configure one or multiple MQTT server to connect to. Each item must be in
+    # the following format: scheme://host:port where scheme is tcp, ssl or ws.
+    servers=[
+      "tcp://127.0.0.1:1883",
+    ]
 ```
 
-To test the ChirpStack Gateway Bridge, you can run the following command:
+#### Common Packet Forwarder configuration
 
-```bash
-/opt/chirpstack-gateway-bridge/chirpstack-gateway-bridge -c /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml
+!!! info
+	Common Packet Forwarder will use the GPS module to determine the country
+	and region. In case `cpf enable` will result in an error that the region is
+	undefined, make sure that the gateway is able to obtain a GPS position and
+	try again.
+
+Enter the following commands to configure the Common Packet Forwarder:
+
+```shell
+# Configure gateway from the terminal
+configure terminal
+
+# Enter the Common Packet Forwarder configuration
+common-packet-forwarder profile
+
+# Configure antenna gain and loss value
+antenna 1 omni gain 4.3 loss 0.1
+
+# Configure gateway ID
+# Replace <GatewayID> with your gateway ID
+gatewayid <GATEWAYID>
+
+# Enable GPS usage
+gps enable
+
+# Configure IP and port to which the Common Packet Forwarder must connect
+# Replace <IP> with the IP of the ChirpStack Gateway Bridge
+# Replace <PORT> with the port on which ChirpStack Gateway Bridge is listening
+ipaddr <IP> port <IP>
+
+# Enable Common Packet Forwarder
+cpf enable
+
+# Exit the (Common Packet Forwarder) configuration mode
+exit
+exit
+
+# Save the configuration
+copy running-config startup-config
 ```
-
-#### Init script
-
-To start the ChirpStack Gateway Bridge automatically, you need to create an init script.
-To create this file:
-
-```bash
-vi /etc/init.d/S60chirpstack-gateway-bridge
-```
-
-Then paste the following content:
-
-```bash
-#!/bin/sh
-
-start() {
-  echo "Starting chirpstack-gateway-bridge"
-  start-stop-daemon \
-  	--start \
-	--background \
-	--make-pidfile \
-	--pidfile /var/run/chirpstack-gateway-bridge.pid \
-	--exec /opt/chirpstack-gateway-bridge/chirpstack-gateway-bridge -- -c /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml
-}
-
-stop() {
-  echo "Stopping chirpstack-gateway-bridge"
-  start-stop-daemon \
-  	--stop \
-	--oknodo \
-	--quiet \
-	--pidfile /var/run/chirpstack-gateway-bridge.pid
-}
-
-restart() {
-  stop
-  sleep 1
-  start
-}
-
-case "$1" in
-  start)
-    start
-    ;;
-  stop)
-    stop
-    ;;
-  restart|reload)
-    restart
-    ;;
-  *)
-    echo "Usage: $0 {start|stop|restart}"
-    exit 1
-esac
-
-exit $?
-```
-
-Then make the init script executable:
-
-```bash
-chmod +x /etc/init.d/S60chirpstack-gateway-bridge
-```
-
-To start the ChirpStack Gateway Bridge manually:
-
-```bash
-/etc/init.d/S60chirpstack-gateway-bridge start
-```
-
-The next time when the Wireless Gateway is (re)started, the ChirpStack Gateway Bridge
-will be started automatically.
