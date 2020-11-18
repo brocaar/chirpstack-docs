@@ -113,6 +113,12 @@ master_name=""
 # Default (when set to 0) is 10 connections per every CPU.
 pool_size=0
 
+# TLS enabled.
+#
+# Note: tis will enable TLS, but it will not validate the certificate
+# used by the server.
+tls_enabled=false
+
 
 # Application-server settings.
 [application_server]
@@ -380,6 +386,12 @@ id="6d5db27e-4ce2-4b2b-b5d7-91f069397978"
   # Password (optional).
   password=""
 
+  # One of plain or scram
+  mechanism="plain"
+  
+  # Only used if mechanism == scram.
+  # SHA-256 or SHA-512 
+  algorithm="SHA-512"
 
   # PostgreSQL database integration.
   [application_server.integration.postgresql]

@@ -3,7 +3,7 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
-## v3.11.0 (development)
+## v3.11.0
 
 ### Features
 
@@ -45,9 +45,17 @@ When no join-server is pre-configured, DNS resolving is enabled and the JoinEUI
 does resolve, the the same certificate configuration will be used as when
 connecting to the default join-server.
 
+#### Add `tls_enabled` option to Redis config.
+
+In earlier releases, it was possible to configure the Redis endpoint by URL,
+which allowed to enable TLS. The configuration changed when support for Redis
+Sentinel and Redis Cluster was implemented. This adds back the option to enable
+TLS.
+
 ### Bugfixes
 
 * Always respond to `RXParamSetupAns` requests. ([#493](https://github.com/brocaar/chirpstack-network-server/pull/493))
+* Fix healthcheck -> health log line. ([#505](https://github.com/brocaar/chirpstack-network-server/pull/505))
 
 ## v3.10.0
 

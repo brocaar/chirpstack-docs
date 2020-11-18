@@ -4,7 +4,7 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
-## v3.13.0 (development)
+## v3.13.0
 
 ### Features
 
@@ -20,10 +20,21 @@ integration. ([#527](https://github.com/brocaar/chirpstack-application-server/pu
 * Make setting default [gRPC resolver](https://github.com/grpc/grpc/blob/master/doc/naming.md) a config option.
 	* **Note**: this changes the default resolver from `dns` back to `passthrough`,
 	  which is the default value for the Go gRPC library.
+* Support SCRAM-SHA-256/512 for Kafka integration. ([#549](https://github.com/brocaar/chirpstack-application-server/pull/549))
+* Add `tls_enabled` option to Redis configuration.
+* Improve user email validation regexp. ([#553](https://github.com/brocaar/chirpstack-application-server/issues/553))
+* Implement JWT token audience validation.
+* Make it impossible for users to delete themselves. ([#557](https://github.com/brocaar/chirpstack-application-server/pull/557))
+* Add ms precision to LoRa Cloud DAS integration timestamps. ([#556](https://github.com/brocaar/chirpstack-application-server/issues/556))
+* Implement `UplinkMsgWifi` + wifi stream record workaround for LoRa Cloud DAS integration.
+* Replace `Math.random` by `window.crypto` in UI.
 
 #### Bugfixes
 
 * Exclude email validation for admin user. ([#540](https://github.com/brocaar/chirpstack-application-server/issues/540))
+* Fix healthcheck -> health log line. ([#550](https://github.com/brocaar/chirpstack-application-server/pull/550))
+* Fix list service-profiles for API-key users. ([#532](https://github.com/brocaar/chirpstack-application-server/pull/532))
+* Fix create API-key with empty string name and validate max length. ([#555](https://github.com/brocaar/chirpstack-application-server/pull/555))
 
 ## v3.12.2
 
