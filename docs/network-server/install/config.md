@@ -60,7 +60,7 @@ chirpstack-network-server configfile --config chirpstack-network-server-old.toml
 Example configuration file:
 
 ```toml
---8<-- "examples/chirpstack-network-server/configuration/chirpstack-chirpstack-network.toml"
+--8<-- "examples/chirpstack-network-server/configuration/chirpstack-network-server.toml"
 ```
 
 ## Securing the Network Server API
