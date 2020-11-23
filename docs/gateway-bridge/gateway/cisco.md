@@ -70,7 +70,7 @@ is named `ixm_mdm_i_k9-2.1.0.2.tar.gz`.
 Mount the USB key and change directory and list its content:
 
 ```shell
-enable usb
+usb enable
 cd usb:/
 dir
 ```
@@ -341,7 +341,7 @@ gps enable
 # Configure IP and port to which the Common Packet Forwarder must connect
 # Replace <IP> with the IP of the ChirpStack Gateway Bridge
 # Replace <PORT> with the port on which ChirpStack Gateway Bridge is listening
-ipaddr <IP> port <IP>
+ipaddr <IP> port <PORT>
 
 # Enable Common Packet Forwarder
 cpf enable
