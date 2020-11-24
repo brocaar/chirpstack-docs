@@ -4,6 +4,12 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.13.1
+
+### Bugfixes
+
+* Fix wifi based geolocation in combination with LoRa Cloud DAS integration.
+
 ## v3.13.0
 
 ### Features
