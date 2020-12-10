@@ -4,6 +4,12 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.13.2
+
+### Bugfixes
+
+* Update and fix API key validation for organizations. ([chirpstack-api/#25](https://github.com/brocaar/chirpstack-api/issues/25))
+
 ## v3.13.1
 
 ### Bugfixes
