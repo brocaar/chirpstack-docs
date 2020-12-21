@@ -4,6 +4,16 @@ description: ChirpStack Concentratord changelog.
 
 # Changelog
 
+## v3.0.3
+
+### Bugfixes
+
+* Fix `channel_max` calculation.
+
+### Features
+
+* Implement overwriting reset-pin for RPi shields.
+
 ## v3.0.2
 
 ### Bugfixes

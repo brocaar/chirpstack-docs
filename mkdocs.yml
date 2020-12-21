@@ -24,7 +24,7 @@ extra:
   gateway_os:
     version: 3.3.2
   concentratord:
-    version: 3.0.2
+    version: 3.0.3
 plugins:
   - search
   - macros
