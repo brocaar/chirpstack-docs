@@ -3,6 +3,22 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.12.0 (development)
+
+### Features
+
+#### Private gateways
+
+This adds the option to add a service-profile to a gateway and a service-profile
+flag to make all gateways under that service-profile private. It also adds a
+global configuration option to make all gateways private. When a gateway is
+private, only devices under the same service-profile will be able to use the
+gateway.
+
+#### Improvements
+
+* Implement uplink frame counter for Prometheus. ([#507](https://github.com/brocaar/chirpstack-network-server/issues/507))
+
 ## v3.11.0
 
 ### Features
