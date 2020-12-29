@@ -4,6 +4,33 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.14.0 (development)
+
+### Features
+
+#### Remove FUOTA
+
+This removes FUOTA from the ChirpStack Application Server as well as handling
+the handling of application-layer payloads related to FUOTA. The reason for
+removing FUOTA is to provide more flexibility as it allows for custom FUOTA
+implementations. One such implementation is the [ChirpStack FUOTA Server](https://github.com/brocaar/chirpstack-fuota-server).
+
+#### MQTT integration client-certificates
+
+Like with the Gateway client-certificate feature, this feature makes it possible
+to generate application-specific client-certificates for authentication and
+authorization with the MQTT broker. In this case the CommonName is set to the
+application ID.
+
+#### Private gateways
+
+This features makes it possible to make gateways private to a specific service-profile.
+When enabled, received uplinks can only be used by devices under the same service-profile.
+To enable you must assign a service-profile to the gateway and update the
+service-profile to enable the private gateways feature.
+
+**Note:** this requires ChirpStack Network Server v3.12+.
+
 ## v3.13.2
 
 ### Bugfixes
