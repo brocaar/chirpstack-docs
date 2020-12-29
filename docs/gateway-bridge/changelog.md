@@ -4,6 +4,20 @@ description: Lists the changes per ChirpStack Gateway Bridge release, including 
 
 # Changelog
 
+## v3.10.0 (development)
+
+### Features
+
+* Basic Station timesync request/response support. ([#179](https://github.com/brocaar/chirpstack-gateway-bridge/issues/179))
+
+### Improvements
+
+* Refactor backend <> integration communication code.
+* Refactor the way how MQTT (un)subscribe is implemented.
+* Make MQTT keepalive interval configurable. ([#176](https://github.com/brocaar/chirpstack-gateway-bridge/pull/176))
+* Add new Azure CA certificates. ([#178](https://github.com/brocaar/chirpstack-gateway-bridge/issues/178))
+* Implement paho mqtt client logging. ([#182](https://github.com/brocaar/chirpstack-gateway-bridge/pull/182))
+
 ## v3.9.2
 
 ### Improvements
