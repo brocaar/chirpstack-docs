@@ -1,5 +1,24 @@
 # Changelog
 
+## v3.3.3
+
+### Features
+
+* Add test-version of [ChirpStack UDP Bridge](https://github.com/brocaar/chirpstack-udp-bridge).
+
+### Updates
+
+* All meta-layers have been updated.
+* Update [ChirpStack Concentratord](https://www.chirpstack.io/concentratord/) to v3.0.3.
+* Update [ChirpStack Network Server](https://www.chirpstack.io/network-server/) to v3.11.0.
+* Update [ChirpStack Application Server](https://www.chirpstack.io/application-server/) to v3.13.2.
+
+### Bugfixes
+
+* Fix bootfiles path in rpi-config. ([#63](https://github.com/brocaar/chirpstack-gateway-os/pull/63))
+* Remove libubootenv. ([#64](https://github.com/brocaar/chirpstack-gateway-os/pull/64/))
+* Update u-boot `CONFIG_SYS_BOOTM_LEN` to 16M.
+
 ## v3.3.2
 
 ### Updates
