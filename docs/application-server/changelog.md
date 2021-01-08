@@ -31,6 +31,10 @@ service-profile to enable the private gateways feature.
 
 **Note:** this requires ChirpStack Network Server v3.12+.
 
+### Improvements
+
+* Add Semtech Device and Application Service integration workaround for assistance position handling.
+
 ## v3.13.2
 
 ### Bugfixes
