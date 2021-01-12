@@ -24,10 +24,18 @@ application ID.
 
 #### Private gateways
 
-This features makes it possible to make gateways private to a specific service-profile.
+This feature makes it possible to make gateways private to a specific service-profile.
 When enabled, received uplinks can only be used by devices under the same service-profile.
 To enable you must assign a service-profile to the gateway and update the
 service-profile to enable the private gateways feature.
+
+**Note:** this requires ChirpStack Network Server v3.12+.
+
+#### Select ADR algorithm
+
+This adds a ADR algorithm selection option to the device-profile. In combination
+with the ChirpStack Network Server pluggable ADR feature, this makes it
+possible to use different ADR algorithms for different types of devices.
 
 **Note:** this requires ChirpStack Network Server v3.12+.
 

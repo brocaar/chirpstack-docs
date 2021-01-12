@@ -15,7 +15,13 @@ global configuration option to make all gateways private. When a gateway is
 private, only devices under the same service-profile will be able to use the
 gateway.
 
-#### Improvements
+#### Pluggable ADR algorithms
+
+This adds the option to configure custom ADR algorithms through a plugin system.
+See the [`examples/adr-plugin`](https://github.com/brocaar/chirpstack-network-server/tree/master/examples/adr-plugin)
+directory for an example plugin skeleton.
+
+### Improvements
 
 * Implement uplink frame counter for Prometheus. ([#507](https://github.com/brocaar/chirpstack-network-server/issues/507))
 
