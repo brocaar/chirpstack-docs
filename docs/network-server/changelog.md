@@ -3,6 +3,17 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.12.1
+
+### Improvements
+
+* Don't run Docker container as root. ([#520](https://github.com/brocaar/chirpstack-network-server/pull/520))
+* Extend ADR HandleRequest with Region, MACVersion and RegParamsRevision fields.
+
+### Bugfixes
+
+* Clear UplinkHistory table for ADR on DR change.
+
 ## v3.12.0
 
 ### Features
