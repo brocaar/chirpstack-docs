@@ -3,6 +3,17 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.12.2
+
+### Improvements
+
+* Update `LinkADRAns` handling for devices with ADR disabled to align with 4.3.1.1 of LoRaWAN 1.0.4 specs.
+
+### Bugfixes
+
+* Fix max. supported TxPower index which was introduced after ADR refactor.
+* Fix counting uplink history so that only items with same TxPowerIndex are counted.
+
 ## v3.12.1
 
 ### Improvements
