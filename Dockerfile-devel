@@ -1,0 +1,11 @@
+FROM python:3-alpine
+
+ENV PROJECT_PATH=/chirpstack-docs
+
+RUN apk add --no-cache make gcc musl-dev graphviz ttf-freefont bash git
+
+RUN mkdir -p $PROJECT_PATH
+COPY . $PROJECT_PATH
+WORKDIR $PROJECT_PATH
+
+RUN pip install -r requirements.txt

@@ -1,0 +1,8 @@
+version: "3"
+services:
+  chirpstack-docs:
+    build:
+      context: .
+      dockerfile: Dockerfile-devel
+    volumes:
+      - ./:/chirpstack-docs
