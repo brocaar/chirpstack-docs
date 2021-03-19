@@ -3,6 +3,13 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.12.3
+
+### Improvements
+
+* Add downlink TxInfo in TxAck message. ([#523](https://github.com/brocaar/chirpstack-network-server/pull/523))
+* Add option to configure Redis key-prefix.
+
 ## v3.12.2
 
 ### Improvements
