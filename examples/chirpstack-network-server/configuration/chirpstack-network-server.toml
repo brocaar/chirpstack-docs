@@ -481,6 +481,15 @@ get_downlink_data_delay="100ms"
   # assigned to the gateway).
   force_gws_private=false
 
+  # Downlink timeout.
+  #
+  # This defines the timeout of a downlink command. This timeout is used when
+  # scheduling Class-B, Class-C and multicast downlinks. In case the gateway
+  # did not acknowledge the downlink transmission within the configured timeout,
+  # the network-server will assume the downlink was not transmitted and will
+  # retry the downlink transmission.
+  downlink_timeout="1s"
+
 
   # Backend defines the gateway backend settings.
   #
@@ -701,6 +710,32 @@ get_downlink_data_delay="100ms"
   #   * Ping PostgreSQL database
   #   * Ping Redis database
   healthcheck_endpoint=false
+
+  # Device frame-log max history.
+  #
+  # When set to a value > 0, ChirpStack Network Server will log all uplink and
+  # downlink frames associated to a device as a Redis stream for the
+  # consumption by external applications (e.g. for monitoring purposes) Note
+  # that only uplinks passing the MIC and frame-counter tests will be published.
+  # The configured value will be used as approximate amount of frames which
+  # will be kept in the stream.
+  #
+  # The following Redis key is used:
+  # 'lora:ns:device:stream:frame'
+  device_frame_log_max_history=0
+
+  # Gateway frame-log max history.
+  #
+  # When set to a value > 0, ChirpStack Network Server will log all uplink and
+  # downlink frames received by the gateways as a Redis stream  for the
+  # consumption by external applications (e.g. for monitoring purposes). Note
+  # that all data reported by the gateways will be published.
+  # The configured value will be used as approximate amount of frames which
+  # will be kept in the stream.
+  #
+  # The following Redis key is used:
+  # 'lora:ns:gw:stream:frame'
+  gateway_frame_log_max_history=0
 
 
 # Join-server settings.
