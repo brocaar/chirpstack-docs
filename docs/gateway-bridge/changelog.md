@@ -4,6 +4,30 @@ description: Lists the changes per ChirpStack Gateway Bridge release, including 
 
 # Changelog
 
+## v3.11.0 (development)
+
+### Features
+
+#### Connection state messages
+
+This publishes a `conn` state message, indicating if a gateway is online or
+offline. State messages are published as retained so that a MQTT client will
+immediately receive the latest state of the gateway(s) after subscribing to
+the `conn` state MQTT topic. The default MQTT topic for state messages is
+`gateway/ID/state/STATE` where `ID` is the ID of the gateway and `STATE` is
+the state (in this case `conn`). This topic is configurable in the
+[Configuration](install/config.md).
+
+### Improvements
+
+* When `terminate_on_connect_error` is enabled, terminate on connection lost. ([#184](https://github.com/brocaar/chirpstack-gateway-bridge/pull/184))
+* Do not run as root (Docker). ([#185](https://github.com/brocaar/chirpstack-gateway-bridge/pull/185))
+* Add ns precision to log output timestamp.
+
+### Bugfixes
+
+* Add websocket connection mutex to avoid concurrent writes. ([#191](https://github.com/brocaar/chirpstack-gateway-bridge/pull/191/))
+
 ## v3.10.0
 
 ### Features
