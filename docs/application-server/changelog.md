@@ -4,6 +4,47 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.15.0 (development)
+
+### Features
+
+#### LoRaWAN 1.0.4
+
+This adds the LoRaWAN 1.0.4 mac-version and RP002-1.0.0 and PR002-1.0.1 regional
+parameter revisions to the device-profile configuration.
+
+#### ReEncryptDeviceQueueItems API method (AS)
+
+This implements the `ReEncryptDeviceQueueItems` method to the (internal)
+application-server API. This method is used by ChirpStack Network Server v3.13+
+when it needs request the application-server to re-encrypt the device queue-items.
+
+#### PostgreSQL schema migrations
+
+This implements automatic schema migrations for the PostgreSQL integration.
+When you have manually created the tables (as documented previously), then
+these tables will be automatically adopted and updated to the latest version.
+For newly setup integrations all tables will be created automatically. ([#573](https://github.com/brocaar/chirpstack-application-server/pull/573))
+
+### Improvements
+
+* Don't run Docker container as root. ([#520](https://github.com/brocaar/chirpstack-application-server/pull/569))
+* Add gateway downlink info in `txack` message. ([#576](https://github.com/brocaar/chirpstack-application-server/pull/576))
+* Refactor SQL schema migrations from [sql-migrate](https://github.com/rubenv/sql-migrate) to [golang-migrate](https://github.com/golang-migrate/migrate). ([#585](https://github.com/brocaar/chirpstack-application-server/pull/585))
+* Add option to configure Redis key-prefix.
+* Add ns precision to the log timestamps.
+* PostgreSQL integration improvements
+	* Store `confirmed_uplink` and `dev_addr` for uplink. ([#579](https://github.com/brocaar/chirpstack-application-server/pull/579))
+	* Use `marshaler` configuration when encoding `rx_info` to JSON.
+	* Add `tx_info` field for uplinks.
+	* Store `txack` payloads into PostgreSQL database.
+
+### Bugfixes
+
+* Fix getting network-server name in service-profile list. ([#570](https://github.com/brocaar/chirpstack-application-server/pull/570))
+* Base MQTT downlink lock key on payload content. ([#577](https://github.com/brocaar/chirpstack-application-server/pull/577))
+* Fix `AppendCertsFromPEM` error return. ([#578](https://github.com/brocaar/chirpstack-application-server/issues/578))
+
 ## v3.14.0
 
 ### Features
