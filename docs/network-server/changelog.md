@@ -3,6 +3,59 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.13.0 (development)
+
+### Features
+
+#### Uplink / downlink logging to Redis Stream
+
+This implements the (optional) logging of uplink and downlink frames for
+gateways and devices to a [Redis Stream](https://redis.io/topics/streams-intro)
+for external logging and monitoring purposes. By default this option is disabled,
+it can be enabled in the [Configuration](install/config.md).
+
+### Improvements
+
+#### Refactor downlink scheduling
+
+This includes the following changes:
+
+##### txack / removing of queue items
+
+A downlink queue-item will only be deleted when it has been
+successfully acknowledged for transmission by the gateway. In case the
+gateway was unable to transmit the downlink, then the downlink will
+stay in the queue and the downlink frame-counter is not incremented.
+Note that the multicast frame-counter is incremented on scheduling,
+not after a txack, as a multicast downlink can be transmitted by
+multiple gateways in order to reach all devices in the
+multicast-group.
+
+##### re-encrypt queue-items
+
+As per LoRaWAN 1.0.4 specifications, mac-commands must be prioritized
+over application payloads, this mean than when there is an
+application payload in the queue with frame-counter N, but the
+downlink with frame-counter N will be a mac-command only downlink
+(because of max. payload-size restrictions), the NS will request the
+AS to re-encrypt the application payload using frame-counter N+1 so
+that it can be sent to the device at the next downlink opportunity.
+
+#### Schema migrations
+
+Refactor SQL schema migrations from [sql-migrate](https://github.com/rubenv/sql-migrate)
+to [golang-migrate](https://github.com/golang-migrate/migrate). ([#525](https://github.com/brocaar/chirpstack-network-server/pull/525))
+
+#### Update Go import path
+
+This updates the Go import path to `github.com/brocaar/chirpstack-network-server/v3`.
+This fixes the `go get` issue, when importing `github.com/brocaar/chirpstack-network-server/v3/adr`
+when implementing a custom ADR algorithm.
+
+#### Log timestamp precision
+
+This adds ns precision to the log timestamp.
+
 ## v3.12.3
 
 ### Improvements
