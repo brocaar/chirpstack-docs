@@ -119,6 +119,14 @@ pool_size=0
 # used by the server.
 tls_enabled=false
 
+# Key prefix.
+#
+# A key prefix can be used to avoid key collisions when multiple deployments
+# are using the same Redis database and it is not possible to separate
+# keys by database index (e.g. when using Redis Cluster, which does not
+# support multiple databases).
+key_prefix=""
+
 
 # Application-server settings.
 [application_server]
@@ -291,6 +299,22 @@ id="6d5db27e-4ce2-4b2b-b5d7-91f069397978"
   # TLS key file (optional)
   tls_key=""
 
+    # Client configuration.
+    #
+    # This section contains configuration for end-applications connecting to the
+    # MQTT broker.
+    [application_server.integration.mqtt.client]
+
+    # CA certificate and key file (optional).
+    #
+    # When setting the CA certificate and key file options, ChirpStack Application Server
+    # will generate client certificates which can be used by the end-application for
+    # authentication and authorization with the MQTT broker. The Common Name of the
+    # certificate will be set to the application ID.
+    ca_cert=""
+    ca_key=""
+    client_cert_lifetime="8760h0m0s"
+
 
   # AMQP / RabbitMQ.
   [application_server.integration.amqp]
@@ -460,29 +484,6 @@ id="6d5db27e-4ce2-4b2b-b5d7-91f069397978"
   # When left blank (default), CORS will not be used.
   cors_allow_origin=""
 
-
-  # Settings for the remote multicast setup.
-  [application_server.remote_multicast_setup]
-  # Synchronization interval.
-  sync_interval="1s"
-
-  # Synchronization retries.
-  sync_retries=3
-
-  # Synchronization batch-size.
-  sync_batch_size=100
-
-
-  # Settings for the fragmentation-session setup.
-  [application_server.fragmentation_session]
-  # Synchronization interval.
-  sync_interval="1s"
-
-  # Synchronization retries.
-  sync_retries=3
-
-  # Synchronization batch-size.
-  sync_batch_size=100
 
 
 
