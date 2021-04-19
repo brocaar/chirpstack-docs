@@ -18,3 +18,7 @@ graphs:
 devshell:
 	@echo "Starting devshell"
 	docker-compose run --rm chirpstack-docs bash
+
+serve:
+	@echo "Serving documentation"
+	docker-compose run --rm --service-ports chirpstack-docs mkdocs serve -a 0.0.0.0:3000

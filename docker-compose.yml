@@ -4,5 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-devel
+    ports:
+      - 3000:3000
     volumes:
       - ./:/chirpstack-docs
