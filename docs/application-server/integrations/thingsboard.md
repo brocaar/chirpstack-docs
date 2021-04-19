@@ -39,6 +39,14 @@ device in ChirpStack Application Server, these will also be added to the attribu
 
 ### Uplink
 
+The following metrics are recorded for every uplink:
+
+* `dr`
+* `fcnt`
+* `fport`
+* `rssi`
+* `snr`
+
 Decoded uplink data is prefixed with the **data_** prefix. Make sure to
 configure a coded in the [Device Profile](../use/device-profiles.md).
 
