@@ -251,6 +251,7 @@ model=""
 #
 #   Global flags:
 #     GNSS - Enable GNSS / GPS support
+#     USB  - Use USB for concentrator communication (default is SPI)
 model_flags=[]
 
 
