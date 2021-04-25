@@ -154,6 +154,17 @@ gateway_id="0202030405060708"
 
   # TX power.
   tx_power=14
+
+
+  # Static gateway location.
+  [gateway.location]
+
+  # When set to non-zero values, the static gateway location will be reported
+  # when the gateway does not have a GNSS module or when no GNSS location fix
+  # is available.
+  latitude=0
+  longitude=0
+  altitude=0
 ```
 
 ## `chirpstack-concentratord-sx1302`
@@ -269,4 +280,15 @@ model_flags=[]
   frequency=868800000
   bandwidth=125000
   datarate=50000
+
+
+  # Static gateway location.
+  [gateway.location]
+
+  # When set to non-zero values, the static gateway location will be reported
+  # when the gateway does not have a GNSS module or when no GNSS location fix
+  # is available.
+  latitude=0
+  longitude=0
+  altitude=0
 ```

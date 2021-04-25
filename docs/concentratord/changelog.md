@@ -4,6 +4,17 @@ description: ChirpStack Concentratord changelog.
 
 # Changelog
 
+## Features
+
+* Add support for setting static gateway location.
+* Add support for RAK2287 module (SPI & USB). ([#16](https://github.com/brocaar/chirpstack-concentratord/pull/16))
+
+## Improvements
+
+* Update SX1302 HAL to v2.1.0.
+
+## v3.1.0
+
 ## v3.0.3
 
 ### Bugfixes
