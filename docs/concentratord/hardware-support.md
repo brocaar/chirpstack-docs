@@ -45,5 +45,12 @@ The `chirpstack-concentratord-sx1302` binary implements the [SX1302 HAL](https:/
 
 | Vendor | Gateway / Shield | Model flags | Model |
 | --- | --- | --- | --- |
+| RAK | RAK2287 AS923 | GNSS, USB | rak_2287_as923 |
+| RAK | RAK2287 AU915 | GNSS, USB | rak_2287_au915 |
+| RAK | RAK2287 EU868 | GNSS, USB | rak_2287_eu868 |
+| RAK | RAK2287 IN865 | GNSS, USB | rak_2287_in865 |
+| RAK | RAK2287 KR920 | GNSS, USB | rak_2287_kr920 |
+| RAK | RAK2287 RU864 | GNSS, USB | rak_2287_ru864 |
+| RAK | RAK2287 US915 | GNSS, USB | rak_2287_us915 |
 | Semtech | CoreCell EU868 | | semtech_sx1302c868gw1_eu868 |
 | Semtech | CoreCell US915 | | semtech_sx1302c915gw1_us915 |
