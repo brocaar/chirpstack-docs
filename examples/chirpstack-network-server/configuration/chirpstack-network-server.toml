@@ -425,11 +425,21 @@ get_downlink_data_delay="100ms"
 
     # Class-C settings.
     [network_server.scheduler.class_c]
-    # Downlink lock duration
+    # Device downlink lock duration
     #
     # Contains the duration to lock the downlink Class-C transmissions
     # after a preceeding downlink tx (per device).
-    downlink_lock_duration="2s"
+    device_downlink_lock_duration="2s"
+
+    # Gateway downlink lock duration.
+    #
+    # Contains the duration to lock the downlink Class-C transmissions
+    # after a preceeding downlink tx (per gateway). As half-duplex gateways
+    # can't receive when transmitting, this value can be used to avoid that
+    # a single gateway will transmit multiple frames directly after each other
+    # and because of that, unable to receive any uplinks.
+    gateway_downlink_lock_duration="0s"
+
 
     # Multicast gateway delay.
     #
@@ -929,7 +939,7 @@ resolve_netid_domain_suffix=".netids.lora-alliance.org"
   ca_cert=""
   tls_cert=""
   tls_key=""
-
+  authorization=""
 
   # Roaming KEK set.
   #
