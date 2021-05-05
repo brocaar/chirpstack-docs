@@ -33,6 +33,7 @@ For newly setup integrations all tables will be created automatically. ([#573](h
 * Refactor SQL schema migrations from [sql-migrate](https://github.com/rubenv/sql-migrate) to [golang-migrate](https://github.com/golang-migrate/migrate). ([#585](https://github.com/brocaar/chirpstack-application-server/pull/585))
 * Add option to configure Redis key-prefix.
 * Add ns precision to the log timestamps.
+* Fix Thingsboard rssi and snr telemetry keys + add fport, fcnt and dr telemetry keys.
 * PostgreSQL integration improvements
 	* Store `confirmed_uplink` and `dev_addr` for uplink. ([#579](https://github.com/brocaar/chirpstack-application-server/pull/579))
 	* Use `marshaler` configuration when encoding `rx_info` to JSON.
