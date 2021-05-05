@@ -56,6 +56,22 @@ when implementing a custom ADR algorithm.
 
 This adds ns precision to the log timestamp.
 
+#### Custom authorization for roaming
+
+This adds a configurable HTTP authorization header for roaming. ([#528](https://github.com/brocaar/chirpstack-network-server/pull/528))
+
+#### Class-C scheduling improvements
+
+* Lock Class-C downlink scheduling for device when a Class-A uplink is received,
+  to avoid that the Class-C scheduler schedules a downlink within Class-A receive-window.
+* Add config option to lock gateway for a given time after a Class-C downlink, to avoid
+  continuously sending Class-C downlinks and therefore not being able to receive any
+  uplink (responses).
+
+### Bugfixes
+
+* Do not try to lookup NetID of unknown devices when roaming is disabled.
+
 ## v3.12.3
 
 ### Improvements
