@@ -4,6 +4,13 @@ description: ChirpStack Concentratord changelog.
 
 # Changelog
 
+## v3.2.0 (development)
+
+### Features
+
+* Implement support for 2.4 GHz concentrator.
+* Add `configfile` sub-command to binaries for printing the configuration template.
+
 ## v3.1.0
 
 ### Features

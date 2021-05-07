@@ -1,0 +1,78 @@
+
+# Concentratord configuration.
+[concentratord]
+  # Log level.
+  #
+  # Valid options are:
+  #   * TRACE
+  #   * DEBUG
+  #   * INFO
+  #   * WARN
+  #   * ERROR
+  #   * OFF
+  log_level="INFO"
+
+  # Log to syslog.
+  #
+  # When set to true, log messages are being written to syslog instead of stdout.
+  log_to_syslog=false
+
+  # Statistics interval.
+  stats_interval="30s"
+
+  # Configuration for the (ZeroMQ based) API.
+  [concentratord.api]
+    # Event PUB socket bind.
+    event_bind="ipc:///tmp/concentratord_event"
+
+    # Command REP socket bind.
+    command_bind="ipc:///tmp/concentratord_command"
+
+
+# LoRa gateway configuration.
+[gateway]
+  # Antenna gain (dB).
+  antenna_gain=0
+
+  # Public LoRaWAN network.
+  lorawan_public=true
+
+  # Gateway vendor / model.
+  #
+  # This configures various vendor and model specific settings like the min / max
+  # frequency and TX gain table.
+  model="semtech_sx1280z3dsfgw1"
+
+
+  # LoRa concentrator configuration.
+  [gateway.concentrator]
+
+    [[gateway.concentrator.channels]]
+      frequency=2403000000
+      bandwidth=812000
+      spreading_factor=12
+      rssi_offset=0
+
+    [[gateway.concentrator.channels]]
+      frequency=2479000000
+      bandwidth=812000
+      spreading_factor=12
+      rssi_offset=0
+
+    [[gateway.concentrator.channels]]
+      frequency=2425000000
+      bandwidth=812000
+      spreading_factor=12
+      rssi_offset=0
+
+
+
+  # Static gateway location.
+  [gateway.location]
+    # If set to non-zero values, the static gateway location will be reported
+    # when the gateway does not have a GNSS module or when no GNSS location fix
+    # is available.
+    latitude=0
+    longitude=0
+    altitude=0
+

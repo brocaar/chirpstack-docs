@@ -1,6 +1,7 @@
 # Hardware support
 
-ChirpStack Concentratord currently supports SX1301/8 and SX1302 based gateways.
+ChirpStack Concentratord currently supports SX1301/8, SX1302 / SX1303 based gateways
+and the SX1280 based 2.4 GHz reference-design gateway.
 In order to make configuration as easy as possible, it comes with the calibration
 values for many different gateway models embedded (based on calibration values
 provided by the vendors). Model specific features can be turned on and off using flags.
@@ -54,3 +55,11 @@ The `chirpstack-concentratord-sx1302` binary implements the [SX1302 HAL](https:/
 | RAK | RAK2287 US915 | GNSS, USB | rak_2287_us915 |
 | Semtech | CoreCell EU868 | | semtech_sx1302c868gw1_eu868 |
 | Semtech | CoreCell US915 | | semtech_sx1302c915gw1_us915 |
+
+## 2G4 (SX1280)
+
+The `chirpstack-concentratord-2g4` binary implements the [2g4 HAL](https://github.com/Lora-net/gateway_2g4_hal/).
+
+| Vendor | Gateway / Shield | Model flags | Model |
+| --- | --- | --- | --- |
+| Semtech | SX1280ZXXXXGW1 | | semtech_sx1280z3dsfgw1 |
