@@ -4,7 +4,7 @@ description: ChirpStack Concentratord changelog.
 
 # Changelog
 
-## v3.2.0 (development)
+## v3.2.0
 
 ### Features
 
