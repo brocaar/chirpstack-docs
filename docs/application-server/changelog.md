@@ -45,6 +45,7 @@ For newly setup integrations all tables will be created automatically. ([#573](h
 * Fix getting network-server name in service-profile list. ([#570](https://github.com/brocaar/chirpstack-application-server/pull/570))
 * Base MQTT downlink lock key on payload content. ([#577](https://github.com/brocaar/chirpstack-application-server/pull/577))
 * Fix `AppendCertsFromPEM` error return. ([#578](https://github.com/brocaar/chirpstack-application-server/issues/578))
+* Fix copy key to clipboard (UI). ([#593](https://github.com/brocaar/chirpstack-application-server/pull/593))
 
 ## v3.14.0
 

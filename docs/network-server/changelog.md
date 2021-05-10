@@ -14,6 +14,10 @@ gateways and devices to a [Redis Stream](https://redis.io/topics/streams-intro)
 for external logging and monitoring purposes. By default this option is disabled,
 it can be enabled in the [Configuration](install/config.md).
 
+### LoRaWAN 2.4 GHz
+
+This adds the `ISM2400` band to ChirpStack for LoRaWAN 2.4 GHz support.
+
 ### Improvements
 
 #### Refactor downlink scheduling
