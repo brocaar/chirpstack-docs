@@ -22,7 +22,7 @@ extra:
   network_server:
     version: 3.12.3
   gateway_os:
-    version: 3.3.3
+    version: 3.4.0
   concentratord:
     version: 3.2.0
 plugins:

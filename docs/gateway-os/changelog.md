@@ -1,5 +1,28 @@
 # Changelog
 
+## v3.4.0
+
+### Features
+
+* Add support for Semtech 2.4 GHz gateway module.
+* Add support for RAK2287 gateway module.
+
+### Updates
+
+* Update [ChirpStack Concentratord](https://www.chirpstack.io/concentratord/) to v3.2.0.
+* Update [ChirpStack Network Server](https://www.chirpstack.io/network-server/) to v3.12.2.
+* Update [ChirpStack Application Server](https://www.chirpstack.io/application-server/) to v3.14.0.
+
+### Improvements
+
+* Disable append only in Redis configuration.
+* Align US915 and AU915 config examples (https://github.com/brocaar/chirpstack-docs/issues/38).
+* Cleanup ChirpStack Gateway OS recipe structure.
+
+### Bugfixes
+
+* Fix disabling bluetooth on Raspberry Pi 3 (so that UART pins can be used for GNSS module).
+
 ## v3.3.3
 
 ### Features
