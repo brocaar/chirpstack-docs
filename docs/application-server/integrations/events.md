@@ -239,14 +239,29 @@ for transmission.
 
 ```json
 {
-    "applicationID": "123",
-    "applicationName": "temperature-sensor",
-    "deviceName": "garden-sensor",
-    "devEUI": "0202020202020202",
-    "fCnt": 12,
-    "tags": {
-        "key": "value"
-    }
+   "applicationID":"123",
+   "applicationName":"temperature-sensor",
+   "deviceName":"garden-sensor",
+   "devEUI":"AgICAgICAgI=",
+   "fCnt":12,
+   "gatewayID":"AwMDAwMDAwM=",
+   "txInfo":{
+      "frequency":868100000,
+      "power":27,
+      "modulation":"LORA",
+      "loRaModulationInfo":{
+         "bandwidth":125,
+         "spreadingFactor":11,
+         "codeRate":"4/5",
+         "polarizationInversion":false
+      },
+      "board":0,
+      "antenna":0,
+      "timing":"IMMEDIATELY"
+   },
+   "tags":{
+      "key":"value"
+   }
 }
 ```
 
