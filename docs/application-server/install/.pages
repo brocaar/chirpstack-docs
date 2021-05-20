@@ -1,6 +1,6 @@
 title: Install
 arrange:
-  - config.md
-  - debian.md
   - requirements.md
+  - debian.md
+  - config.md
   - nginx.md
