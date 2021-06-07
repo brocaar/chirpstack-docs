@@ -4,6 +4,104 @@ description: Installation of the ChirpStack Gateway Bridge on Kerlink gateways.
 
 # Kerlink
 
+## Kerlink KerOS based gateways
+
+KerOS is used by Kerlink on the following gateways:
+
+* [Kerlink iBTS](https://www.kerlink.com/product/wirnet-ibts/)
+* [Kerlink iFemtoCell](https://www.kerlink.com/product/wirnet-ifemtocell/)
+* [Kerlink iStation](https://www.kerlink.com/product/wirnet-istation/)
+
+### Requirements
+
+Please make sure that you have installed the latest KerOS
+firmware version. The steps below have been tested with KerOS v4.3.3. For
+upgrade instructions, please refer to the [Kerlink wiki](http://wikikerlink.fr/wirnet-productline).
+
+### SSH into the gateway
+
+The first step is to login into the gateway using ssh:
+
+```bash
+ssh root@GATEWAY-IP-ADDRESS
+```
+
+Please refer to the [Kerlink wiki](http://wikikerlink.fr/wirnet-productline)
+for login instructions.
+
+### Enable Kerlink CPF
+
+By default, the Kerlink Common Packet-Forwarder (CPF) is disabled. Please
+make sure it is enabled. The following command can be used to enable the CPF:
+
+```bash
+klk_apps_config --activate-cpf
+```
+
+### Configure Kerlink CPF
+
+You must configure the packet-forwarder on the gateway to forward its data to
+`127.0.0.1` at port `1700`. The file `/etc/lorafwd/lorafwd.toml` must contain the
+following lines under the `[ gwmp ]` section:
+
+```toml
+node = "127.0.0.1"
+service.uplink = 1700
+service.downlink = 1700
+```
+
+After updating this configuration file, make sure to restart the `lorafwd` service:
+
+```bash
+monit restart lorafwd
+```
+
+### Install ChirpStack Gateway Bridge
+
+Find the latest package at [https://artifacts.chirpstack.io/vendor/kerlink/keros-gws/](https://artifacts.chirpstack.io/vendor/kerlink/keros-gws/)
+and copy the URL to your clipboard. Then on the gateway use `wget` to download
+the package into a folder named `/user/.updates`. Example for `chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_klkgw.ipk`:
+
+```bash
+cd /user/.updates
+wget https://artifacts.chirpstack.io/vendor/kerlink/keros-gws/chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_klkgw.ipk
+```
+
+To trigger the gateway to install / update the package, run the following commands:
+
+```bash
+sync
+kerosd -u
+reboot
+```
+
+Please refer to the [Kerlink wiki](http://wikikerlink.fr/wirnet-productline)
+for more information about installing and updating packages.
+
+### Configure ChirpStack Gateway Bridge
+
+To connect the ChirpStack Gateway Bridge with your MQTT broker, you must update
+the ChirpStack Gateway Bridge configuration file, which is located at:
+`/etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml`.
+
+### (Re)start and stop commands
+
+Use the following commands to (re)start and stop the ChirpStack Gateway Bridge Service:
+
+```bash
+# status
+monit status chirpstack-gateway-bridge
+
+# start
+monit start chirpstack-gateway-bridge
+
+# stop
+monit stop chirpstack-gateway-bridge
+
+# restart
+monit restart chirpstack-gateway-bridge
+```
+
 ## Kerlink IOT station
 
 * [Product detail page](https://www.kerlink.com/product/wirnet-station/)
@@ -92,253 +190,3 @@ These steps will install the LoRa Gateway Bridge ARM build on the Kerlink.
 		</manifest>
 
 Reboot your system.
-
-## Kerlink iBTS
-
-* [Product detail page: iBTS](https://www.kerlink.com/product/wirnet-ibts/)
-
-**Note:** These steps have been tested using the _KerOS firmware v4.1.6_.
-Please make sure you have this version or later installed. You must also
-install the Kerlink Common Packet Forwarder.
-
-### SSH into the gateway
-
-The first step is to login into the gateway using ssh:
-
-```bash
-ssh root@GATEWAY-IP-ADDRESS
-```
-
-Please refer to the [Kerlink wiki](http://wikikerlink.fr/wirnet-productline)
-for login instructions.
-
-### Install IPK package
-
-Find the latest package at https://artifacts.chirpstack.io/vendor/kerlink/ibts/
-and copy the URL to your clipboard. Then on the gateway use `wget` to download
-the package into a folder named `/user/.updates`. Example for `chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_klkgw.ipk`:
-
-```bash
-mkdir -p /user/.updates
-cd /user/.updates
-wget https://artifacts.chirpstack.io/vendor/kerlink/ibts/chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_klkgw.ipk
-```
-
-To trigger the iBTS gateway to install / update the package, run the following commands:
-
-```bash
-sync
-kerosd -u
-reboot
-```
-
-Please refer to the [Kerlink wiki](http://wikikerlink.fr/wirnet-productline)
-for more information about installing and updating packages.
-
-### Edit the ChirpStack Gateway Bridge configuration
-
-To connect the ChirpStack Gateway Bridge with your MQTT broker, you must update
-the ChirpStack Gateway Bridge configuration file, which is located at:
-`/user/etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml`.
-
-### (Re)start and stop commands
-
-Use the following commands to (re)start and stop the ChirpStack Gateway Bridge Service:
-
-```bash
-# status
-monit status chirpstack-gateway-bridge
-
-# start
-monit start chirpstack-gateway-bridge
-
-# stop
-monit stop chirpstack-gateway-bridge
-
-# restart
-monit restart chirpstack-gateway-bridge
-```
-
-### Configure packet-forwarder
-
-You must configure the packet-forwarder on the gateway to forward its data to
-`127.0.0.1` at port `1700`. The file `/user/etc/lorafwd/lorafwd.toml` must contain the
-following lines under the `[ gwmp ]` section:
-
-```toml
-node = "127.0.0.1"
-service.uplink = 1700
-service.downlink = 1700
-```
-
-After updating this configuration file, make sure to restart the `lorafwd` service:
-
-```bash
-monit restart lorafwd
-```
-
-## Kerlink iFemtoCell
-
-* [Product detail page](https://www.kerlink.com/product/wirnet-ifemtocell/)
-
-**Note:** These steps have been tested using the _KerOS firmware v4.1.6_.
-Please make sure you have this version or later installed. You must also
-install the Kerlink Common Packet Forwarder.
-
-### SSH into the gateway
-
-The first step is to login into the gateway using ssh:
-
-```bash
-ssh root@GATEWAY-IP-ADDRESS
-```
-
-Please refer to the [Kerlink wiki](http://wikikerlink.fr/wirnet-productline)
-for login instructions.
-
-### Install IPK package
-
-Find the latest package at https://artifacts.chirpstack.io/vendor/kerlink/ifemtocell/
-and copy the URL to your clipboard. Then on the gateway use `wget` to download
-the package into a folder named `/user/.updates`. Example for `chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_klkgw.ipk`:
-
-```bash
-mkdir -p /user/.updates
-cd /user/.updates
-wget https://artifacts.chirpstack.io/vendor/kerlink/ifemtocell/chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_klkgw.ipk
-```
-
-To trigger the iFemtoCell gateway to install / update the package, run the following commands:
-
-```bash
-sync
-kerosd -u
-reboot
-```
-
-Please refer to the [Kerlink wiki](http://wikikerlink.fr/wirnet-productline)
-for more information about installing and updating packages.
-
-### Edit the ChirpStack Gateway Bridge configuration
-
-To connect the ChirpStack Gateway Bridge with your MQTT broker, you must update
-the ChirpStack Gateway Bridge configuration file, which is located at:
-`/user/etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml`.
-
-### (Re)start and stop commands
-
-Use the following commands to (re)start and stop the ChirpStack Gateway Bridge Service:
-
-```bash
-# status
-monit status chirpstack-gateway-bridge
-
-# start
-monit start chirpstack-gateway-bridge
-
-# stop
-monit stop chirpstack-gateway-bridge
-
-# restart
-monit restart chirpstack-gateway-bridge
-```
-
-### Configure packet-forwarder
-
-You must configure the packet-forwarder on the gateway to forward its data to
-`127.0.0.1` at port `1700`. The file `/user/etc/lorafwd/lorafwd.toml` must contain the
-following lines under the `[ gwmp ]` section:
-
-```toml
-node = "127.0.0.1"
-service.uplink = 1700
-service.downlink = 1700
-```
-
-After updating this configuration file, make sure to restart the `lorafwd` service:
-
-```bash
-monit restart lorafwd
-```
-
-## Kerlink iStation
-
-* [Product detail page](https://www.kerlink.com/product/wirnet-istation/)
-
-**Note:** You must also install the Kerlink Common Packet Forwarder.
-
-### SSH into the gateway
-
-The first step is to login into the gateway using ssh:
-
-```bash
-ssh root@GATEWAY-IP-ADDRESS
-```
-
-Please refer to the [Kerlink wiki](http://wikikerlink.fr/wirnet-productline)
-for login instructions.
-
-### Install IPK package
-
-Find the latest package at https://artifacts.chirpstack.io/vendor/kerlink/istation/
-and copy the URL to your clipboard. Then on the gateway use `wget` to download
-the package into a folder named `/user/.updates`. Example for `chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_klkgw.ipk`:
-
-```bash
-mkdir -p /user/.updates
-cd /user/.updates
-wget https://artifacts.chirpstack.io/vendor/kerlink/ifemtocell/chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_klkgw.ipk
-```
-
-To trigger the iStation gateway to install / update the package, run the following commands:
-
-```bash
-sync
-kerosd -u
-reboot
-```
-
-Please refer to the [Kerlink wiki](http://wikikerlink.fr/wirnet-productline)
-for more information about installing and updating packages.
-
-### Edit the ChirpStack Gateway Bridge configuration
-
-To connect the ChirpStack Gateway Bridge with your MQTT broker, you must update
-the ChirpStack Gateway Bridge configuration file, which is located at:
-`/user/etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml`.
-
-### (Re)start and stop commands
-
-Use the following commands to (re)start and stop the ChirpStack Gateway Bridge Service:
-
-```bash
-# status
-monit status chirpstack-gateway-bridge
-
-# start
-monit start chirpstack-gateway-bridge
-
-# stop
-monit stop chirpstack-gateway-bridge
-
-# restart
-monit restart chirpstack-gateway-bridge
-```
-
-### Configure packet-forwarder
-
-You must configure the packet-forwarder on the gateway to forward its data to
-`127.0.0.1` at port `1700`. The file `/user/etc/lorafwd/lorafwd.toml` must contain the
-following lines under the `[ gwmp ]` section:
-
-```toml
-node = "127.0.0.1"
-service.uplink = 1700
-service.downlink = 1700
-```
-
-After updating this configuration file, make sure to restart the `lorafwd` service:
-
-```bash
-monit restart lorafwd
-```
