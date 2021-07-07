@@ -3,6 +3,33 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.14.0 (development)
+
+### Features
+
+#### Improved frame logging
+
+This moves the frame-logging feature from Redis Pub/Sub to Redis Streams,
+persisting a configurable amount of items (default: 10) in Redis.
+
+#### LR-FHSS data-rate
+
+This adds support for the LR-FHSS data-rates for EU868, US915 and AU915.
+Note: this is an experimental feature.
+
+### Improvements
+
+* Increment multicast gateway-delay after the first item. This takes away the
+  initial delay of the first enqueued item.
+* Remove device lock if downlink fails because of gateway lock.
+
+### Bugfixes
+
+* Fix duplicated context id (and downlink_id) in Class B/C scheduler batch.
+* Fix duplicated context id (and downlink_id) in multicast scheduler batch.
+* Add stats ID and downlink ID to MQTT handler lock keys.
+* Re-send AppSKeyEnvelope to AS in case of connection issue. ([#536](https://github.com/brocaar/chirpstack-network-server/pull/536))
+
 ## v3.13.0
 
 ### Features
