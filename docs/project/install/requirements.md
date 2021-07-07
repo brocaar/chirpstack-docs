@@ -62,7 +62,7 @@ page for information how to setup PostgreSQL on your platform.
 ## Redis database
 
 The ChirpStack components are storing all non-persistent data into a
-[Redis](http://redis.io/) datastore. Note that at least Redis 2.6.0
+[Redis](http://redis.io/) datastore. Note that at least Redis 5.0.0
 is required.
 
 Redis is used by ChirpStack Network Server and ChirpStack Application Server.

@@ -59,7 +59,7 @@ device-session data and non-persistent data like distributed locks,
 deduplication sets and meta-data. 
 
 Notes:
-* At least Redis 2.6.0 is required.
+* At least Redis 5.0.0 is required.
 * Flushing the Redis database means all devices have to rejoin (OTAA) the network.
 
 ### Install

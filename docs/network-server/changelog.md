@@ -12,6 +12,8 @@ description: Lists the changes per ChirpStack Network Server release, including 
 This moves the frame-logging feature from Redis Pub/Sub to Redis Streams,
 persisting a configurable amount of items (default: 10) in Redis.
 
+Note: Redis Streams requires Redis 5.0.0+.
+
 #### LR-FHSS data-rate
 
 This adds support for the LR-FHSS data-rates for EU868, US915 and AU915.

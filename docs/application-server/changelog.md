@@ -16,6 +16,8 @@ history when opening the related pages (default is 10). This also improves
 the live frame and event logs interface to provide a better overview and faster
 rendering.
 
+Note: Redis Streams requires Redis 5.0.0+.
+
 #### Multicast refactor
 
 This moves the mulitcast feature under applications, to enforce that all
