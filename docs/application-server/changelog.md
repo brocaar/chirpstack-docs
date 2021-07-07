@@ -6,7 +6,15 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 ## v3.16.0 (in development)
 
-### Improvements
+### Features
+
+#### Live frame and event logs
+
+By using a Redis Stream instead of Pub/Sub, the last frames and events
+(per gateway and device) can be retained, providing a configurable amount of
+history when opening the related pages (default is 10). This also improves
+the live frame and event logs interface to provide a better overview and faster
+rendering.
 
 #### Multicast refactor
 
@@ -26,18 +34,19 @@ your devices. In any other case, the migration will throw an
 error asking you to either remove the empty multicast group(s) or to
 re-assign the devices so that the above criteria are met.
 
-#### Live frame and event logs
-
-By using a Redis Stream instead of Pub/Sub, the last frames and events
-(per gateway and device) can be retained, providing a configurable amount of
-history when opening the related pages (default is 10). This also improves
-the live frame and event logs interface to provide a better overview and faster
-rendering.
-
 #### InfluxDB v2
 
 This adds InfluxDB v2 support by making the InfluxDB API protocol version
 configurable when adding the InfluxDB integration.
+
+### Improvements
+
+* Add device-address to search functionality. ([#603](https://github.com/brocaar/chirpstack-application-server/pull/603))
+
+### Bugfixes
+
+* Fix `gatewayId` hex converter in live lorawan frames. ([#606](https://github.com/brocaar/chirpstack-application-server/pull/606))
+* Fix PostgreSQL integration "unknown message type: gw.UplinkRXInfo" error when `json_v3` marshaler is configured.
 
 ## v3.15.0
 
