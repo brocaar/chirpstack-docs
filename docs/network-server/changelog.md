@@ -24,6 +24,7 @@ Note: this is an experimental feature.
 * Increment multicast gateway-delay after the first item. This takes away the
   initial delay of the first enqueued item.
 * Remove device lock if downlink fails because of gateway lock.
+* Move from RSA to ECDSA key generation for gateway client-certificates.
 
 ### Bugfixes
 
@@ -31,6 +32,7 @@ Note: this is an experimental feature.
 * Fix duplicated context id (and downlink_id) in multicast scheduler batch.
 * Add stats ID and downlink ID to MQTT handler lock keys.
 * Re-send AppSKeyEnvelope to AS in case of connection issue. ([#536](https://github.com/brocaar/chirpstack-network-server/pull/536))
+* Correctly compute `ConfFCnt` for MIC (LoRaWAN 1.1). ([#540](https://github.com/brocaar/chirpstack-network-server/pull/540))
 
 ## v3.13.0
 
