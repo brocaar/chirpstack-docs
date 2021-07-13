@@ -4,6 +4,20 @@ description: Lists the changes per ChirpStack Gateway Bridge release, including 
 
 # Changelog
 
+## v3.12.0 (development)
+
+### Features
+
+* Implement LR-FHSS modulation type.
+
+### Improvements
+
+* Make Kerlink `.ipk` packaging generic for all KerOS models.
+
+### Bugfixes
+
+* Fix `null` time when GPS is not available in gateway (Basics Station). ([#196](https://github.com/brocaar/chirpstack-gateway-bridge/pull/196))
+
 ## v3.11.0
 
 ### Features
