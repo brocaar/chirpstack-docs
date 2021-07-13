@@ -49,6 +49,7 @@ configurable when adding the InfluxDB integration.
 
 * Fix `gatewayId` hex converter in live lorawan frames. ([#606](https://github.com/brocaar/chirpstack-application-server/pull/606))
 * Fix PostgreSQL integration "unknown message type: gw.UplinkRXInfo" error when `json_v3` marshaler is configured.
+* Fix use `GetRedisKey` for key generation in MQTT integration. ([#610](https://github.com/brocaar/chirpstack-application-server/pull/610))
 
 ## v3.15.0
 
