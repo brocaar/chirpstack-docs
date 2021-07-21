@@ -4,7 +4,7 @@ description: Lists the changes per ChirpStack Gateway Bridge release, including 
 
 # Changelog
 
-## v3.12.0 (development)
+## v3.12.0
 
 ### Features
 
