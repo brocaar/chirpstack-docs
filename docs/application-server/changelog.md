@@ -4,7 +4,7 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
-## v3.16.0 (in development)
+## v3.16.0
 
 ### Features
 
@@ -20,7 +20,7 @@ Note: Redis Streams requires Redis 5.0.0+.
 
 #### Multicast refactor
 
-This moves the mulitcast feature under applications, to enforce that all
+This moves the multicast feature under applications, to enforce that all
 devices within the multicast group belong to the same application as the
 multicast group.
 
@@ -44,6 +44,7 @@ configurable when adding the InfluxDB integration.
 ### Improvements
 
 * Add device-address to search functionality. ([#603](https://github.com/brocaar/chirpstack-application-server/pull/603))
+* Fetch OpenID Connect claims with `UserInfo` call. ([#613](https://github.com/brocaar/chirpstack-application-server/pull/613))
 
 ### Bugfixes
 
