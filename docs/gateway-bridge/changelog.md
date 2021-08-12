@@ -4,6 +4,22 @@ description: Lists the changes per ChirpStack Gateway Bridge release, including 
 
 # Changelog
 
+## v3.13.0 (development)
+
+### Features
+
+#### Gateway metrics
+
+This implements the aggregation of additional gateway metrics:
+
+* Uplink & downlink count split by frequency
+* Uplink & downlink count split by modulation parameters
+* Downlink (attempts) split by status
+
+### Bugfixes
+
+* Correct the command_url logged. ([#197](https://github.com/brocaar/chirpstack-gateway-bridge/pull/197))
+
 ## v3.12.0
 
 ### Features
