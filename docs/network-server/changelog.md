@@ -3,6 +3,24 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.15.0 (development)
+
+### Features
+
+#### Gateway metrics
+
+This implements the forwarding of the additional gateway metrics implemented by
+ChirpStack Gateway Bridge v3.13.0 to the ChirpStack Application Server.
+
+### Improvements
+
+* Add `AS923_4` band (AS923 with -5.90 MHz frequency offset).
+
+### Bugfixes
+
+* Remove sending mac-commands in Class-C downlink. ([#543](https://github.com/brocaar/chirpstack-network-server/issues/543))
+* Fix AS923 sub-bands (_2 and _3) in `GetVersion` API response.
+
 ## v3.14.0
 
 ### Features
