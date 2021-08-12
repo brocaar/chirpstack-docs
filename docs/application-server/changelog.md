@@ -4,6 +4,32 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.17.0 (development)
+
+### Features
+
+#### Device metrics
+
+This adds the following metrics to the device overview:
+
+* RSSI
+* SNR
+* Uplinks per frequency
+* Uplinks per data-rate
+
+### Improvements
+
+* Add support for new tracker payload in the Semtech LoRa Cloud integration.
+* Set http timeout on http integration. ([#615](https://github.com/brocaar/chirpstack-application-server/pull/615))
+
+#### Gateway metrics
+
+This adds the following metrics to the gateway overview:
+
+* Uplinks and downlinks per frequency
+* Uplinks adn downlinks per data-rate
+* Downlinks per ack status
+
 ## v3.16.0
 
 ### Features
