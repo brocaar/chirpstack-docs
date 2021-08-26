@@ -15,6 +15,7 @@ ChirpStack Gateway Bridge v3.13.0 to the ChirpStack Application Server.
 ### Improvements
 
 * Add `AS923_4` band (AS923 with -5.90 MHz frequency offset).
+* Docker images added for ARM v6, v7 and ARM64. ([#546](https://github.com/brocaar/chirpstack-network-server/pull/546))
 
 ### Bugfixes
 

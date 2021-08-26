@@ -16,6 +16,10 @@ This implements the aggregation of additional gateway metrics:
 * Uplink & downlink count split by modulation parameters
 * Downlink (attempts) split by status
 
+### Improvements
+
+* Docker images added for ARM v6, v7 and ARM64. ([#198](https://github.com/brocaar/chirpstack-gateway-bridge/pull/198))
+
 ### Bugfixes
 
 * Correct the command_url logged. ([#197](https://github.com/brocaar/chirpstack-gateway-bridge/pull/197))

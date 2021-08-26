@@ -20,7 +20,9 @@ This adds the following metrics to the device overview:
 ### Improvements
 
 * Add support for new tracker payload in the Semtech LoRa Cloud integration.
+* Get timestamp from `rxInfo` if available for join event in PostgreSQL integration.
 * Set http timeout on http integration. ([#615](https://github.com/brocaar/chirpstack-application-server/pull/615))
+* Docker images added for ARM v6, v7 and ARM64. ([#618](https://github.com/brocaar/chirpstack-application-server/pull/618))
 
 #### Gateway metrics
 
