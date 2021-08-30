@@ -4,7 +4,7 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
-## v3.17.0 (development)
+## v3.17.0
 
 ### Features
 

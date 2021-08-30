@@ -14,7 +14,7 @@ theme:
     - tabs
 extra:
   application_server:
-    version: 3.16.0
+    version: 3.17.0
   gateway_bridge:
     version: 3.13.0
   geolocation_server:
