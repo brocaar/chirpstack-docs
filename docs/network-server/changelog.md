@@ -3,7 +3,7 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
-## v3.15.0 (development)
+## v3.15.0
 
 ### Features
 
