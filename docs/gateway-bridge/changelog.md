@@ -4,6 +4,12 @@ description: Lists the changes per ChirpStack Gateway Bridge release, including 
 
 # Changelog
 
+## v3.13.1
+
+### Bugfixes
+
+* Fix stats Hz to kHz conversion for Concentratord backend.
+
 ## v3.13.0
 
 ### Features
