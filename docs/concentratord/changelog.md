@@ -4,6 +4,16 @@ description: ChirpStack Concentratord changelog.
 
 # Changelog
 
+## v3.3.0
+
+### Features
+
+* Implement and expose various gateway stats aggregations (uplinks / downlinks per frequency and modulation parameters and downlinks per ack status).
+
+### Bugfixes
+
+* Remove Class-B beacon frequency correction on enqueue.
+
 ## v3.2.0
 
 ### Features
