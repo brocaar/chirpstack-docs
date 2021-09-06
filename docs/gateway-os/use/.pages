@@ -1,6 +1,6 @@
 arrange:
   - image-types.md
-  - getting-started.md
+  - gateway-config.md
   - log-files.md
   - monitoring.md
   - modifying-files.md

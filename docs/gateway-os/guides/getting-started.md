@@ -49,6 +49,20 @@ Commands:
 Then execute the `sudo gateway-config` to configure the channel-configuration
 that the gateway must use.
 
+## chirpstack-gateway-os-base
+
+After the board and channel-plan have been configured, you must update the
+ChirpStack Gateway Bridge configuration, such that it connects to your MQTT
+broker. This can be done using the **Edit ChirpStack Gateway Bridge config**
+option in the `gateway-config` menu.
+
+Use the **Edit configuration file** option to edit the configuration file or
+the **MQTT connection wizzard**. In case you are using (client-)certificate
+authentication / authorization, the latter is recommended as it allows you
+do directly paste the certificate files.
+
+## chirpstack-gateway-os-full
+
 Unlike the **chirpstack-gateway-os-base** image, you **should not** update the
 ChirpStack Gateway Bridge configuration. It is configured to point to the MQTT broker
 which comes with the **chirpstack-gateway-os-full** image.
