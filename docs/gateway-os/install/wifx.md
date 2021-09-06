@@ -26,4 +26,4 @@ image. To "revert" to the factory firmware, you simple remove the SD Card.
   * [256MB version](http://artifacts.chirpstack.io/downloads/chirpstack-gateway-os/wifx/lorix-one-sd/)
   * [512MB version](http://artifacts.chirpstack.io/downloads/chirpstack-gateway-os/wifx/lorix-one-512-sd/)
 * Flash the SD Card image using for example [Etcher](https://www.balena.io/etcher/) on a SD Card.
-* Continue with [Using the ChirpStack Gateway OS images](../use/getting-started.md).
+* Continue with [Using the ChirpStack Gateway OS images](../guides/getting-started.md).

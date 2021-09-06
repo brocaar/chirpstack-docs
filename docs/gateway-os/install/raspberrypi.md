@@ -25,7 +25,7 @@ There are two file types:
 * Download the SD card image for your Raspberry Pi (ending with `.wic.gz`).
 * Click the **Flash from file** option in the [Balena Etcher](https://www.balena.io/etcher/) interface.
 * Flash the SD card.
-* Continue with [Using the ChirpStack Gateway OS images](../use/getting-started.md).
+* Continue with [Using the ChirpStack Gateway OS images](../guides/getting-started.md).
 
 ### Using Win32DiskImager
 
@@ -34,7 +34,7 @@ There are two file types:
 * Within the [Win32DiskImager](http://sourceforge.net/projects/win32diskimager/) interface, select the extracted `.wic` file.
   Please note that you must select the `*.*` filter in the _Select a disk image_ popup before you can select the `.wic` file.
 * Flash the SD card.
-* Continue with [Using the ChirpStack Gateway OS images](../use/getting-started.md).
+* Continue with [Using the ChirpStack Gateway OS images](../guides/getting-started.md).
 
 ## Supported shields
 
