@@ -19,8 +19,8 @@ and functional, but this will be removed fully in the next major release update.
 
 ## Integrations
 
-For documentation on the available integrations, please refer to
-[Sending and Receiving](/application-server/integrate/sending-receiving/).
+For documentation on the available integrations, please refer to the
+**Integrations** section in the left menu.
 
 ## Devices
 
