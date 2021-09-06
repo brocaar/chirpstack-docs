@@ -1,5 +1,29 @@
 # Changelog
 
+## v3.5.0
+
+### Features
+
+#### Node-RED integration
+
+This release includes [Node-RED](https://nodered.org/) into the *full* image
+version, with the [node-red-contrib-chirpstack](https://github.com/brocaar/node-red-contrib-chirpstack/)
+package pre-installed. Please note that it must be enabled using the
+`gateway-config` configuration utility first.
+
+### Updates
+
+* Update [ChirpStack Concentratord](https://www.chirpstack.io/concentratord/) to v3.3.0.
+* Update [ChirpStack Gateway Bridge](https://www.chirpstack.io/gateway-bridge/) to v3.13.1.
+* Update [ChirpStack Network Server](https://www.chirpstack.io/network-server/) to v3.15.0.
+* Update [ChirpStack Application Server](https://www.chirpstack.io/application-server/) to v3.17.0.
+* Update [Yocto](https://www.yoctoproject.org/) BSP and open-embedded layers from *dunfell* to *hardknott*.
+
+### Notes
+
+As this release increases the size of the rootfs and data partitions, updating
+using a `.swu` image is not possible.
+
 ## v3.4.0
 
 ### Features
