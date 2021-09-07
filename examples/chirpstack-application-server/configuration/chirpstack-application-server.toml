@@ -20,8 +20,6 @@ grpc_default_resolver_scheme="passthrough"
 
 
 # PostgreSQL settings.
-#
-# Please note that PostgreSQL 9.5+ is required.
 [postgresql]
 # PostgreSQL dsn (e.g.: postgres://user:password@hostname/database?sslmode=disable).
 #
@@ -74,8 +72,6 @@ max_idle_connections=2
 
 
 # Redis settings
-#
-# Please note that Redis 2.6.0+ is required.
 [redis]
 
 # Server address or addresses.
@@ -166,11 +162,14 @@ id="6d5db27e-4ce2-4b2b-b5d7-91f069397978"
     # can implement the association of the user with an organization, create a new
     # organization, ...
     # ChirpStack Application Server will make a HTTP POST call to this endpoint,
-    # with the URL parameter user_id.
+    # with the following URL parameters:
+    # - user_id, of the newly created user in ChirpStack Application Server.
+    # - oidc_claims, the claims returned by the OpenID Connect "UserInfo" call, JSON-encoded. Use this to find additional information, like the users organization.
     registration_callback_url=""
 
     # Provider URL.
     # This is the URL of the OpenID Connect provider.
+    # Example: https://auth.example.org
     provider_url=""
 
     # Client ID.
@@ -327,7 +326,7 @@ id="6d5db27e-4ce2-4b2b-b5d7-91f069397978"
   # Event routing key template.
   #
   # This is the event routing-key template used when publishing device
-  # events.
+  # events. Messages will be published to the "amq.topic" exchange.
   event_routing_key_template="application.{{ .ApplicationID }}.device.{{ .DevEUI }}.event.{{ .EventType }}"
 
 
@@ -625,3 +624,10 @@ timezone="Local"
   #   * Ping PostgreSQL database
   #   * Ping Redis database
   healthcheck_endpoint=false
+
+  # Per device event-log max history.
+  #
+  # When set to > 0, ChirpStack Application Server will log events per device
+  # to a Redis Stream. This feature is used by the web-interface.
+  per_device_event_log_max_history=10
+
