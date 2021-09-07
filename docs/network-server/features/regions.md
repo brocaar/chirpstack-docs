@@ -11,13 +11,16 @@ can be configured in the [Device Profile](device-profile.md).
 
 These regions are:
 
-* AS 923
-* AU 915-928
-* CN 470-510
-* CN 779-787
-* EU 433
-* EU 863-870
-* IN 865-867
-* KR 920-923
-* US 902-928
-* RU 864-870
+* AS923
+* AS923-2
+* AS923-3
+* AS923-4
+* AU915
+* CN470
+* CN779
+* EU433
+* EU868
+* IN865
+* KR920
+* RU864
+* US915
