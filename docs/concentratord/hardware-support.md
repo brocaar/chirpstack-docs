@@ -20,7 +20,7 @@ The `chirpstack-concentratord-sx1301` binary implements the [SX1301 HAL](https:/
 | Multitech | Multitech Conduit AP US915 | | multitech_mtcap_lora_915_us915 |
 | Multitech | Multitech Conduit MTAC-LORA-H-868 | AP1, AP2, GNSS | multitech_mtac_lora_h_868_eu868 |
 | Multitech | Multitech Conduit MTAC-LORA-H-915 | AP1, AP2, GNSS | multitech_mtac_lora_h_915_us915 |
-| Pi Supply | LoRa Gateway HAT AU915 | GNSS | pi_supply_lora_gateway_hat_au916 |
+| Pi Supply | LoRa Gateway HAT AU915 | GNSS | pi_supply_lora_gateway_hat_au915 |
 | Pi Supply | LoRa Gateway HAT EU868 | GNSS | pi_supply_lora_gateway_hat_eu868 |
 | Pi Supply | LoRa Gateway HAT US915 | GNSS | pi_supply_lora_gateway_hat_us915 |
 | RAK | RAK2245 AS923 | GNSS | rak_2245_as923 |
