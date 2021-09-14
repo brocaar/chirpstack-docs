@@ -12,12 +12,15 @@ The `chirpstack-concentratord-sx1301` binary implements the [SX1301 HAL](https:/
 
 | Vendor | Gateway / Shield | Model flags | Model |
 | --- | --- | --- | --- |
-| IMST | iC880A | | imst_ic880a_eu868 |
+| IMST | iC880A EU868 | | imst_ic880a_eu868 |
+| IMST | iC880A IN865 | | imst_ic880a_in865 |
+| IMST | iC880A RU864 | | imst_ic880a_ru864 |
 | Kerlink | iFemtoCell | | kerlink_ifemtocell_eu868 |
 | Multitech | Multitech Conduit AP EU868 | | multitech_mtcap_lora_868_eu868 |
 | Multitech | Multitech Conduit AP US915 | | multitech_mtcap_lora_915_us915 |
 | Multitech | Multitech Conduit MTAC-LORA-H-868 | AP1, AP2, GNSS | multitech_mtac_lora_h_868_eu868 |
 | Multitech | Multitech Conduit MTAC-LORA-H-915 | AP1, AP2, GNSS | multitech_mtac_lora_h_915_us915 |
+| Pi Supply | LoRa Gateway HAT AU915 | GNSS | pi_supply_lora_gateway_hat_au916 |
 | Pi Supply | LoRa Gateway HAT EU868 | GNSS | pi_supply_lora_gateway_hat_eu868 |
 | Pi Supply | LoRa Gateway HAT US915 | GNSS | pi_supply_lora_gateway_hat_us915 |
 | RAK | RAK2245 AS923 | GNSS | rak_2245_as923 |
@@ -36,6 +39,8 @@ The `chirpstack-concentratord-sx1301` binary implements the [SX1301 HAL](https:/
 | RAK | RAK2246 KR920 | GNSS | rak_2246_kr920 |
 | RAK | RAK2246 RU864 | GNSS | rak_2246_ru864 |
 | RAK | RAK2246 US915 | GNSS | rak_2246_us915 |
+| RisingHF | RHF0M301 EU868 | | risinghf_rhf0m301_eu868 |
+| RisingHF | RHF0M301 US915 | | risinghf_rhf0m301_us915 |
 | Sandbox | LoRaGo Port EU868 | | sandbox_lorago_port_eu868 |
 | Sandbox | LoRaGo Port US915 | | sandbox_lorago_port_us915 |
 | Wifx | LORIX One EU868 | | wifx_lorix_one_eu868 |

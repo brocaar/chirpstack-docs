@@ -4,6 +4,16 @@ description: ChirpStack Concentratord changelog.
 
 # Changelog
 
+## v3.3.1
+
+This release adds the following gateway model configurations:
+
+* imst_ic880a_ru864
+* imst_ic880a_in865
+* pi_supply_lora_gateway_hat_au915
+* risinghf_rhf0m301_eu868
+* risinghf_rhf0m301_us915
+
 ## v3.3.0
 
 ### Features
