@@ -24,3 +24,4 @@ These regions are:
 * KR920
 * RU864
 * US915
+* ISM2400
