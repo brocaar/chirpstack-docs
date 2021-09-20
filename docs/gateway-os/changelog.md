@@ -1,5 +1,30 @@
 # Changelog
 
+## v3.5.1
+
+### Updates
+
+* Update [ChirpStack Concentratord](https://www.chirpstack.io/concentratord/) to v3.3.1.
+
+### Improvements
+
+* Additional region configurations
+	* IMST Lite
+		* RU864
+		* IN865
+	* Pi Supply - LoRa Gateway HAT
+		* AU915
+	* RAK2245
+		* IN865
+		* RU864
+	* RAK2246(G)
+		* IN865
+		* RU864
+
+### Bugfixes
+
+* Fix configuration for RisingHF RHF0M301 shield (GPIO7 issue). [#72](https://github.com/brocaar/chirpstack-gateway-os/issues/72)
+
 ## v3.5.0
 
 ### Features
