@@ -3,6 +3,13 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.15.1
+
+### Bugfixes
+
+* Update PostgreSQL client library (fixes re-connect). ([#547](https://github.com/brocaar/chirpstack-network-server/issues/547))
+* Allow receiving less tx acknowledgements than downlink items sent to the gateway. E.g. two items were sent to the gateway, responded by a single `OK` acknowledgement (indicating the first item was sent).
+
 ## v3.15.0
 
 ### Features
