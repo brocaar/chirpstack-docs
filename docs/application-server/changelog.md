@@ -4,6 +4,17 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.17.1
+
+### Improvements
+
+* Increase Azure Service-Bus API timeout to 5 seconds.
+
+### Bugfixes
+
+* Update PostgreSQL client library (fixes re-connect). (see [#547](https://github.com/brocaar/chirpstack-network-server/issues/547))
+* Fix doughnut chart styling regression after chartjs update.
+
 ## v3.17.0
 
 ### Features
