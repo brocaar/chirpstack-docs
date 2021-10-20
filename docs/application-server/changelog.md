@@ -4,6 +4,13 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.17.2
+
+### Bugfixes
+
+* Fix parsing of multiple TLV records in LoRa Cloud integration. ([#628](https://github.com/brocaar/chirpstack-application-server/issues/628))
+* Fix some events not showing up in device data tab.
+
 ## v3.17.1
 
 ### Improvements
