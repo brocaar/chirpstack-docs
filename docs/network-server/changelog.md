@@ -3,6 +3,14 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.15.2
+
+### Bugfixes
+
+* Add missing password to Redis Sentinel Client. ([#550](https://github.com/brocaar/chirpstack-network-server/pull/550))
+* Fix disablin ADR (when ADR algorithm is set in device-profile). ([#538](https://github.com/brocaar/chirpstack-network-server/issues/538))
+* Restore the AMQP queue if needed after connection failure. ([#503](https://github.com/brocaar/chirpstack-network-server/issues/503))
+
 ## v3.15.1
 
 ### Bugfixes
