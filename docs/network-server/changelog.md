@@ -3,6 +3,13 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.15.3
+
+### Bugfixes
+
+* Fix AS923_X to AS923-X in configfile template.
+* Update lorawan dependency to fix LR-FHSS "data-rate not found" error.
+
 ## v3.15.2
 
 ### Bugfixes
