@@ -4,6 +4,12 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.17.3
+
+### Bugfixes
+
+* Do not lookup from `errToCode` map when error is of type slice. ([#631](https://github.com/brocaar/chirpstack-application-server/issues/631))
+
 ## v3.17.2
 
 ### Bugfixes
