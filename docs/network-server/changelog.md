@@ -3,6 +3,20 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.15.5
+
+### Improvements
+
+* Support async NS to JS API.
+
+### Bugfixes
+
+* Truncate `GWInfoElement` ID to 4 bytes (passive-roaming).
+* Delete queue-item after successful XmitDataReq (passive-roaming).
+* Handle fNS XmitDataAns as a TX acknowledgement.
+* Fix async passive-roaming downlink request / response order. ([#563](https://github.com/brocaar/chirpstack-network-server/pull/563))
+* Update lorawan dependency. ([#62](https://github.com/brocaar/lorawan/pull/62))
+
 ## v3.15.3
 
 ### Bugfixes

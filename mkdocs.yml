@@ -20,7 +20,7 @@ extra:
   geolocation_server:
     version: 3.3.1
   network_server:
-    version: 3.15.3
+    version: 3.15.5
   gateway_os:
     version: 3.5.1
   concentratord:

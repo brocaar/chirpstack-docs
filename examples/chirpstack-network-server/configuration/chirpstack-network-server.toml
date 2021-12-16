@@ -797,6 +797,12 @@ resolve_domain_suffix=".joineuis.lora-alliance.org"
   # # for the JoinEUI associated with this server.
   # server="https://example.com:1234/join/endpoint"
 
+  # # Use the async API scheme.
+  # async=false
+
+  # # Async request timeout.
+  # async_timeout="1s"
+
   # # CA certificate (optional).
   # #
   # # Set this to validate the join-server server certificate (e.g. when the
@@ -823,6 +829,12 @@ resolve_domain_suffix=".joineuis.lora-alliance.org"
   #
   # This API is provided by ChirpStack Application Server.
   server="http://localhost:8003"
+
+  # # Use the async API scheme.
+  async=false
+
+  # # Async request timeout.
+  async_timeout="0s"
 
   # ca certificate used by the default join-server client (optional)
   ca_cert=""
