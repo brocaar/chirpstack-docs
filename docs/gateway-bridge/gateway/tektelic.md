@@ -1,5 +1,5 @@
 ---
-description: Configure the Tektelic Pico IoT Gateway to work with the ChirpStack Gateway Bridge.
+description: Configure the Tektelic gateways to work with the ChirpStack Gateway Bridge.
 ---
 
 # Tektelic
@@ -131,9 +131,11 @@ of the machine on which ChirpStack Gateway Bridge is running.
 }
 ```
 
-## Kona Micro gateway
+## Kona gateways
 
-* [Product detail page](https://tektelic.com/iot/lorawan-gateways/)
+These instructions appy to the Linux based Tektelic Kona gateways.
+
+* [Product detail page](https://tektelic.com/catalog//type[2])
 
 ### SSH into the gateway
 
@@ -148,85 +150,13 @@ the back of the gateway (the 9 characters above the 12V = 1A line).
 
 ### Download IPK package
 
-Find the latest package at https://artifacts.chirpstack.io/vendor/tektelic/kona-micro/
+Find the latest package at https://artifacts.chirpstack.io/vendor/tektelic/kona/
 and copy the URL to your clipboard. Then on the gateway use `curl` and use the link
-as argument. Example for `chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_kona_micro.ipk`:
+as argument. Example for `chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_kona.ipk`:
 
 ```bash
 # curl URL --output chirpstack-gateway-bridge.ipk
-curl https://artifacts.chirpstack.io/vendor/tektelic/kona-micro/chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_kona_micro.ipk --output chirpstack-gateway-bridge.ipk
-```
-
-### Install IPK package
-
-Use the `opkg` package-manager to install the downloaded package. Example:
-
-```bash
-opkg install chirpstack-gateway-bridge.ipk
-```
-
-### Edit the ChirpStack Gateway Bridge configuration
-
-To connect the ChirpStack Gateway Bridge with your MQTT broker, you must update
-the ChirpStack Gateway Bridge configuration file, which is located at:
-`/etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml`.
-
-### (Re)start and stop commands
-
-Use the following commands to (re)start and stop the ChirpStack Gateway Bridge Service:
-
-```bash
-# status
-monit status chirpstack-gateway-bridge
-
-# start
-monit start chirpstack-gateway-bridge
-
-# stop
-monit stop chirpstack-gateway-bridge
-
-# restart
-monit restart chirpstack-gateway-bridge
-```
-
-### Configure packet-forwarder
-
-You must configure the packet-forwarder on the gateway to forward its data to
-`127.0.0.1` at port `1700`. The file `/etc/default/config.json` must contain the
-following lines:
-
-```json
-"server_address": "127.0.0.1",
-"serv_port_up": 1700,
-"serv_port_down": 1700,
-```
-
-
-## Kona Macro gateway
-
-* [Product detail page](https://tektelic.com/iot/lorawan-gateways/)
-
-### SSH into the gateway
-
-The first step is to login into the gateway using ssh:
-
-```bash
-ssh root@GATEWAY-IP-ADDRESS
-```
-
-The default password is the serial-number of the gateway which is printed on
-the back of the gateway (the 9 characters above the 48V = 0.6A line).
-
-
-### Download IPK package
-
-Find the latest package at https://artifacts.chirpstack.io/vendor/tektelic/kona-macro/
-and copy the URL to your clipboard. Then on the gateway use `curl` and use the link
-as argument. Example for `chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_kona_macro.ipk`:
-
-```bash
-# curl URL --output chirpstack-gateway-bridge.ipk
-curl https://artifacts.chirpstack.io/vendor/tektelic/kona-macro/chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_kona_macro.ipk --output chirpstack-gateway-bridge.ipk
+curl https://artifacts.chirpstack.io/vendor/tektelic/kona/chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_kona.ipk --output chirpstack-gateway-bridge.ipk
 ```
 
 ### Install IPK package
