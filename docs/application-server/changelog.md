@@ -4,6 +4,13 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.17.4
+
+### Improvements
+
+* Handle `email_verified` as string response when using Azure as OIDC backend. ([#641](https://github.com/brocaar/chirpstack-application-server/pull/641))
+* Extends uplink event with device-profile name, id and its tags. ([#621](https://github.com/brocaar/chirpstack-application-server/pull/621))
+
 ## v3.17.3
 
 ### Bugfixes
