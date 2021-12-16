@@ -4,6 +4,13 @@ description: Lists the changes per ChirpStack Gateway Bridge release, including 
 
 # Changelog
 
+## v3.13.2
+
+### Improvements
+
+* Expose SX1302 / SX1303 `ftime` as plain fine-timestamp if available.
+* Consolidate Tektelic `.ipk` packages to single `kona` architecture.
+
 ## v3.13.1
 
 ### Bugfixes
