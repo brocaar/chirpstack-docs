@@ -4,6 +4,16 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.17.5 (development)
+
+### Features
+
+* Add dev-nonce clear functionality. ([#660](https://github.com/brocaar/chirpstack-application-server/pull/660))
+
+### Improvements
+
+* Update LoRa Cloud integration with Modem & Geolocation Services.
+
 ## v3.17.4
 
 ### Improvements
