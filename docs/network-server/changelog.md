@@ -3,6 +3,23 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.16.0 (development)
+
+### Features
+
+* Add LR-FHSS ADR algorithms (LoRa + LR-FHSS and LR-FHSS only).
+* Add dev-nonce clear functionality. ([#570](https://github.com/brocaar/chirpstack-network-server/pull/570))
+
+### Improvements
+
+* Log fNS downlink frames for gateway. ([#569](https://github.com/brocaar/chirpstack-network-server/pull/569))
+* Run packet-handlers as goroutines. ([#564](https://github.com/brocaar/chirpstack-network-server/pull/564))
+
+### Bugfixes
+
+* Configure roaming `Authorization` header for default client. ([#573](https://github.com/brocaar/chirpstack-network-server/pull/573))
+* Return `UnknownDevAddr` and `MICFailed` errors in roaming. ([#574](https://github.com/brocaar/chirpstack-network-server/pull/574))
+
 ## v3.15.5
 
 ### Improvements
