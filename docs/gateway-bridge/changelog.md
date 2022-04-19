@@ -4,6 +4,16 @@ description: Lists the changes per ChirpStack Gateway Bridge release, including 
 
 # Changelog
 
+## v3.13.3
+
+### Improvements
+
+* Update MQTT client to latest version.
+* Add timeout to MQTT token wait.
+* Basics Station backend:
+	* Add `WORKAROUND_IGNORE_RX_TIME` flag (environment variable) to disable the parsing of `rxtime`
+	  in cases where the gateway does not provide a correct `rxtime` value.
+
 ## v3.13.2
 
 ### Improvements
