@@ -4,6 +4,37 @@ description: ChirpStack Concentratord changelog.
 
 # Changelog
 
+## v3.3.2
+
+This release adds the following gateway model configurations:
+
+* pi_supply_lora_gateway_hat_as923
+* pi_supply_lora_gateway_hat_in865
+* pi_supply_lora_gateway_hat_kr920
+* pi_supply_lora_gateway_hat_ru864
+* rak_2246_cn470
+* rak_2246_eu433
+* rak_2247_as923
+* rak_2247_au915
+* rak_2247_cn433
+* rak_2247_eu433
+* rak_2247_eu868
+* rak_2247_in865
+* rak_2247_kr920
+* rak_2247_ru864
+* rak_2247_us915
+* rak_2287_cn470
+* rak_2287_eu433
+* rak_5146_as923
+* rak_5146_au915
+* rak_5146_cn470
+* rak_5146_eu433
+* rak_5146_eu868
+* rak_5146_in865
+* rak_5146_kr920
+* rak_5146_ru864
+* rak_5146_us915
+
 ## v3.3.1
 
 This release adds the following gateway model configurations:
