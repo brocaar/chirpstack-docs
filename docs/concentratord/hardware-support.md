@@ -34,11 +34,22 @@ The `chirpstack-concentratord-sx1301` binary implements the [SX1301 HAL](https:/
 | RAK | RAK2245 US915 | GNSS | rak_2245_us915 |
 | RAK | RAK2246 AS923 | GNSS | rak_2246_as923 |
 | RAK | RAK2246 AU915 | GNSS | rak_2246_au915 |
+| RAK | RAK2246 CN470 | GNSS | rak_2246_cn470 |
+| RAK | RAK2246 EU433 | GNSS | rak_2246_eu433 |
 | RAK | RAK2246 EU868 | GNSS | rak_2246_eu868 |
 | RAK | RAK2246 IN865 | GNSS | rak_2246_in865 |
 | RAK | RAK2246 KR920 | GNSS | rak_2246_kr920 |
 | RAK | RAK2246 RU864 | GNSS | rak_2246_ru864 |
 | RAK | RAK2246 US915 | GNSS | rak_2246_us915 |
+| RAK | RAK2247 AS923 | GNSS | rak_2247_as923 |
+| RAK | RAK2247 AU915 | GNSS | rak_2247_au915 |
+| RAK | RAK2247 CN433 | GNSS | rak_2247_cn433 |
+| RAK | RAK2247 EU433 | GNSS | rak_2247_eu433 |
+| RAK | RAK2247 EU868 | GNSS | rak_2247_eu868 |
+| RAK | RAK2247 IN865 | GNSS | rak_2247_in865 |
+| RAK | RAK2247 KR920 | GNSS | rak_2247_kr920 |
+| RAK | RAK2247 RU864 | GNSS | rak_2247_ru864 |
+| RAK | RAK2247 US915 | GNSS | rak_2247_us915 |
 | RisingHF | RHF0M301 EU868 | | risinghf_rhf0m301_eu868 |
 | RisingHF | RHF0M301 US915 | | risinghf_rhf0m301_us915 |
 | Sandbox | LoRaGo Port EU868 | | sandbox_lorago_port_eu868 |
@@ -53,11 +64,22 @@ The `chirpstack-concentratord-sx1302` binary implements the [SX1302 HAL](https:/
 | --- | --- | --- | --- |
 | RAK | RAK2287 AS923 | GNSS, USB | rak_2287_as923 |
 | RAK | RAK2287 AU915 | GNSS, USB | rak_2287_au915 |
+| RAK | RAK2287 CN470 | GNSS, USB | rak_2287_cn470 |
+| RAK | RAK2287 EU433 | GNSS, USB | rak_2287_eu433 |
 | RAK | RAK2287 EU868 | GNSS, USB | rak_2287_eu868 |
 | RAK | RAK2287 IN865 | GNSS, USB | rak_2287_in865 |
 | RAK | RAK2287 KR920 | GNSS, USB | rak_2287_kr920 |
 | RAK | RAK2287 RU864 | GNSS, USB | rak_2287_ru864 |
 | RAK | RAK2287 US915 | GNSS, USB | rak_2287_us915 |
+| RAK | RAK5146 AS923 | GNSS, USB | rak_5146_as923 |
+| RAK | RAK5146 AU915 | GNSS, USB | rak_5146_au915 |
+| RAK | RAK5146 CN470 | GNSS, USB | rak_5146_cn470 |
+| RAK | RAK5146 EU433 | GNSS, USB | rak_5146_eu433 |
+| RAK | RAK5146 EU868 | GNSS, USB | rak_5146_eu868 |
+| RAK | RAK5146 IN865 | GNSS, USB | rak_5146_in865 |
+| RAK | RAK5146 KR920 | GNSS, USB | rak_5146_kr920 |
+| RAK | RAK5146 RU864 | GNSS, USB | rak_5146_ru864 |
+| RAK | RAK5146 US915 | GNSS, USB | rak_5146_us915 |
 | Semtech | CoreCell EU868 | | semtech_sx1302c868gw1_eu868 |
 | Semtech | CoreCell US915 | | semtech_sx1302c915gw1_us915 |
 
