@@ -3,6 +3,13 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.16.2
+
+### Bugfixes
+
+* Fix concurrent handling in case of ghost OTAA packets.
+* Fix missing gateway meta-data cache flush.
+
 ## v3.16.1
 
 ### Features
