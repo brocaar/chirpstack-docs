@@ -4,6 +4,16 @@ description: Lists the changes per ChirpStack Gateway Bridge release, including 
 
 # Changelog
 
+## v3.14.0
+
+### Features
+
+* Add support for periodic time-sync requests (Basics Station).
+
+### Improvements
+
+* Make it possible to use 32bit downlink tokens instead of 16bit only (will be used by ChirpStack v4).
+
 ## v3.13.3
 
 ### Improvements
