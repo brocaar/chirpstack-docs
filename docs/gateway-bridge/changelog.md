@@ -4,6 +4,12 @@ description: Lists the changes per ChirpStack Gateway Bridge release, including 
 
 # Changelog
 
+## v3.14.2
+
+### Bugfixes
+
+* Basics Station: Prefer `gpstime` over `rxtime` in case both are available.
+
 ## v3.14.1
 
 ### Improvements
