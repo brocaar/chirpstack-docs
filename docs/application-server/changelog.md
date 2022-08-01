@@ -4,6 +4,14 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.17.7
+
+### Improvements
+
+* Update to Go 1.18.
+* Update mqtt client dependency.
+* Misc UI dependency updates.
+
 ## v3.17.6
 
 ### Features
