@@ -3,6 +3,18 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.16.3
+
+### Improvements
+
+* Update mqtt client dependency.
+* Update to Go 1.18.
+
+### Bugfixes
+
+* Add `db` to `joinContext`. ([#590](https://github.com/brocaar/chirpstack-network-server/pull/590))
+* Fix NewChannelReq for LoRaWAN 2.4 gHz. ([#65](https://github.com/brocaar/lorawan/issues/65))
+
 ## v3.16.2
 
 ### Bugfixes
