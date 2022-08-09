@@ -1,1 +1,1 @@
-chirpstack-api==3.7.2
+chirpstack-api==3.12.4

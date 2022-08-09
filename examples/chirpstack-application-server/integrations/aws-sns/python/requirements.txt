@@ -1,2 +1,2 @@
 boto3==1.14.29
-chirpstack-api==3.7.2
+chirpstack-api==3.12.4
