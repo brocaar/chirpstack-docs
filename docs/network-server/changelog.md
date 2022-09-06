@@ -3,6 +3,13 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.16.4
+
+### Improvements
+
+* Send also ack errors from mac-only messages to AS. ([#596](https://github.com/brocaar/chirpstack-network-server/pull/596))
+* Cleanup DevEUI from DevAddr -> DevEUI set, if device-session does not exist.
+
 ## v3.16.3
 
 ### Improvements
