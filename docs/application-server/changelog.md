@@ -4,6 +4,13 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.17.8
+
+### Improvements
+
+* Introduce `use_userinfo` and `assume_email_verified` options for OIDC. ([#695](https://github.com/brocaar/chirpstack-application-server/pull/695))
+* Update build to latest Go toolchain.
+
 ## v3.17.7
 
 ### Improvements
