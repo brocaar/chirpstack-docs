@@ -4,6 +4,12 @@ description: Lists the changes per ChirpStack Gateway Bridge release, including 
 
 # Changelog
 
+## v3.14.4
+
+### Improvements
+
+* Update build to latest Go toolchain.
+
 ## v3.14.3
 
 ### Bugfixes
