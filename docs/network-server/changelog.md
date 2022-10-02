@@ -3,6 +3,12 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.16.5
+
+### Improvements
+
+* Update build to latest Go toolchain.
+
 ## v3.16.4
 
 ### Improvements
