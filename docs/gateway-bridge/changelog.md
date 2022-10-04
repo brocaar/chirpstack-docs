@@ -4,6 +4,16 @@ description: Lists the changes per ChirpStack Gateway Bridge release, including 
 
 # Changelog
 
+## v3.14.5
+
+### Improvements
+
+* Expose ack-rate (Semtech UDP protocol) through Prometheus metrics.
+
+### Bugfixes
+
+* Update Multitech Conduit packaging to work Monit for process monitoring (included in latest mPower).
+
 ## v3.14.4
 
 ### Improvements

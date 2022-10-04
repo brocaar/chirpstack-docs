@@ -16,7 +16,7 @@ extra:
   application_server:
     version: 3.17.8
   gateway_bridge:
-    version: 3.14.4
+    version: 3.14.5
   geolocation_server:
     version: 3.3.1
   network_server:

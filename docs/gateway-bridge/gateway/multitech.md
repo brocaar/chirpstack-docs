@@ -14,270 +14,79 @@ packet-forwarder and ChirpStack Gateway Bridge. The packet-forwarder will forwar
 the UDP data to `localhost:1700` and the ChirpStack Gateway Bridge will forward
 this data over MQTT to a MQTT broker.
 
-There are two different Multitech Conduit firmware versions: mLinux and AEP.
-The AEP version comes with a web-interface and IBM Node-RED pre-installed.
-The mLinux version provides an open Linux development environment and is
-recommended when complete (firmware) control is preferred.
+<!-- toc -->
 
-Please refer to [http://www.multitech.net/developer/products/multiconnect-conduit-platform/](http://www.multitech.net/developer/products/multiconnect-conduit-platform/)
-for more documentation on on the Multitech Conduit.
+### Requirements
 
-**Note:** It is possible to install mLinux on an AEP Conduit version following the
-steps below. This is recommended when you don't rely on any software provided by
-the AEP firmware.
+Before you continue, please make confirm you have the latest [mPower](http://www.multitech.net/developer/software/aep/)
+firmware installed. Please refer to the [mLinux software guide](https://www.multitech.com/documents/publications/software-guides/s000727--mPower-Edge-Intelligence-Conduit-AEP-software-guide.pdf)
+for more information on the firmware upgrade process.
 
-### Getting the IP address
+It is also asumed that you already have completed the network setup of your
+gateway and that you have obtained the IP address. In case your gateway has been
+setup with DHCP, this IP address usually can be obtained by logging into your
+internet router.
 
-Before continuing, you'll want to obtain the IP address of the Conduit.  This can 
-be done using a serial connection from a computer using a USB-to-microUSB cable,
-connecting to the plug behind the Multitech logo placard. Plug the device into 
-your network, provide power, and let it boot until the "STATUS" light is 
-blinking in a heartbeat pattern.  Connect to the device via a serial terminal 
-program. Example (where `/dev/ttyACM0` should equal to the serial interface):
+### Web-interface log in
 
-```bash
-screen /dev/ttyACM0 115200
-```
+The mPower web-interface can be accessed by entering `https://IP-ADDRESS/` into
+your browser. As the web-interface uses a self-signed certificate, your browser
+will probably raise a warning.
 
-Once logged in, issue the command "ifconfig" to get the IP address of 
-the eth0 connection.  Note that if the IP address is `192.168.2.1`, the device is
-likely configured with a static IP.  In this case, edit the file 
-`/etc/network/interfaces`, change the line that says, `iface eth0 inet static` to 
-`iface eth0 inet dhcp`, and comment out the lines specifying the IP address and 
-netmask by adding a `#` at the beginning of each line:
+### Packet-forwarder setup
 
-```text
-# address 192.168.2.1
-# netmask 255.255.255.0
-```
+1. In the left menu, click _LoRaWAN&reg;_
+2. Under _LoRa mode_, select **PACKET FORWARDER**
+3. Under _LoRa Packet Forwarder Configuration_ enter / select the following settings:
+	* Network Settings
+		* Network: **Manual**
+		* Channel Plan: The desired channel-plan
+	* Server Settings
+		* Server Address: **127.0.0.1**
+		* Upstream Port: **1700**
+		* Downstream Port: **1700**
+4. Click _Submit_, and then _Save and Appy_ in the left menu.
 
-Then execute `/etc/init.d/networking restart`, and obtain the issued IP address
-as outlined above.
+After completing these steps, you should see _RUNNING_ under the Packet Forwarder Status.
 
-### Upgrading / migrating from AEP to the latest mLinux
+### Enable SSH
 
-The suggested way to setup the packet-forwarder and ChirpStack Gateway Bridge on a
-Multitech Conduit is by using the base mLinux firmware image
-(`mlinux-base-*.jffs2`). This firmware
-image installs the minimal amount of software needed to boot the Conduit,
-but does not contain any other software which could conflict with your setup.
-The latest firmware version can be downloaded from: [http://www.multitech.net/mlinux/images/mtcdt/](http://www.multitech.net/mlinux/images/mtcdt/).
+In order to install ChirpStack packages on the gateway, you must first enable SSH.
 
-The [Flashing mLinux Firmware](http://www.multitech.net/developer/software/mlinux/using-mlinux/flashing-mlinux-firmware-for-conduit/)
-instructions cover both upgrading mLinux to a newer version and converting an
-AEP model into a mLinux model. In both the AEP migrate and mLinux upgrade you
-can use the **Using Auto-Flash During Reboot** steps. **Again, make sure to
-use the `mlinux-base*.jffs2` image!**
+1. In the left menu, click _Administration_ and then _Access configuration_. 
+2. Under _SSH Settings_, make sure this option is **Enabled**.
+3. In case of changes, click _Submit_ and then _Save and Apply_ in the left menu.
 
-**Important:** after flashing the device, you need to update the `opkg` cache
-which can be done with the command: `opkg update`.
+### SSH log in
 
-Example commands for upgrading / migrating:
+To log in into your gateway, use the following command:
 
 ```bash
-mkdir /var/volatile/flash-upgrade
-cd /var/volatile/flash-upgrade
-wget -O uImage.bin http://www.multitech.net/mlinux/images/mtcdt/5.0.0/uImage--4.9.87-r9.2-mtcdt-20190618233259.bin
-wget -O rootfs.jffs2 http://www.multitech.net/mlinux/images/mtcdt/5.0.0/mlinux-base-image-mtcdt-20190618233259.rootfs.jffs2
-touch /var/volatile/do_flash_upgrade
-reboot
+ssh USERNAME@IP-ADDRESS
 ```
 
-Then after the reboot update the `opkg` cache:
+Where `USERNAME` is the username that you use to gain access to the web-interface
+of the gateway and `IP-ADDRESS` with the IP address of the gateway.
 
-```bash
-opkg update
-```
+### ChirpStack Gateway Bridge install
 
-### Setting up the ChirpStack Gateway Bridge
-
-1. Log in using SSH or use the USB to serial interface.
-
-2. Download the latest `chirpstack-gateway-bridge` `.ipk` package from:
-   [https://artifacts.chirpstack.io/vendor/multitech/conduit/](https://artifacts.chirpstack.io/vendor/multitech/conduit/).
-   Example (assuming you want to install `chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_arm926ejste.ipk`):
+1. Log in using SSH if you haven't done so yet (see above step).
+2. Download the latest `chirpstack-gateway-bridge` `.ipk` package from [https://artifacts.chirpstack.io/vendor/multitech/conduit/](https://artifacts.chirpstack.io/vendor/multitech/conduit/).
+   For example, execute the following command on the gateway:
 
 		wget https://artifacts.chirpstack.io/vendor/multitech/conduit/chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_arm926ejste.ipk
 
-3. Now that the `.ipk` package is stored on the Conduit, you can install it
-   using the `opkg` package-manager utility. Example (assuming the same
-   `.ipk` file):
+3. Now that the .ipk package is stored on the Conduit, you can install it using the opkg package-manager utility. Example (assuming the same .ipk file):
 
-		opkg install chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_arm926ejste.ipk
+		sudo opkg install chirpstack-gateway-bridge_{{ gateway_bridge.version }}-r1_arm926ejste.ipk
 
-4. Update the MQTT connection details so that ChirpStack Gateway Bridge is able to
-   connect to your MQTT broker. You will find the configuration file in the
-   `/var/config/chirpstack-gateway-bridge` directory.
+4. Update the ChirpStack Gateway Bridge configuration. You will find the
+   configuration file in the `/var/config/chirpstack-gateway-bridge` directory.
+   Most likely, you want to change the following configuration:
 
-5. Start ChirpStack Gateway Bridge and ensure it will be started on boot.
-   Example:
+	* MQTT connection details (with the hostname of your MQTT broker)
+	* MQTT topic templates (with the correct topic prefix)
 
-		/etc/init.d/chirpstack-gateway-bridge start
+5. Restart ChirpStack Gateway Bridge:
 
-### Setting up the packet-forwarder
-
-The packages installed with the commands below will by default choose the US
-or EU band configuration, based on the used hardware. Please refer to the
-[Multitech documentation](http://www.multitech.net/developer/software/lora/aep-lora-packet-forwarder/)
-for alternative configurations.
-
-To find out if you should follow the `MTAC-LORA-H` or `MTAC-LORA`
-instructions, you could use the following commands:
-
-```bash
-# mCard in ap1 slot
-mts-io-sysfs show ap1/product-id
-
-# mCard in ap2 slot
-mts-io-sysfs show ap2/product-id
-
-# detect first mCard
-mts-io-sysfs show lora/product-id
-```
-
-#### mLinux with MTAC-LORA-H-915 or MTAC-LORA-H-868
-
-**Important:** Follow these steps only when you have a `MTAC-LORA-H` (v1.5)
-card which uses the SPI interface.
-
-1. Log in using SSH or use the USB to serial interface.
-
-2. Download the latest `lora-packet-forwarder` `*.ipk` package
-   from [https://artifacts.chirpstack.io/vendor/multitech/conduit/](https://artifacts.chirpstack.io/vendor/multitech/conduit/).
-   Example:
-
-		wget https://artifacts.chirpstack.io/vendor/multitech/conduit/lora-packet-forwarder_4.0.1-r5.0_mtcdt.ipk
-
-3. Now this `.ipk` package is stored on the Conduit, you can install it
-   using the `opkg` package-manager utility. Example (assuming the same
-   `.ipk` file):
-
-		opkg install lora-packet-forwarder_4.0.1-r5.0_mtcdt.ipk
-
-4. As the package has the same name as the default package provided by Multitech
-   you need to 'flag' the package with the status `hold` to make sure an
-   `opkg upgrade` does not overwrite it:
-
-		opkg flag hold lora-packet-forwarder
-
-5. Start the packet-forwarder and enable it to start on boot. Note that the
-   `-ap1` or `-ap2` suffix refers to the slot in which your `MTAC-LORA-H` card
-   is present. In case you have two `MTAC-LORA-H` cards, this allows you to start
-   two packet-forwarder instances with each using their own configuration.
-   Example:
-
-		/etc/init.d/lora-packet-forwarder-ap1 start
-		update-rc.d lora-packet-forwarder-ap1 defaults
-
-   **Note:** on the first start of the packet-forwarder it will detect for you
-   the version of your `MTAC-LORA-H` cards (868 or 915) and if your Conduit
-   has an onboard GPS. It will then automatically generate the correct
-   configuration for you.
-
-   Configuration is stored in `/var/config/lora-packet-forwarder-ap1` and
-   `/var/config/lora-packet-forwarder-ap2` directories and can be modified after
-   the first start.
-
-   The build recipe of the `.ipk` package can be found at:
-   [https://github.com/brocaar/chirpstack-yocto](https://github.com/brocaar/chirpstack-yocto).
-
-#### mLinux with MTAC-LORA-915 or MTAC-LORA-868
-
-**Important:** Follow these steps only when you have a `MTAC-LORA` (v1.0
-card which uses the FTDI interface.
-
-1. Log in using SSH or use the USB to serial interface.
-
-2. Download the latest `lora-packet-forwarder-usb` `*.ipk` package
-   from [https://artifacts.chirpstack.io/vendor/multitech/conduit/](https://artifacts.chirpstack.io/vendor/multitech/conduit/).
-   Example:
-
-		wget https://artifacts.chirpstack.io/vendor/multitech/conduit/lora-packet-forwarder-usb_1.4.1-r2.0_arm926ejste.ipk
-
-3. Now this `.ipk` package is stored on the Conduit, you can install it
-   using the `opkg` package-manager utility. Example (assuming the same
-   `.ipk` file):
-
-		opkg install lora-packet-forwarder-usb_1.4.1-r2.0_arm926ejste.ipk
-
-4. As the package has the same name as the default package provided by Multitech
-   you need to 'flag' the package with the status `hold` to make sure an
-   `opkg upgrade` does not overwrite it:
-
-		opkg flag hold lora-packet-forwarder-usb
-
-5. Start the packet-forwarder and enable it to start on boot. 
-   Example:
-
-		/etc/init.d/lora-packet-forwarder-usb start
-		update-rc.d lora-packet-forwarder-usb defaults
-
-   **Note:** on the first start of the packet-forwarder it will detect for you
-   the version of your `MTAC-LORA` cards (868 or 915). It will then automatically
-   generate the correct configuration for you.
-
-   Configuration is stored in `/var/config/lora-packet-forwarder-usb` directory
-   and can be modified after the first start.
-
-   The build recipe of the `.ipk` package can be found at:
-   [https://github.com/brocaar/chirpstack-yocto](https://github.com/brocaar/chirpstack-yocto).
-
-#### AEP: Setting up the packet-forwarder
-
-Use the web interface to set up the Conduit's packet forwarder.  By default, 
-the connection will not be “secure” over https because the device uses a self-
-signed certificate.  Accept the certificate to proceed.
-
-1. Log in to the web-interface.
-2. On the home screen, you should be able to see information about the version of the LoRa card.  Find the corresponding section on the web page:  
-  http://www.multitech.net/developer/software/lora/aep-lora-packet-forwarder/  
-   This page has links to basic configuration for each card version which you 
-   will need below.
-3. You should see the “First-Time Setup Wizard” welcome screen.  If not, you
-   can access it using the menu on the left side of the screen.  Once started,
-   Click “Next”.
-4. Set your password on the device for the admin account and click “Next”.
-5. Set the date and time and click “Next”.
-6. For the “Cellular PPP Configuration,” leave all fields blank and click 
-   “Next”.
-7. For the “Cellular PPP Authentication”, leave the Type as NONE, and click 
-   “Next”.
-8. For the “IP Setup - eth0”, set up as appropriate for your network and click 
-   “Next”.
-9. For the “Access Configuration”, set up as appropriate for your network and 
-   click “Done”.
-10. On the left menu, select “Setup”, and then “LoRa Network Server” from the 
-    submenu.
-11. In the “LoRa Configuration” window:
-12. At the top of the left column, check “Enabled”.
-13. At the top of the right column, set “Mode” to be “PACKET FORWARDER”.
-14. In the “Config” text box, copy and paste the configuration data for your 
-    MTAC LoRa card and region.  In addition, you will want to modify/add the 
-    following configuration details in the gateway\_conf section.  Leave any 
-    other settings in this section as they are.  The ref\_* fields should be set 
-    for the gateway.  (Altitude is specified in meters.):
-    
-		{
-			...
-			"gateway_conf": {
-				...
-				"server_address": "localhost",
-				"serv_port_up": 1700,
-				"serv_port_down": 1700,
-				"fake_gps": true,
-				"ref_latitude": 39.9570133,
-				"ref_longitude": -105.1603241,
-				"ref_altitude": 1664
-			}
-		}
-
-    Note that the serv_port_up and serv_port_down represent the ports used to 
-    communicate with the chirpstack-gateway-bridge, usually on localhost (the 
-    server_address parameter).  See the image above.
-    
-15. Select “Submit”.
-16. Select the “Save and Restart” option on the left menu.
-
-5. Be sure to add the gateway to the ChirpStack Application Server.  See [here](/application-server/use/gateways/).
-
-6. Finally, restart the system to get everything running.
+		sudo monit restart chirpstack-gateway-bridge
