@@ -4,6 +4,14 @@ description: Lists the changes per ChirpStack Application Server release, includ
 
 # Changelog
 
+## v3.17.9
+
+### Improvements
+
+* Update Go compiler to v1.19.3.
+* Update Alpine base container to v3.17.0.
+* Update prometheus/client_golang to v1.14.0.
+
 ## v3.17.8
 
 ### Improvements

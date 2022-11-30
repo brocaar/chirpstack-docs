@@ -14,13 +14,13 @@ theme:
     - tabs
 extra:
   application_server:
-    version: 3.17.8
+    version: 3.17.9
   gateway_bridge:
-    version: 3.14.5
+    version: 3.14.6
   geolocation_server:
     version: 3.3.1
   network_server:
-    version: 3.16.5
+    version: 3.16.6
   gateway_os:
     version: 3.6.0
   concentratord:

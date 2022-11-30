@@ -4,6 +4,14 @@ description: Lists the changes per ChirpStack Gateway Bridge release, including 
 
 # Changelog
 
+## v3.14.6
+
+### Improvements
+
+* Update Go compiler to v1.19.3.
+* Update Alpine base container to v3.17.0.
+* Update prometheus/client_golang to v1.14.0.
+
 ## v3.14.5
 
 ### Improvements
