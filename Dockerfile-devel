@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.15
 
 ENV PROJECT_PATH=/chirpstack-docs
 
@@ -9,3 +9,4 @@ COPY . $PROJECT_PATH
 WORKDIR $PROJECT_PATH
 
 RUN pip install -r requirements.txt
+RUN pip install jinja2==3.0.0
