@@ -3,6 +3,17 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.16.7
+
+### Improvements
+
+* Update Paho MQTT library to latest version.
+
+### Bugfixes
+
+* Fix task order, first save frame, then send it. ([#584](https://github.com/brocaar/chirpstack-network-server/pull/584))
+* Lock device record on ack.
+
 ## v3.16.6
 
 ### Improvements
