@@ -4,6 +4,12 @@ description: Lists the changes per ChirpStack Gateway Bridge release, including 
 
 # Changelog
 
+## v3.14.7
+
+### Bugfixes
+
+* Prevent duplicate MQTT connections. ([#229](https://github.com/chirpstack/chirpstack-gateway-bridge/pull/229))
+
 ## v3.14.6
 
 ### Improvements
