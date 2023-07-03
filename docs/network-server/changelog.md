@@ -3,6 +3,12 @@ description: Lists the changes per ChirpStack Network Server release, including 
 ---
 # Changelog
 
+## v3.16.8
+
+### Bugfixes
+
+* Fix sending duplicate channel-mask for US915-like regions.
+
 ## v3.16.7
 
 ### Improvements
