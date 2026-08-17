@@ -1,5 +1,8 @@
 # ChirpStack documentation
 
+**NOTE:** This repository has been archieved, as the ChirpStack v4 documentation
+source has moved to https://github.com/chirpstack/chirpstack-docs.
+
 This repository contains the global [chirpstack.io](https://www.chirpstack.io) documentation.
 
 ## Requirements
